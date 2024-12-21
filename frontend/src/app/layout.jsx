@@ -1,5 +1,9 @@
 import { BarraNavegacion } from "@/components/estructura/BarraNavegacion/BarraNavegacion.jsx";
 import "../estilos/globals.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css"; // Importa los estilos manualmente
+config.autoAddCss = false; // Deshabilita la carga automática de CSS
+
 
 
 export default function RootLayout({ children }) {
@@ -7,7 +11,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <BarraNavegacion/>
-        {children}
+        <div className="container max-w-[1000px]">
+          {children}
+        </div>
       </body>
     </html>
   );
