@@ -1,0 +1,55 @@
+.parques__nav {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  height: 50px;
+
+  top: 70px;
+  padding: 0px 10px;
+  z-index: 500;
+
+  background-color: rgb(143, 143, 41);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.parques__nav-link {
+  display: flex;
+  height: 100%;
+  padding: 0px 20px;
+  list-style: none;
+
+  gap: 5px;
+
+  cursor: pointer;
+  transition: all .3s ease;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.parques__nav-link:hover {
+  background-color: rgb(89, 89, 28);
+}
+
+.parques__nav-link-activo {
+  background-color: rgb(89, 89, 28);
+}
+
+@media (max-width: 500px) {
+  .parques__nav-link-p {
+    display: none;
+  }
+
+  .parques__nav {
+    gap: 20px;
+  }
+
+  .parques__nav-link {
+    font-size: 25px;
+  }
+}

@@ -8,7 +8,7 @@ export const BarraNavegacionDesktop = () => {
   return (
     <nav className={Styles['navbar']}>
       {/* logo  */}
-      <div className='container flex max-w-[1000px] items-center justify-between'>
+      <div className='container flex max-w-[1000px] max-h-[70px] items-center justify-between'>
         <div className='flex items-center gap-[10px]'>
           <div className={Styles['navbar__contenedor-logo']} >
             <Image
