@@ -1,33 +1,60 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from '../../estilos/parques.module.css'
 import TarjetaParquesUbicaion from '../../components/parques/TarjetaParqueUbicacion'
 import TarjetaParqueRecomendado from '@/components/parques/TarjetaParqueRecomendado'
+import { getParques } from '@/utilidades/api'
 
 const Parques = () => {
+
+  const [parques, setParques] = useState([])
+  const [errorParques , setErrorParques] = useState(null);
+  const [cargando, setCargando] = useState(true)
+
+  useEffect(() => {
+    const fetchParques = async () => {
+      try {
+        const datos = await getParques()
+        console.log(datos)
+        setParques(datos)
+      } catch (error) {
+        setErrorParques(error.message)
+      }finally {
+        setCargando(false)
+      }
+    }
+
+    fetchParques()
+  },[])
+
+  if(cargando) {
+    return <h1>Cargando....</h1>
+  }
+
+  if(errorParques) {
+    return <h1>Error {errorParques}</h1>
+  }
+
+
   return (
     <section className={Styles['parques']}>
       <div className={Styles['parques__divisor']}>
         {/* contenedor de parques  */}
         <div className={Styles['parques__contenedor']}>
-          <TarjetaParquesUbicaion
-            titulo='Parque girasoles'
-            imagen={'/imagen-parque-mediana.png'}
-            pais='Ecuador'
-            continente='Sudamerica'
-            canton='Duran'
-            link='#'
-            puntuacion={3}
-          />
-          <TarjetaParquesUbicaion
-            titulo='Parque girasoles'
-            imagen={'/imagen-parque-mediana.png'}
-            pais='Ecuador'
-            continente='Sudamerica'
-            canton='Duran'
-            link='#'
-            puntuacion={3}
-          />
+          {parques.map((parque) => (
+            <TarjetaParquesUbicaion
+              key={parque.id}
+              id={parque.id}
+              titulo={parque.nombre}
+              imagen={parque.imagen}
+              pais={parque.pais}
+              continente={parque.continente}
+              canton={parque.canton}
+              link='#'
+              puntuacion={parque.puntuacion}
+            />
+          ))}
+        
         </div>
 
         {/* contenedor publicidad y parques recomendados  */}
