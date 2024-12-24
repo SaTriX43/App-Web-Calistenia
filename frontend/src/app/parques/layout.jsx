@@ -4,7 +4,9 @@ export default function ParquesLayout({ children }) {
   return (
     <div className="flex flex-col w-full items-center">
       <ParquesNavegacion /> {/* Navbar exclusivo para Parques */}
-      <main>{children}</main> {/* Contenido dinámico (subpáginas de Parques) */}
+      <main className="w-full">
+        {children}
+        </main> {/* Contenido dinámico (subpáginas de Parques) */}
     </div>
   );
 }

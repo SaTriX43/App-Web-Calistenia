@@ -4,6 +4,7 @@ import Styles from '../estilos/Inicio.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faMagnifyingGlass, faPerson } from '@fortawesome/free-solid-svg-icons';
 import { PiePagina } from '@/components/estructura/PiePagina/PiePagina';
+import Link from 'next/link';
 
 
 export default function Inicio() {
@@ -14,10 +15,12 @@ export default function Inicio() {
         <div className={Styles['inicio__encabezado-contenedor-info']}>
           <h1 className='text-[25px] text-yellow-300'>Encuentra los Mejores Parques de Calistenia en Ecuador</h1>
           <h3 className='text-[20px]'>Descubre lugares ideales para entrenar, mejora tu técnica y conecta con la comunidad calisténica en tu ciudad</h3>
-          <Boton
-            texto='Explorar Parques Ahora'
-            tipoBoton='primario'
-          />
+          <Link href='/parques'>
+            <Boton
+              texto='Explorar Parques Ahora'
+              tipoBoton='primario'
+            />
+          </Link>
         </div>
       </section>
 
@@ -56,11 +59,14 @@ export default function Inicio() {
       {/* seccion de llamada a la accion  */}
       <section className='flex flex-col mt-[40px] items-center gap-[20px] pb-[70px]'>
         <h1 className='text-[30px] text-yellow-400 text-center'>¿Listo para llevar tu entrenamiento al aire libre? Explora los mejores parques y encuentra el lugar perfecto para tus rutinas.</h1>
-        <Boton
-          tipoBoton='primario'
-          texto='Ver parques'
-          clases='px-2'
-        />
+        <Link href='/parques'>
+          <Boton
+            tipoBoton='primario'
+            texto='Ver parques'
+            clases='px-2'
+          />
+        </Link>
+        
       </section>
 
       <PiePagina/>
