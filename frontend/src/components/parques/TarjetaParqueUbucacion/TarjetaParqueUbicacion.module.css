@@ -75,6 +75,7 @@
 @media ((min-width: 400px) and (max-width: 800px)) {
   .parques__tarjeta {
     max-width: 250px;
+    min-height: 400px;
   }
   
 
@@ -88,7 +89,8 @@
   }
 
   .parques__tarjeta-contedor-img {
-    max-width: 200px;
+    min-width: 170px;
+    max-width: 170px;
   }
 
   .parques__tarjeta-contenedor-botones {

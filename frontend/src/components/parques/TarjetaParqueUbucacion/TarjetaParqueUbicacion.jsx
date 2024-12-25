@@ -4,7 +4,7 @@ import React from "react";
 import Styles from "./TarjetaParqueUbicacion.module.css";
 import Image from "next/image";
 import { faCircleDot, faCity, faEarth } from "@fortawesome/free-solid-svg-icons";
-import { Boton } from "../comunes/Boton";
+import { Boton } from "../../comunes/Boton";
 import Link from "next/link";
 
 export default function TarjetaParqueUbicacion({
@@ -14,7 +14,7 @@ export default function TarjetaParqueUbicacion({
   pais,
   continente,
   canton,
-  link
+  link,
 }) {
 
   function verEnMapa() {
@@ -25,6 +25,7 @@ export default function TarjetaParqueUbicacion({
     <article className={Styles["parques__tarjeta"]}>
       <div className={Styles["parques__tarjeta-contedor-img"]}>
         <Image
+          key={imagen}
           src={imagen}
           width={300}
           height={300}
