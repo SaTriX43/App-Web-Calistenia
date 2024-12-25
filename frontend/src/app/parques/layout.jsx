@@ -1,4 +1,4 @@
-import { ParquesNavegacion } from "@/components/estructura/ParquesNavegacion/ParquesNavegacion";
+import { ParquesNavegacion } from "@/components/estructura/paginaParques/ParquesNavegacion/ParquesNavegacion";
 
 export default function ParquesLayout({ children }) {
   return (

@@ -1,0 +1,69 @@
+.parques__divisor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 20px;
+}
+
+/* parques contenedor  */
+
+.parques__contenedor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 20px;
+}
+
+/* contenedor de publicidad y recomendados  */
+
+.parques__contenedor-publicidad-recomnedados {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 20px;
+
+  align-items: center;
+}
+
+.parques__contenedor-recomendados {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 20px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+@media ((min-width: 400px) and (max-width: 800px)) {
+  .parques__contenedor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+    justify-items: center;
+  }
+
+  .parques__contenedor-recomendados {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+@media (min-width: 800px) {
+  .parques__divisor {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .parques__contenedor-publicidad-recomnedados {
+    width: 30%;
+  }
+}
