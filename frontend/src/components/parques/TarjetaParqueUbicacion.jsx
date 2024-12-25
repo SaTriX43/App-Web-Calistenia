@@ -14,7 +14,7 @@ export default function TarjetaParqueUbicacion({
   pais,
   continente,
   canton,
-  link
+  link,
 }) {
 
   function verEnMapa() {
@@ -25,6 +25,7 @@ export default function TarjetaParqueUbicacion({
     <article className={Styles["parques__tarjeta"]}>
       <div className={Styles["parques__tarjeta-contedor-img"]}>
         <Image
+          key={imagen}
           src={imagen}
           width={300}
           height={300}

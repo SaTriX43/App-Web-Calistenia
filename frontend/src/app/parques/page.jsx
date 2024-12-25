@@ -15,7 +15,6 @@ const Parques = () => {
     const fetchParques = async () => {
       try {
         const datos = await getParques()
-        console.log(datos)
         setParques(datos)
       } catch (error) {
         setErrorParques(error.message)
@@ -64,23 +63,16 @@ const Parques = () => {
           </div>
           <h2 className='text-[30px] text-center'>Parques Recomendados</h2>
           <div className={Styles['parques__contenedor-recomendados']}>
-            <TarjetaParqueRecomendado
-              titulo='Mmahuevo los andes'
-              imagen={'/imagen-parque-pequenia.png'}
-              link='#'
-            />
-
-            <TarjetaParqueRecomendado
-              titulo='Mmahuevo los andes'
-              imagen={'/imagen-parque-pequenia.png'}
-              link='#'
-            />
-
-            <TarjetaParqueRecomendado
-              titulo='Mmahuevo los andes'
-              imagen={'/imagen-parque-pequenia.png'}
-              link='#'
-            />
+            {parques.slice(0,3).map((parque) => (
+              <TarjetaParqueRecomendado
+                key={parque.id}
+                id={parque.id}
+                titulo={parque.nombre}
+                imagen={parque.imagen}
+                puntuacion={parque.puntuacion}
+                link='#'
+              />
+            ))}
           </div>
         </div>
       </div>
