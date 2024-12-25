@@ -3,8 +3,12 @@ import React from 'react'
 import Image from 'next/image'
 import Styles from './BarraNavegacion.module.css'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export const BarraNavegacionDesktop = () => {
+
+  const pathname = usePathname()
+
   return (
     <nav className={Styles['navbar']}>
       {/* logo  */}
@@ -23,11 +27,11 @@ export const BarraNavegacionDesktop = () => {
         </div>
         
         <div className={Styles['navbar__contenedor-paginas']}>
-          <li className={Styles['navbar__li-pagina']}>
+          <li className={`${Styles['navbar__li-pagina']} ${pathname === '/' ? 'text-black underline' : ''}`}>
             <Link href="/" className={Styles['navbar__links-pagina']}>Inicio</Link>
           </li>
 
-          <li className={Styles['navbar__li-pagina']}>
+          <li className={`${Styles['navbar__li-pagina']} ${pathname === '/parques' ? 'text-black underline' : ''}`}>
             <Link href="/parques" className={Styles['navbar__links-pagina']}>Parques</Link>
           </li>
         </div>

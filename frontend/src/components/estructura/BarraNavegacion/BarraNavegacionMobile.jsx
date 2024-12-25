@@ -6,10 +6,12 @@ import Styles from './BarraNavegacion.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export const BarraNavegacionMobile = () => {
 
   const [bars, setBars] = useState(false)
+  const pathname = usePathname()
 
   function manejarBars() {
     setBars(!bars)
@@ -39,11 +41,23 @@ export const BarraNavegacionMobile = () => {
       </nav>
       <div className={`${Styles['navbar__contenedor-paginas']}  ${bars ? Styles['navbar__contenedor-paginas-activo'] : ''}`}>
         <li className={Styles['navbar__li-pagina']}>
-          <Link href="/" className={Styles['navbar__links-pagina']}>Inicio</Link>
+          <Link 
+            href="/" 
+            className={`${Styles['navbar__links-pagina']} ${pathname === '/' ? 'text-black' : ''}`}
+            onClick={() => {setBars(false)}}
+          >
+            Inicio
+          </Link>
         </li>
 
         <li className={Styles['navbar__li-pagina']}>
-          <Link href="/parques" className={Styles['navbar__links-pagina']}>Parques</Link>
+          <Link 
+            href="/parques" 
+            className={`${Styles['navbar__links-pagina']} ${pathname === '/parques' ? 'text-black' : ''}`}
+            onClick={() => {setBars(false)}}
+          >
+            Parques
+          </Link>
         </li>
       </div>
     </>
