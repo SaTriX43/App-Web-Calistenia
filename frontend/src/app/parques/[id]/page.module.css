@@ -1,0 +1,26 @@
+.parques__detalle-parque {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-top: 120px;
+
+	background-color: var(--background-principal);
+
+	padding-top: 20px;
+	padding-bottom:20px ;
+}
+
+
+.parques__detalle-parque-divisor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 20px;
+}
+
+@media (min-width: 800px) {
+  .parques__detalle-parque-divisor {
+    flex-direction: row;
+  }
+}

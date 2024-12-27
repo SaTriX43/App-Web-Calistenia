@@ -3,6 +3,10 @@
 import { getParqueId } from "@/utilidades/api";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Styles from './page.module.css'
+import Detalles from "./componentesDetalle/Detalles";
+import Publicidad from "./componentesDetalle/Publicidad";
+import Mapa from "./componentesDetalle/Mapa";
 
 export default function DetalleParque() {
 
@@ -25,9 +29,20 @@ export default function DetalleParque() {
   },[])
 
   return (
-    <div className="mt-[200px]">
-      <h1>Detalle de parques con id {parque.id}</h1>
-      <p>{parque.descripcion}</p>
-    </div>
+    <section className={Styles['parques__detalle-parque']}>
+      <Detalles
+        imagen={parque.imagen}
+        nombre={parque.nombre}
+        direccion={parque.direccion}
+        puntuacion={parque.puntuacion}
+        canton={parque.canton}
+        pais= {parque.pais}
+        continente={parque.continente}
+      />
+      <div className={Styles['parques__detalle-parque-divisor']}>
+        <Mapa/>
+        <Publicidad/>
+      </div>
+    </section>
   )
 }

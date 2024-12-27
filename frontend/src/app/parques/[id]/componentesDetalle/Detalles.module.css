@@ -1,0 +1,73 @@
+.parques__detalle-parque-detalles {
+  display: flex;
+  flex-direction:column ;
+  width: 100%;
+
+  gap: 20px;
+  padding: 0px 10px;
+
+  align-items: center;
+}
+
+.parques__detalle-parque-contenedor-img {
+  display: flex;
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+}
+
+.parques__detalle-parque-contenedor-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+
+  align-items: center;
+}
+
+.parques__detalle-parque-contenedor-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+
+.parques__detalle-parque-contenedor-botones {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  align-items: center;
+}
+
+
+@media (min-width: 600px) {
+  .parques__detalle-parque-detalles {
+    flex-direction: row;
+    align-items: start;
+  }
+
+  .parques__detalle-parque-contenedor-img {
+    height: 250px;
+  }
+
+  .parques__detalle-parque-contenedor-info {
+    align-items: start;
+  }
+
+  .parques__detalle-parque-contenedor-info h3 {
+    font-size: 23px;
+    text-align: start;
+  }
+
+  .parques__detalle-parque-contenedor-info-puntuacion {
+    font-size: 20px;
+  }
+
+  .parques__detalle-parque-contenedor-botones {
+    flex-direction: row;
+  }
+}
