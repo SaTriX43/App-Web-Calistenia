@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Styles from './TarjetaParqueRecomendado.module.css'
 import Image from 'next/image'
@@ -7,7 +9,7 @@ export default function TarjetaParqueRecomendado({
   titulo,
   imagen,
   puntuacion = 1,
-  link
+  id
 }) {
   return (
     <article className={Styles['parques__tarjeta-recomendado']}>
@@ -21,7 +23,7 @@ export default function TarjetaParqueRecomendado({
         />
       </div>
       <div className={Styles['parques__tarjeta-recomendado-contenedor-info']}>
-        <Link href={link}>
+        <Link href={`/parques/${id}`}>
           <h3 className={Styles['parques__tarjeta-recomendado-titulo']}>{titulo}</h3>
         </Link>
         

@@ -67,7 +67,6 @@ function ParquesUbicacionParque() {
               pais={parque.pais}
               continente={parque.continente}
               canton={parque.canton}
-              link="#"
               puntuacion={parque.puntuacion}
             />
           ))}
@@ -94,7 +93,6 @@ function ParquesUbicacionParque() {
               titulo={parque.nombre}
               imagen={parque.imagen}
               puntuacion={parque.puntuacion}
-              link="#"
             />
           ))}
         </div>

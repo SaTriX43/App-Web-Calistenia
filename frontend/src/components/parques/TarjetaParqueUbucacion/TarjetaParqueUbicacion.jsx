@@ -14,7 +14,7 @@ export default function TarjetaParqueUbicacion({
   pais,
   continente,
   canton,
-  link,
+  id,
 }) {
 
   function verEnMapa() {
@@ -36,7 +36,7 @@ export default function TarjetaParqueUbicacion({
 
       {/* contenedor de informacion del parque */}
       <div className={Styles["parques__tarjeta-contedor-info"]}>
-        <Link href={link}>
+        <Link href={`/parques/${id}`}>
           <h3 className={Styles['parques__tarjeta-titulo']}>{titulo}</h3>
         </Link>
         
