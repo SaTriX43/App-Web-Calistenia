@@ -2,7 +2,7 @@
 
 import { getParqueId } from "@/utilidades/api";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import Styles from './page.module.css'
 import Detalles from "./componentesDetalle/Detalles";
 import Publicidad from "./componentesDetalle/Publicidad";
@@ -40,7 +40,7 @@ export default function DetalleParque() {
         continente={parque.continente}
       />
       <div className={Styles['parques__detalle-parque-divisor']}>
-        <Mapa/>
+        <Mapa latitud={parque.latitud} longitud={parque.longitud} nombre={parque.nombre} />
         <Publicidad/>
       </div>
     </section>

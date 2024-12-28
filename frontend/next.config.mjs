@@ -2,7 +2,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['mobipark.com', 'www.krealiagestion.com', 'equidesa.com'], // Dominios permitidos
+    domains: ['cdn.pixabay.com', 'mobipark.com', 'www.krealiagestion.com', 'equidesa.com'],// Dominios permitidos
   },
 };
 

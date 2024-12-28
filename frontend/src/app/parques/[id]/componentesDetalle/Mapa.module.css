@@ -1,0 +1,12 @@
+.parques__detalle-parque-mapa {
+  display: flex;
+  width: 100%;
+  height: 350px;
+  z-index: 100;
+}
+
+@media (min-width: 800px) {
+  .parques__detalle-parque-mapa {
+    max-width: 600px;
+  }
+}

@@ -1,0 +1,11 @@
+.parques__detalle-parque-publicidad {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@media (min-width: 800px) {
+  .parques__detalle-parque-publicidad {
+    width: 30%;
+  } 
+}
