@@ -28,8 +28,12 @@ export const getParquesId = (req, res) => {
   const resultado = parques.find(parque => parque.id === parqueId) 
 
   if(!resultado) {
-    return res.status(404).json({error: `Su resultado no ha sido encontrado con id ${parqueId}`})
+    return res.status(404).json({error: `Su parque no ha sido encontrado con id ${parqueId}`})
   }
 
-  res.json(resultado)
+  try {
+    res.json(resultado)
+  } catch (error) {
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
 };

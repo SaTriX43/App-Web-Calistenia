@@ -5,8 +5,8 @@ import { useParams } from "next/navigation";
 import React, {useEffect, useState } from "react";
 import Styles from './page.module.css'
 import Detalles from "./componentesDetalle/Detalles";
-import Publicidad from "./componentesDetalle/Publicidad";
 import Mapa from "./componentesDetalle/Mapa";
+import DetallePublicidad from "./componentesDetalle/DetallePublicidad";
 
 export default function DetalleParque() {
   const [parques, setParques] = useState([]) 
@@ -21,7 +21,6 @@ export default function DetalleParque() {
         setParque(data)
 
         const parquesData = await getParques();
-        console.log(parquesData.data)
         setParques(parquesData.data)
       } catch (error) {
         console.log(error)
@@ -53,7 +52,9 @@ export default function DetalleParque() {
           nombre={parque.nombre}
           ubicaciones={parques}
         />
-        <Publicidad/>
+        <DetallePublicidad 
+          parques= {parques}
+        />
       </div>
     </section>
   )

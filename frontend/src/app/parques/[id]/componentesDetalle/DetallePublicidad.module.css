@@ -1,0 +1,40 @@
+.parques__detalle-parque-contenedor-publicidad-recomendados {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 20px;
+
+  align-items: center;
+}
+
+.parques__detalle-parque-recomendados {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+
+  align-items: center;
+}
+
+@media ((min-width: 400px) and (max-width: 800px)) {
+
+  .parques__detalle-parque-recomendados {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+
+
+@media (min-width: 800px) {
+  .parques__detalle-parque-contenedor-publicidad-recomendados {
+    width: 40%;
+    max-height: 350px;
+    overflow: auto;
+    scrollbar-width: none;
+  } 
+}
