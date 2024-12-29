@@ -1,0 +1,43 @@
+.parques__mapa-contenedor-mapa-sobre {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  margin-top: 120px;
+  padding: 10px;
+  gap: 20px;
+
+  background-color: var(--background-principal);
+
+  align-items: center;
+}
+
+.parques__mapa-sobre {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+
+  align-items: center;
+  
+}
+
+.parques__mapa-sobre li {
+  color: #C4C424;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all .3s ease;
+}
+
+.parques__mapa-sobre li:hover {
+  transform: translateY(-3px);
+  color:#81811a ;
+}
+
+@media(min-width: 600px) {
+  .parques__mapa-sobre {
+    flex-direction: row;
+    justify-content: center;
+  }
+}

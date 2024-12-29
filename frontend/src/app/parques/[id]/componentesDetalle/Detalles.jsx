@@ -3,7 +3,7 @@ import React from 'react'
 import Styles from './Detalles.module.css'
 import Image from 'next/image'
 import { faCircleDot, faCity, faEarth } from '@fortawesome/free-solid-svg-icons'
-import { Boton } from '@/components/comunes/Boton'
+import { Boton } from '@/components/comunes/Boton/Boton'
 
 export default function Detalles({
   imagen,

@@ -1,0 +1,10 @@
+.informacion__contacto {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 400px;
+
+  margin-top: 70px;
+
+  background-color: var(--background-principal);
+}

@@ -1,5 +1,5 @@
 'use client'
-import { Boton } from '@/components/comunes/Boton';
+import { Boton } from '@/components/comunes/Boton/Boton';
 import Styles from '../estilos/Inicio.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faMagnifyingGlass, faPerson } from '@fortawesome/free-solid-svg-icons';

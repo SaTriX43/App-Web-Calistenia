@@ -4,7 +4,7 @@ import React from "react";
 import Styles from "./TarjetaParqueUbicacion.module.css";
 import Image from "next/image";
 import { faCircleDot, faCity, faEarth } from "@fortawesome/free-solid-svg-icons";
-import { Boton } from "../../comunes/Boton";
+import { Boton } from "../../comunes/Boton/Boton";
 import Link from "next/link";
 
 export default function TarjetaParqueUbicacion({
