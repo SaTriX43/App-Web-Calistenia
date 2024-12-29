@@ -5,6 +5,81 @@
   min-height: 400px;
 
   margin-top: 70px;
+  padding: 20px;
 
   background-color: var(--background-principal);
 }
+
+/* formulario  */
+.informacion__contacto-formulario {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.informacion__contacto-formulario-grupo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+}
+
+.informacion__contacto-formulario-grupo label {
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.informacion__contacto-formulario-grupo-item {
+  display: flex;
+  width: 100%;
+  height: 30px;
+
+  padding: 0px 10px;
+  font-size: 18px;
+}
+
+/* label  */
+.informacion__contacto-formulario-grupo-item-radio {
+  display: flex;
+  flex-direction: row;
+
+  gap: 10px;
+
+  align-items: center;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+}
+
+.informacion__contacto-formulario-grupo-item-radio input {
+  width: 15px;
+  height: 15px;
+}
+
+/* textarea  */
+
+.informacion__contacto-formulario-grupo-item-textarea {
+  display: flex;
+  width: 100%;
+  min-height: 100px;
+
+  padding: 10px;
+
+  font-size: 18px;
+  resize: none;
+}
+
+@media (min-width: 400px) {
+  .informacion__contacto-formulario-radios {
+    display: flex;
+    flex-direction: row;
+
+    gap: 20px;
+  }
+
+  .informacion__contacto-formulario-grupo-item-radio {
+    gap: 5px;
+  }
+}
+

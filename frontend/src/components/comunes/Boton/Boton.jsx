@@ -9,6 +9,7 @@ export const Boton = (
     clases ,
     onClick,
     icono,
+    type = 'button',
     tipoBoton = 'primario' | 'btn-parque'
   }
 ) => {
@@ -47,7 +48,7 @@ export const Boton = (
 
   const tipoBotonEstilo = tipoBoton === 'primario' ? botonPrimario : botonParque
   return (
-    <button onClick={onClick} className={`${baseBoton} ${tipoBotonEstilo} ${clases} `}>
+    <button onClick={onClick} type={type} className={`${baseBoton} ${tipoBotonEstilo} ${clases} `}>
       {icono && <FontAwesomeIcon icon={icono}/>}
       {texto}
     </button>
