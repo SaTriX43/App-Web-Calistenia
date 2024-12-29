@@ -12,14 +12,14 @@ const parqueIcon = new L.Icon({
   popupAnchor: [0, -32],       // Punto de anclaje del popup
 });
 
-const Mapa = memo(function Mapa({ latitud, longitud, nombre, ubicaciones }) {
+const Mapa = memo(function Mapa({ latitud, longitud, nombre, ubicaciones, clases }) {
   if (!latitud || !longitud) return <p>Cargando mapa...</p>;
 
   return (
     <MapContainer
       center={[latitud, longitud]}
       zoom={14}
-      className={Styles['parques__detalle-parque-mapa']}
+      className={Styles[clases]}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

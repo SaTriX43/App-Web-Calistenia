@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import React, {useEffect, useState } from "react";
 import Styles from './page.module.css'
 import Detalles from "./componentesDetalle/Detalles";
-import Mapa from "./componentesDetalle/Mapa";
+import Mapa from "../../../components/parques/Mapa/Mapa";
 import DetallePublicidad from "./componentesDetalle/DetallePublicidad";
 
 export default function DetalleParque() {
@@ -51,6 +51,7 @@ export default function DetalleParque() {
           longitud={parque.longitud} 
           nombre={parque.nombre}
           ubicaciones={parques}
+          clases={'parques__detalle-parque-mapa'}
         />
         <DetallePublicidad 
           parques= {parques}
