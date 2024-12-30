@@ -1,17 +1,30 @@
-export function postContacto(req,res) {
-  const cuerpo = '';
+import { enviarEmail } from "../servicios/emailServicio.mjs";
 
-  req.on('data',(chunck) => {
-    cuerpo += chunck
-  })
 
-  req.on('end',async () => {
-    const informacion = JSON.parse(cuerpo)
+export async function postContacto(req,res) {
+  try {
+    const {nombre, email , mensaje, asunto} = req.body;
 
-    if(!informacion) {
-      return res.status(403).json({error : `No ah llegado informacion al servidor`})
+    if(!nombre || !email || !mensaje) {
+      return res.status(400).json({error : `Faltan datos obligatorios`})
     }
-
     
-  })
+    const resultado = await enviarEmail({
+      nombre,
+      email,
+      mensaje,
+      asunto
+    })
+
+    res.status(200).json({
+      mensaje: "Mensaje enviado correctamente.",
+    });
+
+
+  } catch (error) {
+    console.log(`Error en postContacto ${error}`)
+    res.status(500).json({error : `No se han guardado datos: ${error.message}`})
+  }
+
+  
 }

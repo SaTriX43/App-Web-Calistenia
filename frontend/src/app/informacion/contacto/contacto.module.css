@@ -10,6 +10,24 @@
   background-color: var(--background-principal);
 }
 
+/* mensaje  */
+
+.informacion__contacto-respuesta {
+  display: flex;
+  width: 100%;
+  min-height: 30px;
+
+  padding: 10px;
+
+  border: 2px solid green;
+  background-color: rgb(97, 145, 25);
+
+  font-size: 18px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+}
+
 /* formulario  */
 .informacion__contacto-formulario {
   display: flex;

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Styles from './contacto.module.css'
 import { Boton } from '@/components/comunes/Boton/Boton'
@@ -8,6 +8,7 @@ import { contactoPost } from '@/utilidades/api/contactoApi.js'
 
 export default function Contacto() {
 
+  // variable que guarda datos del form 
   const formularioInicial = {
     id: uuidv4(),
     nombre: '',
@@ -29,31 +30,33 @@ export default function Contacto() {
 
   function manejarEnvio(e) {
     e.preventDefault()
-    console.log('Enviando formulario', formulario)
-    setFormulario({
-      ...formularioInicial,
-      id: uuidv4() // Generar un nuevo ID para la siguiente entrada
-    })
-  }
-
-  useEffect(() => {
+  
     async function peticionPost() {
       try {
-        contactoPost(formulario)
-        .then((respuesta) => (
-          setMensaje(respuesta)
-        ))
+        const respuesta = await contactoPost(formulario)
+        setMensaje(respuesta.mensaje)
+        setError(null)
+
+        setTimeout(() => setMensaje(''), 3000)
+
       } catch (error) {
         console.log(error.message)
         setError(error)
+        setTimeout(() => setError(null), 5000)
       }
     }
-    if(formulario.nombre || formulario.email || formulario.mensaje) {
-      peticionPost()
-    }
-    
-  })
 
+    // valida si todo esta en orden 
+    if(formulario.nombre && formulario.email && formulario.mensaje) {
+      peticionPost()
+
+      // rsetea el formulario 
+      setFormulario({
+        ...formularioInicial,
+        id: uuidv4()
+      })
+    }
+  }
 
 
   return (
@@ -62,13 +65,13 @@ export default function Contacto() {
       {/* error  */}
       {error && (
         <div className={Styles['informacion__contacto-error']}>
-          <h1>{error.error}</h1>
+          <h1>{error}</h1>
         </div>
       )} 
       {/* mensaje  */}
       {mensaje.length > 0 && (
         <div className={Styles['informacion__contacto-respuesta']}>
-          <h1>{mensaje.mensaje}</h1>
+          <h1>{mensaje}</h1>
         </div>
       )} 
       <form onSubmit={manejarEnvio} className={Styles['informacion__contacto-formulario']}>
