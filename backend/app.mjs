@@ -1,12 +1,15 @@
 import express from 'express'
 import cors from 'cors'
-import parquesRutas from './rutas/parquesRuta.mjs'
+import parquesRuta from './rutas/parquesRuta.mjs'
+import contactoRuta from './rutas/contactoRuta.mjs'
+
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use('/parques',parquesRutas)
+app.use('/parques',parquesRuta)
+app.use('/contacto',contactoRuta)
 
 
 

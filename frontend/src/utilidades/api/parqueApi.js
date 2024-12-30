@@ -31,3 +31,4 @@ export async function getParqueId(id) {
     console.log(`Error en la peticion ${error.message}`)
   }
 }
+
