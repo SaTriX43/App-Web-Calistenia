@@ -48,8 +48,10 @@ export default function Contacto() {
         setError(error)
       }
     }
-
-    peticionPost
+    if(formulario.nombre || formulario.email || formulario.mensaje) {
+      peticionPost()
+    }
+    
   })
 
 
