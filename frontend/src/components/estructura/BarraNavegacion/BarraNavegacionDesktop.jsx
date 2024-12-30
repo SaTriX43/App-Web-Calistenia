@@ -23,7 +23,7 @@ export const BarraNavegacionDesktop = () => {
               className={Styles['navbar__logo']}
             />
           </div>
-          <h2 className='text-[16px] font-[600] sm:text-[25px]'>SaTriXThenics</h2>
+          <h2 className='text-[16px] font-[600] sm:text-[25px]'>HubThenics</h2>
         </div>
         
         <div className={Styles['navbar__contenedor-paginas']}>
@@ -31,7 +31,7 @@ export const BarraNavegacionDesktop = () => {
             <Link href="/" className={Styles['navbar__links-pagina']}>Inicio</Link>
           </li>
 
-          <li className={`${Styles['navbar__li-pagina']} ${pathname === '/parques' ? 'text-black underline' : ''}`}>
+          <li className={`${Styles['navbar__li-pagina']} ${pathname.startsWith('/parques') ? 'text-black underline' : ''}`}>
             <Link href="/parques" className={Styles['navbar__links-pagina']}>Parques</Link>
           </li>
         </div>

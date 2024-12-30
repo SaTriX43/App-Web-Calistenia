@@ -32,7 +32,7 @@ export const BarraNavegacionMobile = () => {
                 className={Styles['navbar__logo']}
               />
             </div>
-            <h2 className='text-[16px] font-[600] sm:text-[25px]'>SaTriXThenics</h2>
+            <h2 className='text-[16px] font-[600] sm:text-[25px]'>HubThenics</h2>
           </div>
           
           {/* bars  */}
@@ -53,7 +53,7 @@ export const BarraNavegacionMobile = () => {
         <li className={Styles['navbar__li-pagina']}>
           <Link 
             href="/parques" 
-            className={`${Styles['navbar__links-pagina']} ${pathname === '/parques' ? 'text-black' : ''}`}
+            className={`${Styles['navbar__links-pagina']} ${pathname.startsWith('/parques') ? 'text-black' : ''}`}
             onClick={() => {setBars(false)}}
           >
             Parques

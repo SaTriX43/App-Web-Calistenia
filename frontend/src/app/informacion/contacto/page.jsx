@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Styles from './contacto.module.css'
 import { Boton } from '@/components/comunes/Boton/Boton'
 import { contactoPost } from '@/utilidades/api/contactoApi.js'
+import InformacionLinks from '@/components/comunes/informacionLinks/informacionLinks'
 
 export default function Contacto() {
 
@@ -60,7 +61,7 @@ export default function Contacto() {
 
 
   return (
-    <div className={Styles['informacion__contacto']}>
+    <section className={Styles['informacion__contacto']}>
       <h1 className='text-[40px]'>contacto</h1>
       {/* error  */}
       {error && (
@@ -159,6 +160,7 @@ export default function Contacto() {
           tipoBoton='primario'
         />
       </form>
-    </div>
+      <InformacionLinks/>
+    </section>
   )
 }

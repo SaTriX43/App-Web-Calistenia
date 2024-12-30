@@ -18,7 +18,7 @@ export const PiePagina = () => {
             alt='logo calistenia'
           />
         </div>
-        <h3 className='text-[16px] font-[600] sm:text-[23px]'>SaTriXThenics</h3>
+        <h3 className='text-[16px] font-[600] sm:text-[23px]'>HubThenics</h3>
       </div>
       {/* redes sociales  */}
       <div className={Styles['footer__contenedor-social']}>

@@ -4,6 +4,7 @@ import Styles from './page.module.css'
 import { getParques } from '@/utilidades/api/parqueApi'
 import Mapa from '@/components/parques/Mapa/Mapa.jsx'
 import Link from 'next/link'
+import InformacionLinks from '@/components/comunes/informacionLinks/informacionLinks'
 
 export default function PaginaMapa() {
 
@@ -33,18 +34,8 @@ export default function PaginaMapa() {
         ubicaciones={parques}
         clases='parques__mapa'
       />
-      <div className={Styles['parques__mapa-sobre']}>
-        <Link href='informacion/'>
-          <li>Sobre nosotros</li>
-        </Link>
-        <Link href='informacion/'>
-          <li>Condiciones</li>
-        </Link>
-        <Link href='/informacion/contacto'>
-          <li>Contacto</li>
-        </Link>
-        
-      </div>
+      
+      <InformacionLinks/>
     </div>
   )
 }
