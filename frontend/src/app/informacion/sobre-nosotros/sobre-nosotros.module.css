@@ -1,0 +1,35 @@
+.informacion__sobre-nosotros {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 200px;
+
+  margin-top: 70px;
+  padding: 10px;
+  gap: 40px;
+
+  background-color: var(--background-principal);
+
+  align-items: center;
+}
+
+.informacion__sobre-nosotros p {
+  font-size: 18px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.informacion__sobre-nosotros-contenedor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+}
+
+.informacion__sobre-nosotros-seccion {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 20px;
+}
