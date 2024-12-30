@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Styles from './page.module.css'
-import { getParques } from '@/utilidades/api'
+import { getParques } from '@/utilidades/api/parqueApi'
 import Mapa from '@/components/parques/Mapa/Mapa.jsx'
 import Link from 'next/link'
 

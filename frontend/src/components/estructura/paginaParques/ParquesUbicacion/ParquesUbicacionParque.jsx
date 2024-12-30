@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Styles from './ParquesUbicacionParque.module.css'
-import { getParques } from '@/utilidades/api'
+import { getParques } from '@/utilidades/api/parqueApi'
 import { Publicidad } from '@/components/parques/publicidad/Publicidad'
 import { Paginacion } from '@/components/parques/paginacion/Paginacion'
 import TarjetaParqueUbicacion from '@/components/parques/TarjetaParqueUbucacion/TarjetaParqueUbicacion'
