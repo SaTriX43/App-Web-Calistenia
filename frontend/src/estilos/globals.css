@@ -1,5 +1,7 @@
 :root {
   --background-principal: #1f1f1f;
+  --color-link : #fde047;
+  --color-link-hover : #a8a816;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -65,11 +65,13 @@ export default function SobreNosotros() {
 
         <div className={Styles['informacion__sobre-nosotros-seccion']}>
           <h3 className='text-[25px]'>No tienes una cuenta gratuita todavia?</h3>
-          <Boton
-            texto='Crear Cuenta'
-            clases='max-w-[200px]'
-            tipoBoton='primario'
-          />
+          <Link href='/autenticacion/login'>
+            <Boton
+              texto='Crear Cuenta'
+              clases='max-w-[200px]'
+              tipoBoton='primario'
+            />
+          </Link>
         </div>
 
         <div className={Styles['informacion__sobre-nosotros-seccion']}>

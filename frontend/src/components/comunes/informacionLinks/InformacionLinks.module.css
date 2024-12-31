@@ -9,7 +9,7 @@
 }
 
 .informacion-sobre li {
-  color: #C4C424;
+  color: var(--color-link);
   list-style: none;
   cursor: pointer;
   font-weight: 600;
@@ -18,7 +18,7 @@
 
 .informacion-sobre li:hover {
   transform: translateY(-3px);
-  color:#81811a ;
+  color:var(--color-link-hover) ;
 }
 
 @media(min-width: 600px) {

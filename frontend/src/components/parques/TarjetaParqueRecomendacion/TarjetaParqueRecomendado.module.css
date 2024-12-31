@@ -41,7 +41,7 @@
 }
 
 .parques__tarjeta-recomendado-titulo {
-  color: yellow;
+  color: var(--color-link);
   font-size: 20px;
   cursor: pointer;
   transition: all .3s ease;
@@ -49,7 +49,7 @@
 }
 
 .parques__tarjeta-recomendado-titulo:hover {
-  color: rgb(168, 168, 22);
+  color: var(--color-link-hover);
   text-decoration:underline;
 }
 
