@@ -44,6 +44,9 @@ a {
   object-fit: cover;
 }
 
+
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

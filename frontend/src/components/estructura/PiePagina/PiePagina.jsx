@@ -2,7 +2,7 @@ import React from 'react'
 import Styles from './PiePagina.module.css'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faInstagram, faTiktok, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import Link from 'next/link'
 
 export const PiePagina = () => {
@@ -22,9 +22,25 @@ export const PiePagina = () => {
       </div>
       {/* redes sociales  */}
       <div className={Styles['footer__contenedor-social']}>
-        <FontAwesomeIcon icon={faInstagram} className={`${Styles['footer__icon-social']} text-purple-400 hover:text-purple-600`}/>
-        <FontAwesomeIcon icon={faFacebook} className={`${Styles['footer__icon-social']} text-blue-600 hover:text-blue-800`}/>
-        <FontAwesomeIcon icon={faTwitter} className={`${Styles['footer__icon-social']} text-blue-400 hover:text-blue-600`}/>
+
+        <a href="https://www.facebook.com/profile.php?id=61571200568609" target='_blank' rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faFacebook} className={`${Styles['footer__icon-social']} text-blue-600 hover:text-blue-800`}/>
+        </a>
+
+        <a href="https://www.instagram.com/hubthenics/" target='_blank' rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faInstagram} className={`${Styles['footer__icon-social']} text-purple-400 hover:text-purple-600`}/>
+        </a>
+
+        <a href="https://x.com/HubThenics" target='_blank' rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faTwitter} className={`${Styles['footer__icon-social']} text-blue-400 hover:text-blue-600`}/>
+        </a>
+
+        <a href="https://www.tiktok.com/@hubthenics?is_from_webapp=1&sender_device=pc" target='_blank' rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faTiktok} className={`${Styles['footer__icon-social']}  hover:text-gray-300`}/>
+        </a>
+        
+        
+        
       </div>
       {/* paginas  */}
       <div className={Styles['footer__contenedor-paginas']}>

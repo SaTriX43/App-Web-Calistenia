@@ -33,3 +33,22 @@
 
   margin-top: 20px;
 }
+
+
+.informacion__sobre-nosotros-seccion-contenedor-botones {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  gap: 30px;
+}
+
+.informacion__sobre-nosotros-seccion-botones {
+  font-size: 30px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.informacion__sobre-nosotros-seccion-botones:hover {
+  transform: translateY(-3px);
+}

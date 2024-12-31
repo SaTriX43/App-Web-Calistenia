@@ -75,22 +75,36 @@ export default function SobreNosotros() {
         <div className={Styles['informacion__sobre-nosotros-seccion']}>
           <h3 className='text-[25px]'>Conectate con nosotros</h3>
           <div className={Styles['informacion__sobre-nosotros-seccion-contenedor-botones']}>
-            <FontAwesomeIcon
-              icon={faFacebook}
-              className={Styles['informacion__sobre-nosotros-seccion-botones']}
-            />
-            <FontAwesomeIcon
-              icon={faInstagram}
-              className={Styles['informacion__sobre-nosotros-seccion-botones']}
-            />
-            <FontAwesomeIcon
-              icon={faTwitter}
-              className={Styles['informacion__sobre-nosotros-seccion-botones']}
-            />
-            <FontAwesomeIcon
-              icon={faTiktok}
-              className={Styles['informacion__sobre-nosotros-seccion-botones']}
-            />
+            <a className='' href="https://www.facebook.com/profile.php?id=61571200568609" target='_blank' rel="noopener noreferrer">
+              <FontAwesomeIcon
+                icon={faFacebook}
+                className={`${Styles['informacion__sobre-nosotros-seccion-botones']} text-blue-600 hover:text-blue-800`}
+              />
+            </a>
+
+
+            <a href="https://www.instagram.com/hubthenics/" target='_blank' rel="noopener noreferrer">
+              <FontAwesomeIcon
+                icon={faInstagram}
+                className={`${Styles['informacion__sobre-nosotros-seccion-botones']} text-purple-400 hover:text-purple-600`}
+              />
+            </a>
+            
+            
+            <a href="https://x.com/HubThenics" target='_blank' rel="noopener noreferrer">
+              <FontAwesomeIcon
+                icon={faTwitter}
+                className={`${Styles['informacion__sobre-nosotros-seccion-botones']} text-blue-400 hover:text-blue-600`}
+              />
+            </a>
+            
+
+            <a href="https://www.tiktok.com/@hubthenics?is_from_webapp=1&sender_device=pc" target='_blank' rel="noopener noreferrer">
+              <FontAwesomeIcon
+                icon={faTiktok}
+                className={`${Styles['informacion__sobre-nosotros-seccion-botones']} hover:text-gray-300`}
+              />
+            </a>
           </div>
           
           <div className={Styles['informacion__sobre-nosotros-seccion']}>
