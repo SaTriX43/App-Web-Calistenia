@@ -13,8 +13,10 @@ export default function Register() {
     <AutenticacionFormulario
           titulo='Registrate'
           campos={[
+            {label:'Nombre', name:'name', type:'text', required: true},
             {label:'Correo Electronico', name:'email', type:'email', required: true},
-            {label:'Contraseña', name:'pass', type:'pass', required: true}
+            {label:'Contraseña', name:'pass', type:'password', required: true},
+            {label:'Vuelve a escribir Contraseña', name:'pass-2', type:'password', required: true}
           ]}
           textoBoton='Registrate'
           onSubmit={manejarRegistrarse}

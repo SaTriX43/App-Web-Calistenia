@@ -14,7 +14,7 @@ export default function Login() {
       titulo='Iniciar Sesion'
       campos={[
         {label:'Correo Electronico', name:'email', type:'email', required: true},
-        {label:'Contraseña', name:'pass', type:'pass', required: true}
+        {label:'Contraseña', name:'pass', type:'password', required: true}
       ]}
       textoBoton='Iniciar Sesion'
       onSubmit={manejarInicioSesion}
