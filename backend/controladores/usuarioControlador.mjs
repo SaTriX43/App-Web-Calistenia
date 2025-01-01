@@ -21,11 +21,7 @@ export async function registrarUsuario(req,res) {
 
   res.status(201).json({
     mensaje:`Usuario registrado exitosamente`, 
-    usuario:{
-      id: usuarioNuevo.id,
-      name: usuarioNuevo.name,
-      email:usuarioNuevo.email
-    }})
+  })
 }
 
 
@@ -47,9 +43,5 @@ export async function logearUsuario(req, res) {
   res.status(201).json({
     mensaje:`Usuario logeado exitosamente`, 
     token,
-    usuario:{
-      id:usuario.id,
-      email:usuario.email,
-      name: usuario.name
-    }})
+  })
 }

@@ -13,6 +13,27 @@
   align-items: center;
 }
 
+/* mensaje correcto  */
+.autenticacion-mensaje {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  height: 30px;
+
+  top: 70px;
+
+  border: 2px solid green;
+  background-color: rgb(104, 151, 35);
+
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+}
+
+
 .autenticacion-contenedor {
   width: 100%;
   max-width: 600px;

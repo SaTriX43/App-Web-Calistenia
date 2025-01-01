@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from './AutenticacionFormulario.module.css'
 import { Boton } from '../comunes/Boton/Boton';
 import Link from 'next/link';
@@ -8,6 +8,8 @@ import InformacionLinks from '../comunes/informacionLinks/InformacionLinks';
 export default function AutenticacionFormulario({
   titulo,
   onSubmit,
+  mensaje,
+  setMensaje,
   campos,
   textoBoton,
   redireccionTexto,
@@ -19,6 +21,14 @@ export default function AutenticacionFormulario({
     campos.reduce((accion, campo) => ({...accion,[campo.name] : '' }), {} )
   )
 
+  const [error , setError] = useState(null)
+
+  // limpia el mensaje 
+  useEffect(() => {
+    const time = setTimeout(() => setMensaje(''), 3000)
+    return () => clearTimeout(time)
+  },[mensaje, setMensaje])
+
   // funcion para manejar cambio 
   function manejarCambio(e) {
     const {name , value} = e.target;
@@ -29,15 +39,15 @@ export default function AutenticacionFormulario({
   async function enviarFormulario(e) {
     e.preventDefault();
     try {
+      setError(null)
       // Llamar a la función onSubmit (recibida como prop)
       await onSubmit(formulario);
 
-      // Limpiar el formulario después de un submit exitoso
       setFormulario(
-        campos.reduce((accion, campo) => ({ ...accion, [campo.name]: '' }), {})
-      );
+        campos.reduce((accion,campo) => ({...accion, [campo.name] : ''}), {})
+      )
     } catch (error) {
-      console.error('Error enviando los datos:', error);
+      setError(error.message || `A ocurrido un error`)
     }
   }
 
@@ -45,6 +55,11 @@ export default function AutenticacionFormulario({
   return (
     <section className={Styles['autenticacion']}>
       <h3 className='text-[30px] font-[600]'>{titulo}</h3>
+      {mensaje && (
+        <div className={Styles['autenticacion-mensaje']}>
+          <p>{mensaje}</p>
+        </div>
+      )}
       <div className={Styles['autenticacion-contenedor']}>
         <form className={Styles['autenticacion-form']} onSubmit={enviarFormulario}>
           {campos.map((campo) => (
@@ -61,6 +76,9 @@ export default function AutenticacionFormulario({
               />
             </div>
           ))}
+          {error && (
+            <p className='text-red-300 text-[20px]'>{error}</p>
+          )}
           <Boton
             tipoBoton='primario'
             texto={textoBoton}
