@@ -9,7 +9,8 @@ export default function Login() {
   async function manejarInicioSesion(data) {
     try {
       const respuesta = await iniciarSesionUsuario(data)
-      alert(`${JSON.stringify(respuesta)}`)
+      localStorage.setItem('token',respuesta.token)
+      alert(`${JSON.stringify(respuesta.mensaje)}`)
     } catch (error) {
       console.log(`Error al iniciar sesion ${error.message}`)
       alert(error)
