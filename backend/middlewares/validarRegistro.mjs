@@ -1,6 +1,16 @@
+import { leerArchivo } from "../funciones/leerEscribirEnBaseDatos.mjs";
 
-export default function validarRegistro(req,res,next) {
+export default async function validarRegistro(req,res,next) {
   const {name, email, pass , pass2} = req.body;
+
+  const usuarios = await leerArchivo()
+
+  const usuarioEmail = usuarios.find(usuario => usuario.email === email)
+
+  // valida si ya existe un correo similar 
+  if(usuarioEmail) {
+    return res.status(400).json({error: `Correo ya existente`})
+  }
 
   // Verifica que todos los campos este presentes 
   if(!name || !email || !pass || !pass2) {

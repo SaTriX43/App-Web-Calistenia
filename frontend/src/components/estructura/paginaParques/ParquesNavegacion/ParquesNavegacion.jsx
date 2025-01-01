@@ -23,7 +23,7 @@ export const ParquesNavegacion = () => {
             <p className={Styles['parques__nav-link-p']} href="">Mapa</p>
         </Link>
 
-        <Link href='/parques/agregar' className={`${Styles['parques__nav-link']} ${pathname === '/parques/agregar' ? Styles['parques__nav-link-activo'] : ''}`}>
+        <Link href='/parques/agregarUbicacion' className={`${Styles['parques__nav-link']} ${pathname === '/parques/agregar' ? Styles['parques__nav-link-activo'] : ''}`}>
             <FontAwesomeIcon className={Styles['parques__nav-link-icon']} icon={faLocationDot}/>
             <p className={Styles['parques__nav-link-p']} href="">Agregar Ubicacion</p>
         </Link>
