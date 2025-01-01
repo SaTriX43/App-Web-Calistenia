@@ -1,12 +1,18 @@
 'use client'
 
 import AutenticacionFormulario from "@/components/autenticacion-formulario/AutenticacionFormulario"
+import { iniciarSesionUsuario } from "@/utilidades/api/autenticacionApi"
 
 
 export default function Login() {
 
-  function manejarInicioSesion(data) {
-    console.log(`Iniciado sesion con datos ${JSON.stringify(data)}`)
+  async function manejarInicioSesion(data) {
+    try {
+      const respuesta = await iniciarSesionUsuario(data)
+      alert(`Sesion iniciada con exito ${respuesta}`)
+    } catch (error) {
+      console.log(`Error al iniciar sesion ${error.message}`)
+    }
   }
 
   return (

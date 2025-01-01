@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Styles from './AutenticacionFormulario.module.css'
 import { Boton } from '../comunes/Boton/Boton';
 import Link from 'next/link';
+import InformacionLinks from '../comunes/informacionLinks/InformacionLinks';
 
 export default function AutenticacionFormulario({
   titulo,
@@ -77,6 +78,7 @@ export default function AutenticacionFormulario({
           </Link>
         </div>
       </div>
+      <InformacionLinks/>
     </section>
   )
 }

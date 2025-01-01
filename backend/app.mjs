@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import parquesRuta from './rutas/parquesRuta.mjs'
 import contactoRuta from './rutas/contactoRuta.mjs'
+import usuarioRuta from './rutas/usuarioRuta.mjs'
 
 
 const app = express()
@@ -10,6 +11,7 @@ app.use(express.json())
 
 app.use('/parques',parquesRuta)
 app.use('/contacto',contactoRuta)
+app.use('/autenticacion',usuarioRuta)
 
 
 
