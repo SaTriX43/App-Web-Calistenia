@@ -1,16 +1,18 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect } from 'react'
 
-export default function useAutenticacion(ruta) {
+export default function useAutenticacion(rutaProtegida) {
 
   const router = useRouter()
+  const buscarParametro = useSearchParams()
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     if(!token) {
-      router.push(ruta)
+      const redireccion = rutaProtegida || '/'
+      router.push(`/autenticacion/login?redireccion=${redireccion}`)
     }
-  },[])
+  },[router, rutaProtegida])
 }

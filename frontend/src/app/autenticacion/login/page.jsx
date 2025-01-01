@@ -3,13 +3,16 @@
 import AutenticacionFormulario from "@/components/autenticacion-formulario/AutenticacionFormulario"
 import useAutenticacion from "@/components/hooks/useAutenticacion"
 import { iniciarSesionUsuario } from "@/utilidades/api/autenticacionApi"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
 
 export default function Login() {
 
   const router = useRouter()
+  const buscarParametro = useSearchParams()
+
+  const [mensaje , setMensaje] = useState('')
 
   // me redirige si ya estoy logeado 
   useEffect(() => {
@@ -20,14 +23,18 @@ export default function Login() {
     }
   },[router])
 
-  const [mensaje , setMensaje] = useState('')
+  
 
   async function manejarInicioSesion(data) {
     try {
       const respuesta = await iniciarSesionUsuario(data)
       localStorage.setItem('token',respuesta.token)
-      alert(respuesta.mensaje)
+      const redireccionUrl = buscarParametro.get('redireccion') || '/';
       setMensaje(respuesta.mensaje)
+
+      setTimeout(() => {
+        router.push(redireccionUrl);
+      },3000)
     } catch (error) {
       console.log(`Error al iniciar sesion ${error.message}`)
       throw new Error(error || 'Error al iniciar sesión');
