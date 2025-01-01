@@ -9,9 +9,10 @@ export default function Login() {
   async function manejarInicioSesion(data) {
     try {
       const respuesta = await iniciarSesionUsuario(data)
-      alert(`Sesion iniciada con exito ${respuesta}`)
+      alert(`${JSON.stringify(respuesta)}`)
     } catch (error) {
       console.log(`Error al iniciar sesion ${error.message}`)
+      alert(error)
     }
   }
 

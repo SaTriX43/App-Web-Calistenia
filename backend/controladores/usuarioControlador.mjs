@@ -29,3 +29,16 @@ export async function registrarUsuario(req,res) {
 
 
 // para iniciar sesion en usuario 
+
+
+export async function logearUsuario(req, res) {
+  const {email , pass} = req.body;
+  
+  console.log(req.body)
+
+  res.status(201).json({
+    mensaje:`Usuario logeado exitosamente`, 
+    usuario:{
+      email:email
+    }})
+}

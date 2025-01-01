@@ -10,5 +10,17 @@
     "name": "ANGELA",
     "email": "angelafreire12@hotmail.com",
     "pass": "pompispopo123"
+  },
+  {
+    "id": 3,
+    "name": "Santiago",
+    "email": "santiago43@gmail.com",
+    "pass": "pompispopo123"
+  },
+  {
+    "id": 4,
+    "name": "Santiago",
+    "email": "esteban@gmail.com",
+    "pass": "1234567"
   }
 ]
