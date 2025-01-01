@@ -5,7 +5,7 @@ import useAutenticacion from '@/components/hooks/useAutenticacion'
 
 export default function AgregarUbicacion() {
 
-  useAutenticacion()
+  useAutenticacion('/autenticacion/login')
 
 
   return (

@@ -2,11 +2,22 @@
 
 import AutenticacionFormulario from '@/components/autenticacion-formulario/AutenticacionFormulario'
 import { registrarUsuario } from '@/utilidades/api/autenticacionApi'
-import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 
 export default function Register() {
 
   const [mensaje , setMensaje] = useState('')
+  const router = useRouter()
+  
+    // me redirige si ya estoy logeado 
+    useEffect(() => {
+      const token = localStorage.getItem('token')
+      if (token) {
+        setMensaje('Ya estás autenticado');
+        setTimeout(() => router.push('/'), 3000); // Redirige después de 3 segundos
+      }
+    },[router])
 
   async function manejarRegistrarse(data) {
     try {
