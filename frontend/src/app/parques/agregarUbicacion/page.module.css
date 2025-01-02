@@ -5,6 +5,8 @@
   min-height: 200px;
 
   margin-top: 120px;
+  padding: 10px;
+  gap: 40px;
 
   background-color: var(--background-principal);
 }

@@ -12,7 +12,15 @@ const parqueIcon = new L.Icon({
   popupAnchor: [0, -32],       // Punto de anclaje del popup
 });
 
-const Mapa = memo(function Mapa({ latitud, longitud, nombre, ubicaciones, clases, zoom, esGeneral }) {
+const Mapa = memo(function Mapa({ 
+  latitud, 
+  longitud, 
+  nombre, 
+  ubicaciones, 
+  clases, 
+  zoom, 
+  esGeneral 
+}) {
   if (!latitud || !longitud) return <p>Cargando mapa...</p>;
 
   return (
