@@ -38,8 +38,6 @@ export async function logearUsuario(req, res) {
     expiresIn: '1h'
   })
 
-  console.log(token)
-
   res.status(201).json({
     mensaje:`Usuario logeado exitosamente`, 
     token,
