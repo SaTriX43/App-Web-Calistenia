@@ -10,3 +10,79 @@
 
   background-color: var(--background-principal);
 }
+
+
+.parques__agregar-ubicacion-formulario {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 20px;
+}
+
+.parques__agregar-ubicacion-formulario-grupo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+/* seccion 1  */
+
+.parques__agregar-ubicacion-formulario-posicion {
+  display: flex;
+  width: 100%;
+  min-height: 30px;
+
+  gap: 5px;
+
+  border: 2px solid white;
+
+  align-items: center;
+}
+
+.parques__agregar-ubicacion-formulario-posicion-boton {
+  display: flex;
+  width: 100%;
+  max-width: 70px;
+
+  gap: 5px;
+  border-right: 1px solid white;
+
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all .3s ease;
+
+  font-size: 20px;
+}
+
+.parques__agregar-ubicacion-formulario-posicion-boton:hover {
+  background-color: rgb(13, 13, 13);
+}
+
+.parques__agregar-ubicacion-formulario-posicion-boton span {
+  display: none;
+}
+
+.parques__agregar-ubicacion-formulario-posicion-input {
+  display: flex;
+  width: 100%;
+
+  padding: 0px 10px;
+  background-color: transparent;
+
+  font-size: 18px;
+}
+
+@media (min-width: 700px) {
+
+  .parques__agregar-ubicacion-formulario-posicion-boton {
+    max-width: 200px;
+    font-size: 18px;
+  }
+
+  .parques__agregar-ubicacion-formulario-posicion-boton span {
+    display: block;
+  }
+}

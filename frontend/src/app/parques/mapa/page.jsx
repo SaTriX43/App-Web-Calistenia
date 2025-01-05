@@ -30,7 +30,6 @@ export default function PaginaMapa() {
         latitud={-1.8312}
         longitud={-78.1834}
         zoom={6}
-        esGeneral={false}
         ubicaciones={parques}
         clases='parques__mapa'
       />

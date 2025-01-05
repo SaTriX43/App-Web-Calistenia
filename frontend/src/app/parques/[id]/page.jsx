@@ -49,7 +49,6 @@ export default function DetalleParque() {
         <Mapa 
           latitud={parque.latitud} 
           longitud={parque.longitud} 
-          nombre={parque.nombre}
           ubicaciones={parques}
           clases={'parques__detalle-parque-mapa'}
         />
