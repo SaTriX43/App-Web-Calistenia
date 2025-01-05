@@ -1,12 +1,12 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Styles from './page.module.css'
 import useAutenticacion from '@/components/hooks/useAutenticacion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import Mapa from '@/components/parques/Mapa/Mapa.jsx'
 
-export default function AgregarUbicacizon() {
+export default function AgregarUbicacion() {
   // para redireccionar si no esta logeado 
   useAutenticacion('/parques/agregarUbicacion')
 
@@ -15,11 +15,13 @@ export default function AgregarUbicacizon() {
     longitud: -78.24585711296035
   })
 
+  const mapaRef = useRef(null)
+
   // funcion para manejar las coordenadas 
-  function manejarCoordenadas(lat,lng) {
+  function manejarCoordenadas(lat, lng) {
     setCoordenadas({
-      latitud : lat,
-      longitud : lng
+      latitud: lat,
+      longitud: lng
     })
   }
 
@@ -27,24 +29,26 @@ export default function AgregarUbicacizon() {
   function obtenerUbicacion(e) {
     e.preventDefault()
 
-    if(!navigator.geolocation) {
+    if (!navigator.geolocation) {
       alert('funcion no permitida, no esa accesible en este navegador')
       return
     }
 
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        const {latitude, longitude} = pos.coords
+        const { latitude, longitude } = pos.coords
         setCoordenadas({
-          latitud : latitude,
-          longitud : longitude
+          latitud: latitude,
+          longitud: longitude
         })
-      },(err) => {
+        if (mapaRef.current) {
+          mapaRef.current.centrarMapa(latitude, longitude)
+        }
+      }, (err) => {
         console.log(err)
         alert('No se puedo acceder a su ubicacion, asegurese de dar permisos')
       })
   }
-
 
   return (
     <section className={Styles['parques__agregar-ubicacion']}>
@@ -56,11 +60,11 @@ export default function AgregarUbicacizon() {
         <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
           <h3 className='text-[25px] font-[600]'>Marcar Direccion</h3>
           <div className={Styles['parques__agregar-ubicacion-formulario-posicion']}>
-            <button 
+            <button
               className={Styles['parques__agregar-ubicacion-formulario-posicion-boton']}
               onClick={obtenerUbicacion}
             >
-              <FontAwesomeIcon icon={faPaperPlane}/>
+              <FontAwesomeIcon icon={faPaperPlane} />
               <span>Obtener posicion</span>
             </button>
             <input
@@ -72,15 +76,19 @@ export default function AgregarUbicacizon() {
             />
           </div>
           <Mapa
-            latitud = {coordenadas.latitud}
-            longitud = {coordenadas.longitud}
+            ref={mapaRef}
+            latitud={coordenadas.latitud}
+            longitud={coordenadas.longitud}
             zoom={14}
-            manejarCoordenadas = {manejarCoordenadas}
+            manejarCoordenadas={manejarCoordenadas}
             clases='parques__agregar-ubicacion-mapa'
             ubicaciones={[]}
+            mostrarMarcador={true}
           />
         </div>
         {/* seccion 2  */}
+
+
         
       </form>
     </section>

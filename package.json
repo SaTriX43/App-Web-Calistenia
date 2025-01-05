@@ -3,6 +3,9 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "dotenv": "^16.4.7"
+    "@types/leaflet": "^1.9.15",
+    "dotenv": "^16.4.7",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^5.0.0"
   }
 }

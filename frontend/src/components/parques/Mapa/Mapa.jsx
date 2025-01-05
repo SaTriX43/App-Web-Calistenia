@@ -1,5 +1,5 @@
-import React, { memo, useEffect, useState, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import React, { memo, useEffect, useRef } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Styles from './Mapa.module.css';
 import Link from 'next/link';
@@ -19,16 +19,15 @@ const Mapa = memo(function Mapa({
   clases,
   zoom,
   manejarCoordenadas,
+  mostrarMarcador = false, // Nuevo prop para controlar el marcador principal
 }) {
-  const [posicionMarcador, setPosicionMarcador] = useState([latitud, longitud]);
-  const mapRef = useRef(null); // Referencia al mapa para centrarlo
+  const mapRef = useRef(null); // Referencia al mapa
 
-  // Mover el mapa al cambiar coordenadas
+  // Centrar el mapa cuando cambien las coordenadas
   useEffect(() => {
     if (mapRef.current) {
       const mapa = mapRef.current;
       mapa.flyTo([latitud, longitud], zoom || 14);
-      setPosicionMarcador([latitud, longitud]); // Actualizar el marcador al centro
     }
   }, [latitud, longitud, zoom]);
 
@@ -44,25 +43,26 @@ const Mapa = memo(function Mapa({
         attribution="&copy; OpenStreetMap contributors"
       />
 
-      {/* Marcador principal */}
-      <Marker
-        position={posicionMarcador}
-        icon={parqueIcon}
-        draggable={true}
-        eventHandlers={{
-          dragend: (e) => {
-            const { lat, lng } = e.target.getLatLng();
-            setPosicionMarcador([lat, lng]); // Actualizar posición del marcador
-            if (manejarCoordenadas) manejarCoordenadas(lat, lng); // Notificar cambios
-          },
-        }}
-      >
-        <Popup>
-          <strong>Nueva Ubicación</strong>
-        </Popup>
-      </Marker>
+      {/* Marcador principal (controlado por mostrarMarcador) */}
+      {mostrarMarcador && (
+        <Marker
+          position={[latitud, longitud]}
+          icon={parqueIcon}
+          draggable={true}
+          eventHandlers={{
+            dragend: (e) => {
+              const { lat, lng } = e.target.getLatLng();
+              if (manejarCoordenadas) manejarCoordenadas(lat, lng); // Notificar cambios
+            },
+          }}
+        >
+          <Popup>
+            <strong>Nueva Ubicación</strong>
+          </Popup>
+        </Marker>
+      )}
 
-      {/* Verifica que ubicaciones sea un array antes de usar map */}
+      {/* Otros marcadores (ubicaciones proporcionadas) */}
       {Array.isArray(ubicaciones) &&
         ubicaciones.map((parque) => (
           <Marker
