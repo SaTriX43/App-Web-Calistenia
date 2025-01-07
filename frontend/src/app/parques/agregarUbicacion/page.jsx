@@ -3,8 +3,10 @@ import React, { useState, useRef } from 'react'
 import Styles from './page.module.css'
 import useAutenticacion from '@/components/hooks/useAutenticacion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
 import Mapa from '@/components/parques/Mapa/Mapa.jsx'
+import Image from 'next/image'
+import { Boton } from '@/components/comunes/Boton/Boton'
 
 export default function AgregarUbicacion() {
   // para redireccionar si no esta logeado 
@@ -50,12 +52,27 @@ export default function AgregarUbicacion() {
       })
   }
 
+  // seccion 2 
+
+  const [imagenes, setImagenes] = useState([])
+
+  function manejarArchivoImagen(e) {
+    const archivos = Array.from(e.target.files).filter((archivo) => archivo.type.startsWith('image/'))
+    setImagenes([...imagenes , ...archivos])
+    console.log(imagenes)
+  }
+
+  function manejarEliminacionImagen(index) {
+    const nuevasImagenes = imagenes.filter((_ , i) => i !== index)
+    setImagenes(nuevasImagenes)
+  }
+
   return (
     <section className={Styles['parques__agregar-ubicacion']}>
       <h1 className='text-[30px] font-[600]'>
         Agregar una Ubicacion del parque
       </h1>
-      <form className={Styles['parques__agregar-ubicacion-formulario']}>
+      <form className={Styles['parques__agregar-ubicacion-formulario']} onSubmit={(e) => e.preventDefault()}>
         {/* seccion 1  */}
         <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
           <h3 className='text-[25px] font-[600]'>Marcar Direccion</h3>
@@ -88,8 +105,77 @@ export default function AgregarUbicacion() {
         </div>
         {/* seccion 2  */}
 
+        <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
+          <h3 className='text-[25px] font-[600]'>Agrege imagenes</h3>
+          <div className={Styles['parques__agregar-ubicacion-contenedor-imagenes']}>
+            {imagenes.map((imagen, index) => (
+              <div className={Styles['parques__agregar-ubicacion-contenedor-imagen']}>
+                <img className={Styles['parques__agregar-ubicacion-imagen']} src={URL.createObjectURL(imagen)}/>
+                <FontAwesomeIcon onClick={() => manejarEliminacionImagen(index)} icon={faTrash} className={Styles['parques__agregar-ubicacion-imagen-icono']}/>
+              </div>
+              
+            ))}
+          </div>
+          <label
+            className={Styles['parques__agregar-ubicacion-boton-agregar-imagen']}
+          >
+            <FontAwesomeIcon icon={faUpload} />
+            <span>Examinar</span>
+            <input
+              type='file'
+              multiple
+              accept='image/*'
+              onChange={manejarArchivoImagen}
+              className='hidden' // Ocultar el input pero mantener la funcionalidad
+            />
+          </label>
+        </div>
 
-        
+
+        {/* seccion 3  */}
+        <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
+          <label 
+            className='text-[25px] font-[600]' 
+            htmlFor="nombre">
+              Nombre  
+            <span className={Styles['label-span-formulario']}>
+              Opcional
+            </span>
+          </label>
+          <input 
+            className={Styles['parques__agregar-ubicacion-formulario-input']} 
+            type='text' 
+            required 
+            placeholder='Nombre del parque'
+          />
+        </div>
+
+         {/* seccion 4  */}
+         <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
+          <label 
+            className='text-[25px] font-[600]' 
+            htmlFor="nombre">
+              Desacribir el parque  
+            <span className={Styles['label-span-formulario']}>
+              Opcional
+            </span>
+          </label>
+          <textarea 
+            className={Styles['parques__agregar-ubicacion-formulario-textarea']} 
+            type='text' 
+            required 
+            placeholder='Por favor agrege una descripcion de porque le gusta el parque y como se siente el ambiente para ayudar a nuestros editores'
+          />
+        </div>
+
+        <hr className='w-full'/>
+
+        <Boton
+          texto='Enviar'
+          tipoBoton='primario'
+          type='submit'
+        />
+        <p className='text-center text-gray-400 text-[14px]'>Usted acepta nuestros terminos y condiciones medieante el envio de esta informacion</p>
       </form>
     </section>
   )
