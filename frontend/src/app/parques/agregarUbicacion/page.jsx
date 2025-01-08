@@ -33,7 +33,8 @@ export default function AgregarUbicacion() {
 
   const mapaRef = useRef(null)
 
-  // funcion para manejar las coordenadas 
+  // seccion 1 mapa 
+
   function manejarCoordenadas(lat, lng) {
     setFormularioDatos((prev) => ({
       ...prev,
@@ -66,9 +67,7 @@ export default function AgregarUbicacion() {
       })
   }
 
-  // seccion 2 
-
-  // const [imagenes, setImagenes] = useState([])
+  // seccion 2 imagenes
 
   function manejarArchivoImagen(e) {
     const archivos = Array.from(e.target.files).filter((archivo) => archivo.type.startsWith('image/'))
@@ -83,6 +82,15 @@ export default function AgregarUbicacion() {
     setFormularioDatos((prev) => ({
       ...prev,
       imagenes: prev.imagenes.filter((_,i) => i !== index)
+    }))
+  }
+
+  // seccion 3 
+
+  function manejarCambioNombre(e) {
+    setFormularioDatos((prev) => ({
+      ...prev,
+      nombre: e.target.value
     }))
   }
 
@@ -135,7 +143,6 @@ export default function AgregarUbicacion() {
                   icon={faTrash} 
                   className={Styles['parques__agregar-ubicacion-imagen-icono']}/>
               </div>
-              
             ))}
           </div>
           <label
@@ -167,6 +174,8 @@ export default function AgregarUbicacion() {
           <input 
             className={Styles['parques__agregar-ubicacion-formulario-input']} 
             type='text'  
+            value={formularioDatos.nombre}
+            onChange={(e) => manejarCambioNombre(e)}
             placeholder='Nombre del parque'
           />
         </div>
