@@ -1,7 +1,7 @@
 'use client'
 
 import AutenticacionFormulario from '@/components/autenticacion-formulario/AutenticacionFormulario'
-import { registrarUsuario } from '@/utilidades/api/autenticacionApi'
+import { registrarUsuario } from '@/utilidades/api/get/autenticacionApi'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 

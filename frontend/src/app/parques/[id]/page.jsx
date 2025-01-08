@@ -1,6 +1,6 @@
 'use client'
 
-import { getParqueId, getParques } from "@/utilidades/api/parqueApi";
+import { getParqueId, getParques } from "@/utilidades/api/get/parqueApi";
 import { useParams } from "next/navigation";
 import React, {useEffect, useState } from "react";
 import Styles from './page.module.css'

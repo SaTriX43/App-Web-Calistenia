@@ -11,6 +11,48 @@
   background-color: var(--background-principal);
 }
 
+/* mensaje de exito  */
+
+.parques__agregar-ubicacion-mensaje {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  height: 30px;
+
+  top: 120px;
+
+  border: 2px solid green;
+  background-color: rgb(104, 151, 35);
+
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+}
+
+/* mensaje incorrecto  */
+
+.parques__agregar-ubicacion-error {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  height: 30px;
+
+  top: 120px;
+
+  border: 2px solid rgb(106, 14, 14);
+  background-color: rgb(216, 70, 70);
+
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+}
+
 
 .parques__agregar-ubicacion-formulario {
   display: flex;

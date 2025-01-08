@@ -4,7 +4,7 @@ import React, {useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Styles from './contacto.module.css'
 import { Boton } from '@/components/comunes/Boton/Boton'
-import { contactoPost } from '@/utilidades/api/contactoApi.js'
+import { contactoPost } from '@/utilidades/api/get/contactoApi.js'
 import InformacionLinks from '@/components/comunes/informacionLinks/informacionLinks'
 
 export default function Contacto() {

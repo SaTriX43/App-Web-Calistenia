@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
 import Mapa from '@/components/parques/Mapa/Mapa.jsx'
 import { Boton } from '@/components/comunes/Boton/Boton'
+import agregarParquePost from '@/utilidades/api/post/AgregarParque'
 
 export default function AgregarUbicacion() {
 
@@ -39,6 +40,17 @@ export default function AgregarUbicacion() {
       return
     }
 
+
+
+    async function enviarDatos() {
+      try {
+        const datos = await agregarParquePost(formularioDatos)
+        setMensaje('Datos enviados con exito')
+        setError(null)
+      } catch (error) {
+        setError(error.error)
+      }
+    }
 
     console.log('Enviando datos',formularioDatos)
   }
@@ -129,6 +141,16 @@ export default function AgregarUbicacion() {
       <h1 className='text-[30px] font-[600]'>
         Agregar una Ubicacion del parque
       </h1>
+      {mensaje && (
+        <div className={Styles['parques__agregar-ubicacion-mensaje']}>
+          <p>{mensaje}</p>
+        </div>
+      )}
+      {error && (
+        <div className={Styles['parques__agregar-ubicacion-error']}>
+          <p>{error}</p>
+        </div>
+      )}
       <form className={Styles['parques__agregar-ubicacion-formulario']} onSubmit={manejarEnvio}>
         {/* seccion 1  */}
         <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>

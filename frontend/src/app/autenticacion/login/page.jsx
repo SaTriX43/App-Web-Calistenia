@@ -2,7 +2,7 @@
 
 import AutenticacionFormulario from "@/components/autenticacion-formulario/AutenticacionFormulario"
 import useAutenticacion from "@/components/hooks/useAutenticacion"
-import { iniciarSesionUsuario } from "@/utilidades/api/autenticacionApi"
+import { iniciarSesionUsuario } from "@/utilidades/api/get/autenticacionApi"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
