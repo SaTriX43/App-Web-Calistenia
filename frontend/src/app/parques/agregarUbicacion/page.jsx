@@ -28,7 +28,7 @@ export default function AgregarUbicacion() {
   function manejarEnvio(e) {
     e.preventDefault()
 
-    console.log('Enviando datos ')
+    console.log('Enviando datos',formularioDatos)
   }
 
   const mapaRef = useRef(null)
@@ -68,18 +68,22 @@ export default function AgregarUbicacion() {
 
   // seccion 2 
 
-  const [imagenes, setImagenes] = useState([])
+  // const [imagenes, setImagenes] = useState([])
 
   function manejarArchivoImagen(e) {
     const archivos = Array.from(e.target.files).filter((archivo) => archivo.type.startsWith('image/'))
-    setImagenes([...imagenes , ...archivos])
+    setFormularioDatos((prev) => ({
+      ...prev, 
+      imagenes: [...prev.imagenes , ...archivos]
+    }))
     console.log(imagenes)
   }
 
   function manejarEliminacionImagen(index) {
-    const nuevasImagenes = imagenes.filter((_ , i) => i !== index)
-    URL.revokeObjectURL(imagenes[index].url);
-    setImagenes(nuevasImagenes)
+    setFormularioDatos((prev) => ({
+      ...prev,
+      imagenes: prev.imagenes.filter((_,i) => i !== index)
+    }))
   }
 
   return (
@@ -123,10 +127,13 @@ export default function AgregarUbicacion() {
         <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
           <h3 className='text-[25px] font-[600]'>Agrege imagenes</h3>
           <div className={Styles['parques__agregar-ubicacion-contenedor-imagenes']}>
-            {imagenes.map((imagen, index) => (
+            {formularioDatos.imagenes.map((imagen, index) => (
               <div className={Styles['parques__agregar-ubicacion-contenedor-imagen']}>
                 <img className={Styles['parques__agregar-ubicacion-imagen']} src={URL.createObjectURL(imagen)}/>
-                <FontAwesomeIcon onClick={() => manejarEliminacionImagen(index)} icon={faTrash} className={Styles['parques__agregar-ubicacion-imagen-icono']}/>
+                <FontAwesomeIcon 
+                  onClick={() => manejarEliminacionImagen(index)} 
+                  icon={faTrash} 
+                  className={Styles['parques__agregar-ubicacion-imagen-icono']}/>
               </div>
               
             ))}
