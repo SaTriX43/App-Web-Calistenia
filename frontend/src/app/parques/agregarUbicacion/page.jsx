@@ -28,6 +28,18 @@ export default function AgregarUbicacion() {
   function manejarEnvio(e) {
     e.preventDefault()
 
+    // validar coordenadas 
+    if(!formularioDatos.coordenadas.latitud || !formularioDatos.coordenadas.longitud) {
+      alert('Seleccionar coordenadas validas')
+      return
+    }
+
+    if(formularioDatos.imagenes.length === 0) {
+      alert('Selecciona al menos una imagen')
+      return
+    }
+
+
     console.log('Enviando datos',formularioDatos)
   }
 
@@ -75,7 +87,6 @@ export default function AgregarUbicacion() {
       ...prev, 
       imagenes: [...prev.imagenes , ...archivos]
     }))
-    console.log(imagenes)
   }
 
   function manejarEliminacionImagen(index) {
@@ -93,6 +104,25 @@ export default function AgregarUbicacion() {
       nombre: e.target.value
     }))
   }
+
+  // seccion 4 
+
+  function manejarCambioDescripcion(e) {
+    setFormularioDatos((prev) => ({
+      ...prev,
+      descripcion: e.target.value
+    }))
+  }
+
+  // boton 
+  function esFormularioValido() {
+    return(
+      formularioDatos.coordenadas.latitud &&
+      formularioDatos.coordenadas.longitud &&
+      formularioDatos.imagenes.length > 0
+    )
+  }
+
 
   return (
     <section className={Styles['parques__agregar-ubicacion']}>
@@ -193,6 +223,8 @@ export default function AgregarUbicacion() {
           <textarea 
             className={Styles['parques__agregar-ubicacion-formulario-textarea']} 
             type='text'  
+            value={formularioDatos.descripcion}
+            onChange={(e) => manejarCambioDescripcion(e)}
             placeholder='Por favor agrege una descripcion de porque le gusta el parque y como se siente el ambiente para ayudar a nuestros editores'
           />
         </div>
@@ -203,6 +235,8 @@ export default function AgregarUbicacion() {
           texto='Enviar'
           tipoBoton='primario'
           type='submit'
+          clases={!esFormularioValido()}
+          disabled={!esFormularioValido()}
         />
         <p className='text-center text-gray-400 text-[14px]'>Usted acepta nuestros terminos y condiciones medieante el envio de esta informacion</p>
       </form>
