@@ -5,26 +5,40 @@ import useAutenticacion from '@/components/hooks/useAutenticacion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
 import Mapa from '@/components/parques/Mapa/Mapa.jsx'
-import Image from 'next/image'
 import { Boton } from '@/components/comunes/Boton/Boton'
 
 export default function AgregarUbicacion() {
+
   // para redireccionar si no esta logeado 
   useAutenticacion('/parques/agregarUbicacion')
 
-  const [coordenadas, setCoordenadas] = useState({
-    latitud: -1.8082564010072237,
-    longitud: -78.24585711296035
+
+  // variables para guardar los datos 
+  const [formularioDatos, setFormularioDatos] = useState({
+    coordenadas: {latitud: -1.8082564010072237, longitud: -78.24585711296035},
+    imagenes: [],
+    nombre:'',
+    descripcion:''
   })
+
+  const [mensaje, setMensaje] = useState('');
+  const [error , setError] = useState(null)
+
+
+  function manejarEnvio(e) {
+    e.preventDefault()
+
+    console.log('Enviando datos ')
+  }
 
   const mapaRef = useRef(null)
 
   // funcion para manejar las coordenadas 
   function manejarCoordenadas(lat, lng) {
-    setCoordenadas({
-      latitud: lat,
-      longitud: lng
-    })
+    setFormularioDatos((prev) => ({
+      ...prev,
+      coordenadas: {latitud: lat , longitud: lng}
+    }))
   }
 
   // funcion para obtenerUbicacion 
@@ -39,10 +53,10 @@ export default function AgregarUbicacion() {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { latitude, longitude } = pos.coords
-        setCoordenadas({
-          latitud: latitude,
-          longitud: longitude
-        })
+        setFormularioDatos((prev) => ({
+          ...prev,
+          coordenadas: {latitud: latitude, longitud: longitude}
+        }))
         if (mapaRef.current) {
           mapaRef.current.centrarMapa(latitude, longitude)
         }
@@ -64,6 +78,7 @@ export default function AgregarUbicacion() {
 
   function manejarEliminacionImagen(index) {
     const nuevasImagenes = imagenes.filter((_ , i) => i !== index)
+    URL.revokeObjectURL(imagenes[index].url);
     setImagenes(nuevasImagenes)
   }
 
@@ -72,7 +87,7 @@ export default function AgregarUbicacion() {
       <h1 className='text-[30px] font-[600]'>
         Agregar una Ubicacion del parque
       </h1>
-      <form className={Styles['parques__agregar-ubicacion-formulario']} onSubmit={(e) => e.preventDefault()}>
+      <form className={Styles['parques__agregar-ubicacion-formulario']} onSubmit={manejarEnvio}>
         {/* seccion 1  */}
         <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
           <h3 className='text-[25px] font-[600]'>Marcar Direccion</h3>
@@ -88,14 +103,14 @@ export default function AgregarUbicacion() {
               placeholder='Escribir coordenadas o arrastrar en mapa para la ubicacion :>' 
               type="text" 
               className={Styles['parques__agregar-ubicacion-formulario-posicion-input']}
-              value={`${coordenadas.latitud} , ${coordenadas.longitud}`}
+              value={`${formularioDatos.coordenadas.latitud} , ${formularioDatos.coordenadas.longitud}`}
               readOnly
             />
           </div>
           <Mapa
             ref={mapaRef}
-            latitud={coordenadas.latitud}
-            longitud={coordenadas.longitud}
+            latitud={formularioDatos.coordenadas.latitud}
+            longitud={formularioDatos.coordenadas.longitud}
             zoom={14}
             manejarCoordenadas={manejarCoordenadas}
             clases='parques__agregar-ubicacion-mapa'
@@ -144,8 +159,7 @@ export default function AgregarUbicacion() {
           </label>
           <input 
             className={Styles['parques__agregar-ubicacion-formulario-input']} 
-            type='text' 
-            required 
+            type='text'  
             placeholder='Nombre del parque'
           />
         </div>
@@ -162,8 +176,7 @@ export default function AgregarUbicacion() {
           </label>
           <textarea 
             className={Styles['parques__agregar-ubicacion-formulario-textarea']} 
-            type='text' 
-            required 
+            type='text'  
             placeholder='Por favor agrege una descripcion de porque le gusta el parque y como se siente el ambiente para ayudar a nuestros editores'
           />
         </div>
