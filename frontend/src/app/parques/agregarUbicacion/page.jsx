@@ -61,6 +61,12 @@ export default function AgregarUbicacion() {
     enviarDatos()
 
     console.log('Enviando datos',formularioDatos)
+    setFormularioDatos({
+      coordenadas: {latitud: -1.8082564010072237, longitud: -78.24585711296035},
+      imagenes: [],
+      nombre:'',
+      descripcion:''
+    })
   }
 
   const mapaRef = useRef(null)
