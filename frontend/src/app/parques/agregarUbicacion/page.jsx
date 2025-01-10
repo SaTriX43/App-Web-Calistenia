@@ -45,12 +45,20 @@ export default function AgregarUbicacion() {
     async function enviarDatos() {
       try {
         const datos = await agregarParquePost(formularioDatos)
-        setMensaje('Datos enviados con exito')
+        setMensaje(datos.mensaje)
+        setTimeout(() => {
+          setMensaje('')
+        }, 3000);
         setError(null)
       } catch (error) {
         setError(error.error)
+        setTimeout(() => {
+          setError(null)
+        }, 3000);
       }
     }
+
+    enviarDatos()
 
     console.log('Enviando datos',formularioDatos)
   }
@@ -137,10 +145,7 @@ export default function AgregarUbicacion() {
 
 
   return (
-    <section className={Styles['parques__agregar-ubicacion']}>
-      <h1 className='text-[30px] font-[600]'>
-        Agregar una Ubicacion del parque
-      </h1>
+    <>
       {mensaje && (
         <div className={Styles['parques__agregar-ubicacion-mensaje']}>
           <p>{mensaje}</p>
@@ -151,117 +156,124 @@ export default function AgregarUbicacion() {
           <p>{error}</p>
         </div>
       )}
-      <form className={Styles['parques__agregar-ubicacion-formulario']} onSubmit={manejarEnvio}>
-        {/* seccion 1  */}
-        <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
-          <h3 className='text-[25px] font-[600]'>Marcar Direccion</h3>
-          <div className={Styles['parques__agregar-ubicacion-formulario-posicion']}>
-            <button
-              className={Styles['parques__agregar-ubicacion-formulario-posicion-boton']}
-              onClick={obtenerUbicacion}
+
+     <section className={Styles['parques__agregar-ubicacion']}>
+        <h1 className='text-[30px] font-[600]'>
+          Agregar una Ubicacion del parque
+        </h1>
+        
+        <form className={Styles['parques__agregar-ubicacion-formulario']} onSubmit={manejarEnvio}>
+          {/* seccion 1  */}
+          <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
+            <h3 className='text-[25px] font-[600]'>Marcar Direccion</h3>
+            <div className={Styles['parques__agregar-ubicacion-formulario-posicion']}>
+              <button
+                className={Styles['parques__agregar-ubicacion-formulario-posicion-boton']}
+                onClick={obtenerUbicacion}
+              >
+                <FontAwesomeIcon icon={faPaperPlane} />
+                <span>Obtener posicion</span>
+              </button>
+              <input
+                placeholder='Escribir coordenadas o arrastrar en mapa para la ubicacion :>' 
+                type="text" 
+                className={Styles['parques__agregar-ubicacion-formulario-posicion-input']}
+                value={`${formularioDatos.coordenadas.latitud} , ${formularioDatos.coordenadas.longitud}`}
+                readOnly
+              />
+            </div>
+            <Mapa
+              ref={mapaRef}
+              latitud={formularioDatos.coordenadas.latitud}
+              longitud={formularioDatos.coordenadas.longitud}
+              zoom={14}
+              manejarCoordenadas={manejarCoordenadas}
+              clases='parques__agregar-ubicacion-mapa'
+              ubicaciones={[]}
+              mostrarMarcador={true}
+            />
+          </div>
+          {/* seccion 2  */}
+
+          <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
+            <h3 className='text-[25px] font-[600]'>Agrege imagenes</h3>
+            <div className={Styles['parques__agregar-ubicacion-contenedor-imagenes']}>
+              {formularioDatos.imagenes.map((imagen, index) => (
+                <div key={index} className={Styles['parques__agregar-ubicacion-contenedor-imagen']}>
+                  <img className={Styles['parques__agregar-ubicacion-imagen']} src={URL.createObjectURL(imagen)}/>
+                  <FontAwesomeIcon 
+                    onClick={() => manejarEliminacionImagen(index)} 
+                    icon={faTrash} 
+                    className={Styles['parques__agregar-ubicacion-imagen-icono']}/>
+                </div>
+              ))}
+            </div>
+            <label
+              className={Styles['parques__agregar-ubicacion-boton-agregar-imagen']}
             >
-              <FontAwesomeIcon icon={faPaperPlane} />
-              <span>Obtener posicion</span>
-            </button>
-            <input
-              placeholder='Escribir coordenadas o arrastrar en mapa para la ubicacion :>' 
-              type="text" 
-              className={Styles['parques__agregar-ubicacion-formulario-posicion-input']}
-              value={`${formularioDatos.coordenadas.latitud} , ${formularioDatos.coordenadas.longitud}`}
-              readOnly
+              <FontAwesomeIcon icon={faUpload} />
+              <span>Examinar</span>
+              <input
+                type='file'
+                multiple
+                accept='image/*'
+                onChange={manejarArchivoImagen}
+                className='hidden' // Ocultar el input pero mantener la funcionalidad
+              />
+            </label>
+          </div>
+
+
+          {/* seccion 3  */}
+          <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
+            <label 
+              className='text-[25px] font-[600]' 
+              htmlFor="nombre">
+                Nombre  
+              <span className={Styles['label-span-formulario']}>
+                Opcional
+              </span>
+            </label>
+            <input 
+              className={Styles['parques__agregar-ubicacion-formulario-input']} 
+              type='text'  
+              value={formularioDatos.nombre}
+              onChange={(e) => manejarCambioNombre(e)}
+              placeholder='Nombre del parque'
             />
           </div>
-          <Mapa
-            ref={mapaRef}
-            latitud={formularioDatos.coordenadas.latitud}
-            longitud={formularioDatos.coordenadas.longitud}
-            zoom={14}
-            manejarCoordenadas={manejarCoordenadas}
-            clases='parques__agregar-ubicacion-mapa'
-            ubicaciones={[]}
-            mostrarMarcador={true}
-          />
-        </div>
-        {/* seccion 2  */}
 
-        <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
-          <h3 className='text-[25px] font-[600]'>Agrege imagenes</h3>
-          <div className={Styles['parques__agregar-ubicacion-contenedor-imagenes']}>
-            {formularioDatos.imagenes.map((imagen, index) => (
-              <div className={Styles['parques__agregar-ubicacion-contenedor-imagen']}>
-                <img className={Styles['parques__agregar-ubicacion-imagen']} src={URL.createObjectURL(imagen)}/>
-                <FontAwesomeIcon 
-                  onClick={() => manejarEliminacionImagen(index)} 
-                  icon={faTrash} 
-                  className={Styles['parques__agregar-ubicacion-imagen-icono']}/>
-              </div>
-            ))}
-          </div>
-          <label
-            className={Styles['parques__agregar-ubicacion-boton-agregar-imagen']}
-          >
-            <FontAwesomeIcon icon={faUpload} />
-            <span>Examinar</span>
-            <input
-              type='file'
-              multiple
-              accept='image/*'
-              onChange={manejarArchivoImagen}
-              className='hidden' // Ocultar el input pero mantener la funcionalidad
+          {/* seccion 4  */}
+          <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
+            <label 
+              className='text-[25px] font-[600]' 
+              htmlFor="nombre">
+                Desacribir el parque  
+              <span className={Styles['label-span-formulario']}>
+                Opcional
+              </span>
+            </label>
+            <textarea 
+              className={Styles['parques__agregar-ubicacion-formulario-textarea']} 
+              type='text'  
+              value={formularioDatos.descripcion}
+              onChange={(e) => manejarCambioDescripcion(e)}
+              placeholder='Por favor agrege una descripcion de porque le gusta el parque y como se siente el ambiente para ayudar a nuestros editores'
             />
-          </label>
-        </div>
+          </div>
 
+          <hr className='w-full'/>
 
-        {/* seccion 3  */}
-        <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
-          <label 
-            className='text-[25px] font-[600]' 
-            htmlFor="nombre">
-              Nombre  
-            <span className={Styles['label-span-formulario']}>
-              Opcional
-            </span>
-          </label>
-          <input 
-            className={Styles['parques__agregar-ubicacion-formulario-input']} 
-            type='text'  
-            value={formularioDatos.nombre}
-            onChange={(e) => manejarCambioNombre(e)}
-            placeholder='Nombre del parque'
+          <Boton
+            texto='Enviar'
+            tipoBoton='primario'
+            type='submit'
+            clases={!esFormularioValido()}
+            disabled={!esFormularioValido()}
           />
-        </div>
-
-         {/* seccion 4  */}
-         <div className={Styles['parques__agregar-ubicacion-formulario-grupo']}>
-          <label 
-            className='text-[25px] font-[600]' 
-            htmlFor="nombre">
-              Desacribir el parque  
-            <span className={Styles['label-span-formulario']}>
-              Opcional
-            </span>
-          </label>
-          <textarea 
-            className={Styles['parques__agregar-ubicacion-formulario-textarea']} 
-            type='text'  
-            value={formularioDatos.descripcion}
-            onChange={(e) => manejarCambioDescripcion(e)}
-            placeholder='Por favor agrege una descripcion de porque le gusta el parque y como se siente el ambiente para ayudar a nuestros editores'
-          />
-        </div>
-
-        <hr className='w-full'/>
-
-        <Boton
-          texto='Enviar'
-          tipoBoton='primario'
-          type='submit'
-          clases={!esFormularioValido()}
-          disabled={!esFormularioValido()}
-        />
-        <p className='text-center text-gray-400 text-[14px]'>Usted acepta nuestros terminos y condiciones medieante el envio de esta informacion</p>
-      </form>
-    </section>
+          <p className='text-center text-gray-400 text-[14px]'>Usted acepta nuestros terminos y condiciones medieante el envio de esta informacion</p>
+        </form>
+      </section>
+    </>
   )
 }

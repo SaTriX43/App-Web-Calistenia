@@ -6,7 +6,7 @@ dotenv.config()
 const user = process.env.EMAIL_USER;
 const pass = process.env.EMAIL_PASS;
 
-export async function enviarEmail({nombre, email, mensaje, asunto}) {
+export async function enviarEmail({nombre, email, mensaje, asunto, adjuntos}) {
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -25,7 +25,8 @@ export async function enviarEmail({nombre, email, mensaje, asunto}) {
         Correo: ${email}
         Mensaje: ${mensaje}
         Asunto: ${asunto}
-      `
+      `,
+      attachments: adjuntos,
     }
 
     await transporter.sendMail(mailOptions)

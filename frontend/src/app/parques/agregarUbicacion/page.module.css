@@ -18,9 +18,12 @@
   display: flex;
   width: 100%;
   max-width: 1000px;
+
+  margin: auto;
   height: 30px;
 
   top: 120px;
+  z-index: 1500;
 
   border: 2px solid green;
   background-color: rgb(104, 151, 35);
@@ -42,6 +45,7 @@
   height: 30px;
 
   top: 120px;
+  z-index: 1500;
 
   border: 2px solid rgb(106, 14, 14);
   background-color: rgb(216, 70, 70);
