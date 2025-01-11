@@ -15,17 +15,17 @@ export const ParquesNavegacion = () => {
     <nav className={Styles['parques__nav']}>
         <Link href='/parques' className={`${Styles['parques__nav-link']} ${pathname === '/parques' ? Styles['parques__nav-link-activo'] : ''}`}>
           <FontAwesomeIcon className={Styles['parques__nav-link-icon']} icon={faLocation}/>
-          <p className={Styles['parques__nav-link-p']} href="">Ubicacion</p>
+          <p className={Styles['parques__nav-link-p']}>Ubicacion</p>
         </Link>
 
         <Link href='/parques/mapa' className={`${Styles['parques__nav-link']} ${pathname === '/parques/mapa' ? Styles['parques__nav-link-activo'] : ''}`}>
             <FontAwesomeIcon className={Styles['parques__nav-link-icon']} icon={faMap}/>
-            <p className={Styles['parques__nav-link-p']} href="">Mapa</p>
+            <p className={Styles['parques__nav-link-p']}>Mapa</p>
         </Link>
 
         <Link href='/parques/agregarUbicacion' className={`${Styles['parques__nav-link']} ${pathname === '/parques/agregar' ? Styles['parques__nav-link-activo'] : ''}`}>
             <FontAwesomeIcon className={Styles['parques__nav-link-icon']} icon={faLocationDot}/>
-            <p className={Styles['parques__nav-link-p']} href="">Agregar Ubicacion</p>
+            <p className={Styles['parques__nav-link-p']}>Agregar Ubicacion</p>
         </Link>
     </nav>
   )

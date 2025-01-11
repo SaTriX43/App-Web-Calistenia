@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Styles from './page.module.css'
 import { getParques } from '@/utilidades/api/get/parqueApi'
 import Mapa from '@/components/parques/Mapa/Mapa.jsx'
-import Link from 'next/link'
 import InformacionLinks from '@/components/comunes/informacionLinks/informacionLinks'
 
 export default function PaginaMapa() {
