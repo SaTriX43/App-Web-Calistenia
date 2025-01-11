@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import Styles from './Detalles.module.css'
 import Image from 'next/image'
 import { faCircleDot, faCity, faEarth } from '@fortawesome/free-solid-svg-icons'
@@ -19,16 +19,27 @@ export default function Detalles({
     console.log('VIENDO EN MAPA')
   }
 
+  // Ruta de la imagen predeterminada desde 'public'
+  const imagenPredeterminada = "/imagen-parque-mediana.png";
+
+  // Estado para manejar errores de carga de la imagen
+  const [errorCarga, setErrorCarga] = useState(false);
+
+  // Usar la imagen predeterminada si hay un error de carga
+  const imagenFinal = !imagen || errorCarga ? imagenPredeterminada : imagen;
+
+
   return (
     <div className={Styles['parques__detalle-parque-detalles']}>
       <div className={Styles['parques__detalle-parque-contenedor-img']}>
         {imagen ? (
           <Image
             className='img'
-            src={imagen}
+            src={imagenFinal}
             width={300}
             height={300}
             alt={`imagen de ${nombre}`}
+            onError={() => setErrorCarga(true)}
           />
         ): (<p>No hay imagen Disponible</p>)}
         

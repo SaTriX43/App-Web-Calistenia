@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Styles from './TarjetaParqueRecomendado.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,15 +11,28 @@ export default function TarjetaParqueRecomendado({
   puntuacion = 1,
   id
 }) {
+
+  // Ruta de la imagen predeterminada desde 'public'
+    const imagenPredeterminada = "/imagen-parque-mediana.png";
+  
+    // Estado para manejar errores de carga de la imagen
+    const [errorCarga, setErrorCarga] = useState(false);
+  
+    // Usar la imagen predeterminada si hay un error de carga
+    const imagenFinal = !imagen || errorCarga ? imagenPredeterminada : imagen;
+  
+
+
   return (
     <article className={Styles['parques__tarjeta-recomendado']}>
       <div className={Styles['parques__tarjeta-recomendado-contenedor-img']}>
         <Image
-          src={imagen}
+          src={imagenFinal}
           width={300}
           height={300}
           className="img"
           alt="Imagen de parque"
+          onError={() => setErrorCarga(true)}
         />
       </div>
       <div className={Styles['parques__tarjeta-recomendado-contenedor-info']}>
