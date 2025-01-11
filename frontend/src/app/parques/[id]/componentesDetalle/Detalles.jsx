@@ -15,10 +15,6 @@ export default function Detalles({
   continente
 }) {
 
-  function verEnMapa() {
-    console.log('VIENDO EN MAPA')
-  }
-
   // Ruta de la imagen predeterminada desde 'public'
   const imagenPredeterminada = "/imagen-parque-mediana.png";
 
@@ -55,7 +51,6 @@ export default function Detalles({
           <Boton
             tipoBoton='btn-parque'
             texto={pais}
-            onClick={verEnMapa}
             icono={faEarth}
             clases={Styles['parques__detalle-parque-boton-ubicacion']}
           />
@@ -63,7 +58,6 @@ export default function Detalles({
           <Boton
             tipoBoton='btn-parque'
             texto={continente}
-            onClick={verEnMapa}
             icono={faCircleDot}
             clases={Styles['parques__detalle-parque-boton-ubicacion']}
           />
@@ -71,7 +65,6 @@ export default function Detalles({
           <Boton
             tipoBoton='btn-parque'
             texto={canton}
-            onClick={verEnMapa}
             icono={faCity}
             clases={Styles['parques__detalle-parque-boton-ubicacion']}
           />

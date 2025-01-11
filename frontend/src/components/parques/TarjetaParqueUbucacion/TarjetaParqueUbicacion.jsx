@@ -25,9 +25,6 @@ export default function TarjetaParqueUbicacion({
   // Usar la imagen predeterminada si hay un error de carga
   const imagenFinal = !imagen || errorCarga ? imagenPredeterminada : imagen;
 
-  function verEnMapa() {
-    console.log("viendo en mapa");
-  }
 
   return (
     <article className={Styles["parques__tarjeta"]}>
@@ -58,10 +55,10 @@ export default function TarjetaParqueUbicacion({
 
         {/* contenedor de botones para pais continente y canton */}
         <div className={Styles["parques__tarjeta-contenedor-botones"]}>
+
           <Boton
             tipoBoton="btn-parque"
             texto={pais}
-            onClick={verEnMapa}
             icono={faEarth}
             clases={Styles["parques__tarjeta-boton-ubicacion"]}
           />
@@ -69,7 +66,6 @@ export default function TarjetaParqueUbicacion({
           <Boton
             tipoBoton="btn-parque"
             texto={continente}
-            onClick={verEnMapa}
             icono={faCircleDot}
             clases={Styles["parques__tarjeta-boton-ubicacion"]}
           />
@@ -77,7 +73,6 @@ export default function TarjetaParqueUbicacion({
           <Boton
             tipoBoton="btn-parque"
             texto={canton}
-            onClick={verEnMapa}
             icono={faCity}
             clases={Styles["parques__tarjeta-boton-ubicacion"]}
           />

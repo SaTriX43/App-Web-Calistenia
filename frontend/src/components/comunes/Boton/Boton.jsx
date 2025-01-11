@@ -35,8 +35,7 @@ export const Boton = ({
   const botonParque = `
     p-[5px]
     border-gray-500
-    hover:bg-[#282828]
-    hover:translate-y-[-3px]
+    cursor-default
   `;
 
   const botonDeshabilitado = `
