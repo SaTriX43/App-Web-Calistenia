@@ -45,7 +45,7 @@ export default function TarjetaParqueUbicacion({
       </div>
 
       {/* contenedor de informacion del parque */}
-      <div className={Styles["parques__tarjeta-contedor-info"]}>
+      <div className={Styles["parques__tarjeta-contenedor-info"]}>
         <Link href={`/parques/${id}`}>
           <h3 className={Styles["parques__tarjeta-titulo"]}>{titulo}</h3>
         </Link>

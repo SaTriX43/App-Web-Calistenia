@@ -30,13 +30,15 @@
 
 /* contenedor info  */
 
-.parques__tarjeta-contedor-info {
+.parques__tarjeta-contenedor-info {
   display: flex;
   flex-direction: column;
   width: 100%;
 
   gap: 5px;
   word-wrap: break-word;
+  align-items: center;
+  text-align: center;
 }
 
 .parques__tarjeta-titulo {
@@ -65,7 +67,7 @@
   width: 100%;
   gap: 10px;
   margin-top: 10px;
-  align-items: start;
+  align-items: center;
 }
 
 .parques__tarjeta-boton-ubicacion {
@@ -93,7 +95,12 @@
     max-width: 170px;
   }
 
+  .parques__tarjeta-contenedor-info {
+    align-items: start;
+  }
+
   .parques__tarjeta-contenedor-botones {
     flex-direction: row;
+    align-items: start;
   }
 }
