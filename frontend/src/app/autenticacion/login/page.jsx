@@ -15,12 +15,19 @@ export default function Login() {
 
   // me redirige si ya estoy logeado 
   useEffect(() => {
+
+    const mensajeRedireccion = buscarParametro.get('mensaje');
+    if (mensajeRedireccion) {
+      setMensaje(mensajeRedireccion);
+    }
+
+
     const token = localStorage.getItem('token')
     if (token) {
       setMensaje('Ya estás autenticado');
       setTimeout(() => router.push('/'), 3000); // Redirige después de 3 segundos
     }
-  },[router])
+  },[router,buscarParametro])
 
   
 
