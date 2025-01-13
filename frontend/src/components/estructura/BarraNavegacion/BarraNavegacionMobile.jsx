@@ -59,6 +59,16 @@ export const BarraNavegacionMobile = () => {
             Parques
           </Link>
         </li>
+
+        <li className={Styles['navbar__li-pagina']}>
+          <Link 
+            href="/autenticacion/login" 
+            className={`${Styles['navbar__links-pagina']} ${pathname.startsWith('/autenticacion') ? 'text-black' : ''}`}
+            onClick={() => {setBars(false)}}
+          >
+            Iniciar Sesion
+          </Link>
+        </li>
       </div>
     </>
   )
