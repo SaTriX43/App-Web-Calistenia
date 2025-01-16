@@ -9,7 +9,7 @@ export default function DetallePublicidad({parques}) {
       <Publicidad/>
       <h3 className='text-[20px] font-[600]'>Parques recomendados</h3>
       <div className={Styles['parques__detalle-parque-recomendados']}>
-        {parques.map((parque) => (
+        {parques.slice(0,3).map((parque) => (
           <TarjetaParqueRecomendado
             key={parque.id}
             id={parque.id}
