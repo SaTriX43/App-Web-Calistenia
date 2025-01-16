@@ -9,6 +9,6 @@
     "react-leaflet": "^5.0.0"
   },
   "scripts": {
-    "start": "node app.mjs"
+    "start": "node backend/app.mjs"
   }
 }
