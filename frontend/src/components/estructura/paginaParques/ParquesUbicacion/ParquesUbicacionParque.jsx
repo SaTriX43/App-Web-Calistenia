@@ -82,7 +82,7 @@ function ParquesUbicacionParque() {
 
       {/* contenedor publicidad y parques recomendados  */}
       <div className={Styles["parques__contenedor-publicidad-recomnedados"]}>
-        <Publicidad />
+        {/* <Publicidad /> */}
         <h2 className="text-[30px] text-center">Parques Recomendados</h2>
         {/* ParquesRecomendados  */}
         <div className={Styles["parques__contenedor-recomendados"]}>

@@ -13,7 +13,7 @@ export default function Descripcion() {
           barras, anillas y paralelas que permiten entrenamientos de fuerza, flexibilidad 
           y resistencia sin necesidad de pesas.
         </p>
-        <Publicidad/>
+        {/* <Publicidad/> */}
       </div>
 
       <div className={Styles['parques__descripcion-bloque']}>
@@ -23,7 +23,7 @@ export default function Descripcion() {
           y mental. Además, son una excelente opción para socializar y formar parte 
           de comunidades de ejercicio al aire libre.
         </p>
-        <Publicidad/>
+        {/* <Publicidad/> */}
       </div>
 
       <div className={Styles['parques__descripcion-bloque']}>
@@ -33,7 +33,7 @@ export default function Descripcion() {
           promover actividades saludables en la comunidad. Son espacios sostenibles y 
           fomentan el uso de áreas verdes en las ciudades.
         </p>
-        <Publicidad/>
+        {/* <Publicidad/> */}
       </div>
     </div>
   )
