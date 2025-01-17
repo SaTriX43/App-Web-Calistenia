@@ -11,6 +11,6 @@
     "cors": "^2.8.5"
   },
   "scripts": {
-    "start": "node app.mjs"
+    "start": "node backend/app.mjs"
   }
 }
