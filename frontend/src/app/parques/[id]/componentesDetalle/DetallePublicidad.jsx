@@ -6,7 +6,7 @@ import TarjetaParqueRecomendado from '@/components/parques/TarjetaParqueRecomend
 export default function DetallePublicidad({parques}) {
   return (
     <div className={Styles['parques__detalle-parque-contenedor-publicidad-recomendados']}>
-      <Publicidad/>
+      {/* <Publicidad/> */}
       <h3 className='text-[20px] font-[600]'>Parques recomendados</h3>
       <div className={Styles['parques__detalle-parque-recomendados']}>
         {parques.slice(0,3).map((parque) => (
