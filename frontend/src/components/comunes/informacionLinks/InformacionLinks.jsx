@@ -5,13 +5,13 @@ import Link from 'next/link'
 export default function InformacionLinks() {
   return (
     <div className={Styles['informacion-sobre']}>
-        <Link href='/informacion/sobre-nosotros'>
+        <Link href='/informacion/SobreNosotros'>
           <li>Sobre nosotros</li>
         </Link>
-        <Link href='/informacion/condiciones'>
+        <Link href='/informacion/Condiciones'>
           <li>Condiciones</li>
         </Link>
-        <Link href='/informacion/contacto'>
+        <Link href='/informacion/Contacto'>
           <li>Contacto</li>
         </Link>
       </div>

@@ -12,7 +12,7 @@ export default function useAutenticacion(rutaProtegida) {
     const token = localStorage.getItem('token')
     if(!token) {
       const redireccion = rutaProtegida || '/'
-      router.push(`/autenticacion/login?redireccion=${redireccion}&mensaje=Debe de iniciar sesion para acceder a esta pagina`)
+      router.push(`/autenticacion/Login?redireccion=${redireccion}&mensaje=Debe de iniciar sesion para acceder a esta pagina`)
     }
   },[router, rutaProtegida])
 }

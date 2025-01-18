@@ -11,7 +11,7 @@ import agregarParquePost from '@/utilidades/api/post/AgregarParque'
 export default function AgregarUbicacion() {
 
   // para redireccionar si no esta logeado 
-  useAutenticacion('/parques/agregarUbicacion')
+  useAutenticacion('/parques/AgregarUbicacion')
 
 
   // variables para guardar los datos 

@@ -1,6 +1,6 @@
 'use client'
 
-import AutenticacionFormulario from '@/components/autenticacion-formulario/AutenticacionFormulario'
+import AutenticacionFormulario from '@/components/AutenticacionFormulario/AutenticacionFormulario'
 import { registrarUsuario } from '@/utilidades/api/get/autenticacionApi'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -45,7 +45,7 @@ export default function Register() {
       onSubmit={manejarRegistrarse}
       redireccionTexto='Tienes una cuenta?'
       redireccionLinkText='Inicia Sesion aqui'
-      redireccionHref='/autenticacion/login'
+      redireccionHref='/autenticacion/Login'
     />
   )
 }

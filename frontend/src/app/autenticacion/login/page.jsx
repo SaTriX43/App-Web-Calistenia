@@ -1,7 +1,7 @@
 'use client'
 
-import AutenticacionFormulario from "../../../components/autenticacion-formulario/AutenticacionFormulario.jsx"
-import { iniciarSesionUsuario } from "../../../utilidades/api/get/autenticacionApi.js"
+import AutenticacionFormulario from "@/components/AutenticacionFormulario/AutenticacionFormulario.jsx"
+import { iniciarSesionUsuario } from "@/utilidades/api/get/autenticacionApi"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -60,7 +60,7 @@ export default function Login() {
       onSubmit={manejarInicioSesion}
       redireccionTexto='No tienes una cuenta?'
       redireccionLinkText='Registrate aqui'
-      redireccionHref='/autenticacion/register'
+      redireccionHref='/autenticacion/Register'
     />
   )
 }

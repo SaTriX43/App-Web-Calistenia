@@ -36,7 +36,7 @@ export const BarraNavegacionDesktop = () => {
           </li>
 
           <li className={`${Styles['navbar__li-pagina']} ${pathname.startsWith('/autenticacion') ? 'text-black underline' : ''}`}>
-            <Link href="/autenticacion/login" className={Styles['navbar__links-pagina']}>Iniciar Sesion</Link>
+            <Link href="/autenticacion/Login" className={Styles['navbar__links-pagina']}>Iniciar Sesion</Link>
           </li>
         </div>
       </div>
