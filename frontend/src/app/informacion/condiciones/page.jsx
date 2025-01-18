@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './condiciones.module.css';
-import InformacionLinks from '@/components/comunes/informacionLinks/informacionLinks';
+import InformacionLinks from '@/components/comunes/InformacionLinks/InformacionLinks.jsx';
 
 export default function Condiciones() {
   return (
