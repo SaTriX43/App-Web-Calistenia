@@ -2,7 +2,7 @@
 // peticion post 
 export async function contactoPost(contacto) {
   try { 
-    const peticion = await fetch('http://localhost:4000/contacto', {
+    const peticion = await fetch('http://app-web-calistenia-production.up.railway.app/contacto', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'

@@ -12,7 +12,7 @@ export default async function agregarParquePost(parque) {
     if(parque.nombre) formData.append('nombre',parque.nombre);
     if(parque.descripcion) formData.append('descripcion',parque.descripcion);
 
-    const peticion = await fetch('http://localhost:4000/parques/agregar',{
+    const peticion = await fetch('http://app-web-calistenia-production.up.railway.app/parques/agregar',{
       method:'POST',
       body: formData
     })

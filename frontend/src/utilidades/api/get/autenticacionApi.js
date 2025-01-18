@@ -1,4 +1,4 @@
-const urlBase = 'http://localhost:4000/autenticacion'
+const urlBase = 'http://app-web-calistenia-production.up.railway.app/autenticacion'
 
 
 // registrar al usuario 
