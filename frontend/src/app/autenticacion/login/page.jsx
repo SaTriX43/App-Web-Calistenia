@@ -1,7 +1,7 @@
 'use client'
 
-import AutenticacionFormulario from "@/components/autenticacion-formulario/AutenticacionFormulario"
-import { iniciarSesionUsuario } from "@/utilidades/api/get/autenticacionApi"
+import AutenticacionFormulario from "../../../components/autenticacion-formulario/AutenticacionFormulario.jsx"
+import { iniciarSesionUsuario } from "../../../utilidades/api/get/autenticacionApi.js"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
