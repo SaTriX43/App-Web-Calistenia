@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Styles from './AutenticacionFormulario.module.css'
 import { Boton } from '../comunes/Boton/Boton';
 import Link from 'next/link';
-import InformacionLinks from '../comunes/InformacionLinks/InformacionLinks';
+import InformacionLinks from '../comunes/InformacionLinks/InformacionLinks.jsx';
+
 
 export default function AutenticacionFormulario({
   titulo,
