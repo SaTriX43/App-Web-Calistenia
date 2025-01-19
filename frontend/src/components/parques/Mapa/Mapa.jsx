@@ -4,26 +4,27 @@ import 'leaflet/dist/leaflet.css';
 import Styles from './Mapa.module.css';
 import Link from 'next/link';
 
-// Ícono personalizado
-const parqueIcon = new L.Icon({
-  iconUrl: '/parque-icon.svg',
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32],
-});
+const parqueIcon =
+  typeof window !== 'undefined'
+    ? new L.Icon({
+        iconUrl: '/parque-icon.svg',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32],
+      })
+    : null;
 
 const Mapa = memo(function Mapa({
   latitud,
   longitud,
-  ubicaciones = [], // Valor por defecto para evitar errores
+  ubicaciones = [],
   clases,
   zoom,
   manejarCoordenadas,
-  mostrarMarcador = false, // Nuevo prop para controlar el marcador principal
+  mostrarMarcador = false,
 }) {
-  const mapRef = useRef(null); // Referencia al mapa
+  const mapRef = useRef(null);
 
-  // Centrar el mapa cuando cambien las coordenadas
   useEffect(() => {
     if (mapRef.current) {
       const mapa = mapRef.current;
@@ -31,28 +32,31 @@ const Mapa = memo(function Mapa({
     }
   }, [latitud, longitud, zoom]);
 
+  if (typeof window === 'undefined') {
+    return null; // Evitar renderizado en el servidor
+  }
+
   return (
     <MapContainer
       center={[latitud, longitud]}
       zoom={zoom || 14}
       className={Styles[clases]}
-      whenCreated={(mapInstance) => (mapRef.current = mapInstance)} // Asignar el mapa al ref interno
+      whenCreated={(mapInstance) => (mapRef.current = mapInstance)}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"
       />
 
-      {/* Marcador principal (controlado por mostrarMarcador) */}
-      {mostrarMarcador && (
+      {mostrarMarcador && parqueIcon && (
         <Marker
           position={[latitud, longitud]}
           icon={parqueIcon}
-          draggable={true}
+          draggable
           eventHandlers={{
             dragend: (e) => {
               const { lat, lng } = e.target.getLatLng();
-              if (manejarCoordenadas) manejarCoordenadas(lat, lng); // Notificar cambios
+              if (manejarCoordenadas) manejarCoordenadas(lat, lng);
             },
           }}
         >
@@ -62,7 +66,6 @@ const Mapa = memo(function Mapa({
         </Marker>
       )}
 
-      {/* Otros marcadores (ubicaciones proporcionadas) */}
       {Array.isArray(ubicaciones) &&
         ubicaciones.map((parque) => (
           <Marker

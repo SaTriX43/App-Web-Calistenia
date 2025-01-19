@@ -1,49 +1,47 @@
-'use client'
+'use client';
 
-import AutenticacionFormulario from "@/components/AutenticacionFormulario/AutenticacionFormulario.jsx"
-import { iniciarSesionUsuario } from "@/utilidades/api/get/autenticacionApi"
-import { useRouter, useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
-
+import AutenticacionFormulario from "@/components/AutenticacionFormulario/AutenticacionFormulario.jsx";
+import { iniciarSesionUsuario } from "@/utilidades/api/post/autenticacionApi";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Login() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const router = useRouter()
-  const buscarParametro = useSearchParams()
+  // Variables estáticas derivadas de useSearchParams
+  const mensajeRedireccion = searchParams ? searchParams.get('mensaje') : null;
+  const redireccionUrl = searchParams ? searchParams.get('redireccion') : '/';
 
-  const [mensaje , setMensaje] = useState('')
+  const [mensaje, setMensaje] = useState('');
 
-  // me redirige si ya estoy logeado 
+  // Redirige si ya estás autenticado
   useEffect(() => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
-    const mensajeRedireccion = buscarParametro.get('mensaje');
     if (mensajeRedireccion) {
       setMensaje(mensajeRedireccion);
     }
 
-
-    const token = localStorage.getItem('token')
     if (token) {
       setMensaje('Ya estás autenticado');
       setTimeout(() => router.push('/'), 3000); // Redirige después de 3 segundos
     }
-  },[router,buscarParametro])
+  }, [router, mensajeRedireccion]);
 
-  
-
+  // Maneja el inicio de sesión
   async function manejarInicioSesion(data) {
     try {
-      const respuesta = await iniciarSesionUsuario(data)
-      localStorage.setItem('token',respuesta.token)
-      const redireccionUrl = buscarParametro.get('redireccion') || '/';
-      setMensaje(respuesta.mensaje)
+      const respuesta = await iniciarSesionUsuario(data);
+      localStorage.setItem('token', respuesta.token);
+      setMensaje(respuesta.mensaje);
 
       setTimeout(() => {
         router.push(redireccionUrl);
-      },3000)
+      }, 3000);
     } catch (error) {
-      console.log(`Error al iniciar sesion ${error.message}`)
-      throw new Error(error || 'Error al iniciar sesión');
+      console.error(`Error al iniciar sesión: ${error.message}`);
+      setMensaje('Error al iniciar sesión. Inténtalo de nuevo.');
     }
   }
 
@@ -51,16 +49,16 @@ export default function Login() {
     <AutenticacionFormulario
       mensaje={mensaje}
       setMensaje={setMensaje}
-      titulo='Iniciar Sesion'
+      titulo="Iniciar Sesión"
       campos={[
-        {label:'Correo Electronico', name:'email', type:'email', required: true},
-        {label:'Contraseña', name:'pass', type:'password', required: true}
+        { label: 'Correo Electrónico', name: 'email', type: 'email', required: true },
+        { label: 'Contraseña', name: 'pass', type: 'password', required: true }
       ]}
-      textoBoton='Iniciar Sesion'
+      textoBoton="Iniciar Sesión"
       onSubmit={manejarInicioSesion}
-      redireccionTexto='No tienes una cuenta?'
-      redireccionLinkText='Registrate aqui'
-      redireccionHref='/autenticacion/Register'
+      redireccionTexto="¿No tienes una cuenta?"
+      redireccionLinkText="Regístrate aquí"
+      redireccionHref="/autenticacion/Register"
     />
-  )
+  );
 }

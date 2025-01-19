@@ -6,7 +6,17 @@ import usuarioRuta from './rutas/usuarioRuta.mjs'
 
 
 const app = express()
-app.use(cors())
+
+  // Configurar CORS
+const corsOptions = {
+  origin: ['http://localhost:3000', 'https://tu-dominio-frontend.vercel.app'], // Orígenes permitidos
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
+  credentials: true, // Permitir cookies
+};
+
+
+app.use(cors(corsOptions))
 app.use(express.json())
 
 app.use('/parques',parquesRuta)

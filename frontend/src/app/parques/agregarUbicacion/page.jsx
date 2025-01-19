@@ -8,6 +8,7 @@ import Mapa from '@/components/parques/Mapa/Mapa.jsx'
 import { Boton } from '@/components/comunes/Boton/Boton'
 import agregarParquePost from '@/utilidades/api/post/AgregarParque'
 
+
 export default function AgregarUbicacion() {
 
   // para redireccionar si no esta logeado 
@@ -84,7 +85,7 @@ export default function AgregarUbicacion() {
   function obtenerUbicacion(e) {
     e.preventDefault()
 
-    if (!navigator.geolocation) {
+    if (typeof window === 'undefined' || !navigator.geolocation) {
       alert('funcion no permitida, no esa accesible en este navegador')
       return
     }
@@ -188,16 +189,23 @@ export default function AgregarUbicacion() {
                 readOnly
               />
             </div>
-            <Mapa
-              ref={mapaRef}
-              latitud={formularioDatos.coordenadas.latitud}
-              longitud={formularioDatos.coordenadas.longitud}
-              zoom={14}
-              manejarCoordenadas={manejarCoordenadas}
-              clases='parques__agregar-ubicacion-mapa'
-              ubicaciones={[]}
-              mostrarMarcador={true}
-            />
+            {typeof window !== 'undefined' && (
+              <Mapa
+                ref={mapaRef}
+                latitud={formularioDatos.coordenadas.latitud}
+                longitud={formularioDatos.coordenadas.longitud}
+                zoom={14}
+                manejarCoordenadas={(lat, lng) => {
+                  setFormularioDatos((prev) => ({
+                    ...prev,
+                    coordenadas: { latitud: lat, longitud: lng },
+                  }));
+                }}
+                clases="parques__agregar-ubicacion-mapa"
+                ubicaciones={[]}
+                mostrarMarcador
+              />
+            )}
           </div>
           {/* seccion 2  */}
 
