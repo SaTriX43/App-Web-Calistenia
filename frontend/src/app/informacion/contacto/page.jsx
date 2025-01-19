@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Styles from './contacto.module.css'
 import { Boton } from '@/components/comunes/Boton/Boton'
 import { contactoPost } from '@/utilidades/api/get/contactoApi.js'
-import InformacionLinks from '../../../components/comunes/InformacionLinks/InformacionLinks'
+import InformacionLinks from '@/components/comunes/InformacionLinks/InformacionLinks'
 
 export default function Contacto() {
 

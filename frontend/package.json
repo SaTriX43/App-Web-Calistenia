@@ -24,6 +24,9 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/estree": "^1.0.6",
+    "@types/google.maps": "^3.58.1",
+    "@types/json-schema": "^7.0.15",
     "autoprefixer": "^10.4.20",
     "eslint": "^9",
     "eslint-config-next": "15.1.1",
