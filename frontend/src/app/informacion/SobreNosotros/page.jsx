@@ -3,7 +3,7 @@ import Styles from './sobre-nosotros.module.css';
 import { Boton } from '@/components/comunes/Boton/Boton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faTiktok, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import InformacionLinks from '@/components/comunes/informacionLinks/InformacionLinks';
+import InformacionLinks from '@/components/comunes/InnformacionLinks/InformacionLinks';
 import Link from 'next/link';
 
 export default function SobreNosotros() {
