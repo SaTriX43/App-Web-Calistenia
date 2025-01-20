@@ -111,7 +111,7 @@ export default function SobreNosotros() {
           
           <div className={Styles['informacion__sobre-nosotros-seccion']}>
             <h3 className='text-[25px]'>Contacto</h3>
-            <Link href='/informacion/contacto'>
+            <Link href='/informacion/Contacto'>
               <Boton
                 texto='Enviar email'
                 clases='max-w-[150px]'
