@@ -4,9 +4,13 @@ import Styles from './page.module.css'
 import useAutenticacion from '@/components/hooks/useAutenticacion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
-import Mapa from '@/components/parques/Mapa/Mapa.jsx'
 import { Boton } from '@/components/comunes/Boton/Boton'
 import agregarParquePost from '@/utilidades/api/post/AgregarParque'
+import dynamic from 'next/dynamic';
+
+const Mapa = dynamic(() => import('@/components/parques/Mapa/Mapa.jsx'), {
+  ssr: false, // Desactiva SSR para este componente
+});
 
 
 export default function AgregarUbicacion() {

@@ -1,18 +1,21 @@
+'use client';
+
 import React, { memo, useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
 import Styles from './Mapa.module.css';
 import Link from 'next/link';
 
-const parqueIcon =
-  typeof window !== 'undefined'
-    ? new L.Icon({
-        iconUrl: '/parque-icon.svg',
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
-        popupAnchor: [0, -32],
-      })
-    : null;
+// Importar dinámicamente componentes de react-leaflet
+const MapContainer = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import('react-leaflet').then((mod) => mod.TileLayer), { ssr: false });
+const Marker = dynamic(() => import('react-leaflet').then((mod) => mod.Marker), { ssr: false });
+const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), { ssr: false });
+
+let L;
+if (typeof window !== 'undefined') {
+  L = require('leaflet'); // Importar Leaflet dinámicamente
+}
 
 const Mapa = memo(function Mapa({
   latitud,
@@ -32,9 +35,15 @@ const Mapa = memo(function Mapa({
     }
   }, [latitud, longitud, zoom]);
 
-  if (typeof window === 'undefined') {
-    return null; // Evitar renderizado en el servidor
-  }
+  // Crear ícono solo en el cliente
+  const parqueIcon = L
+    ? new L.Icon({
+        iconUrl: '/parque-icon.svg',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32],
+      })
+    : null;
 
   return (
     <MapContainer
