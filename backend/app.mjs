@@ -8,7 +8,7 @@ import usuarioRuta from './rutas/usuarioRuta.mjs'
 const app = express()
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://tu-dominio-frontend.vercel.app'], // Orígenes permitidos
+  origin: ['http://localhost:3000', 'https://app-calistenia.vercel.app'], // Orígenes permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
   credentials: true, // Permitir cookies
