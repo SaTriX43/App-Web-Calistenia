@@ -1,5 +1,5 @@
 import React from 'react'
-import Styles from './InformacionLinks.module.css'
+import Styles from './InfoLinks.module.css'
 import Link from 'next/link'
 
 export default function InformacionLinks() {
