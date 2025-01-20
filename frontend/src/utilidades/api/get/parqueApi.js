@@ -1,4 +1,4 @@
-const urlBase = "http://app-web-calistenia-production.up.railway.app/parques";
+const urlBase = "https://app-web-calistenia-production.up.railway.app/parques";
 
 
 // peticion parque general 
