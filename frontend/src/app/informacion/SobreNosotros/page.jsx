@@ -65,7 +65,7 @@ export default function SobreNosotros() {
 
         <div className={Styles['informacion__sobre-nosotros-seccion']}>
           <h3 className='text-[25px]'>No tienes una cuenta gratuita todavia?</h3>
-          <Link href='/autenticacion/Register'>
+          <Link href='/autenticacion/register'>
             <Boton
               texto='Crear Cuenta'
               clases='max-w-[200px]'
@@ -111,7 +111,7 @@ export default function SobreNosotros() {
           
           <div className={Styles['informacion__sobre-nosotros-seccion']}>
             <h3 className='text-[25px]'>Contacto</h3>
-            <Link href='/informacion/Contacto'>
+            <Link href='/informacion/contacto'>
               <Boton
                 texto='Enviar email'
                 clases='max-w-[150px]'

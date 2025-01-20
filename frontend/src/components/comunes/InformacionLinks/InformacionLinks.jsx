@@ -8,10 +8,10 @@ export default function InformacionLinks() {
         <Link href='/informacion/SobreNosotros'>
           <li>Sobre nosotros</li>
         </Link>
-        <Link href='/informacion/Condiciones'>
+        <Link href='/informacion/condiciones'>
           <li>Condiciones</li>
         </Link>
-        <Link href='/informacion/Contacto'>
+        <Link href='/informacion/contacto'>
           <li>Contacto</li>
         </Link>
       </div>
