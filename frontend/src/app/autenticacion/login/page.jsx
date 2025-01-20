@@ -41,7 +41,7 @@ export default function Login() {
       }, 3000);
     } catch (error) {
       console.error(`Error al iniciar sesión: ${error.message}`);
-      setMensaje('Error al iniciar sesión. Inténtalo de nuevo.');
+      setError('Error al iniciar sesión. Inténtalo de nuevo.');
     }
   }
 
@@ -58,7 +58,7 @@ export default function Login() {
       onSubmit={manejarInicioSesion}
       redireccionTexto="¿No tienes una cuenta?"
       redireccionLinkText="Regístrate aquí"
-      redireccionHref="/autenticacion/Register"
+      redireccionHref="/autenticacion/register"
     />
   );
 }

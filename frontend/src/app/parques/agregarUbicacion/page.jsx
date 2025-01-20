@@ -16,7 +16,7 @@ const Mapa = dynamic(() => import('@/components/parques/Mapa/Mapa.jsx'), {
 export default function AgregarUbicacion() {
 
   // para redireccionar si no esta logeado 
-  useAutenticacion('/parques/AgregarUbicacion')
+  useAutenticacion('/parques/agregarUbicacion')
 
 
   // variables para guardar los datos 

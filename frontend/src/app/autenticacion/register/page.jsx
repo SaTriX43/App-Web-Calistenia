@@ -45,7 +45,7 @@ export default function Register() {
       onSubmit={manejarRegistrarse}
       redireccionTexto='Tienes una cuenta?'
       redireccionLinkText='Inicia Sesion aqui'
-      redireccionHref='/autenticacion/Login'
+      redireccionHref='/autenticacion/login'
     />
   )
 }
