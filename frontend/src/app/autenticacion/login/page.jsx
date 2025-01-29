@@ -14,6 +14,7 @@ export default function Login() {
   const redireccionUrl = searchParams ? searchParams.get('redireccion') : '/';
 
   const [mensaje, setMensaje] = useState('');
+  const [error, setError] = useState(null)
 
   // Redirige si ya estás autenticado
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function Login() {
       }, 3000);
     } catch (error) {
       console.error(`Error al iniciar sesión: ${error.message}`);
-      setError('Error al iniciar sesión. Inténtalo de nuevo.');
+      setError(error.message)
     }
   }
 
@@ -49,6 +50,8 @@ export default function Login() {
     <AutenticacionFormulario
       mensaje={mensaje}
       setMensaje={setMensaje}
+      error={error}
+      setError={setError}
       titulo="Iniciar Sesión"
       campos={[
         { label: 'Correo Electrónico', name: 'email', type: 'email', required: true },

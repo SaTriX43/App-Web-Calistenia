@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react'
 export default function Register() {
 
   const [mensaje , setMensaje] = useState('')
+  const [error, setError] = useState(null)
   const router = useRouter()
   
     // me redirige si ya estoy logeado 
@@ -26,7 +27,7 @@ export default function Register() {
       setMensaje(respuesta.mensaje)
     } catch (error) {
       console.log(`Error al registrar usuario ${error.message} `)
-      throw new Error(error || 'Error al registrar usuario')
+      setError(error.message)
     }
   }
 
@@ -34,6 +35,8 @@ export default function Register() {
     <AutenticacionFormulario
       mensaje={mensaje}
       setMensaje={setMensaje}
+      error={error}
+      setError={setError}
       titulo='Registrate'
       campos={[
         {label:'Nombre', name:'name', type:'text', required: true},

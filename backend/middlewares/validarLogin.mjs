@@ -17,7 +17,7 @@ export default async function validarLogin(req,res, next) {
 
   // valida pass 
   if(!usuarioFiltradoPass) {
-    return res.status(400).json({error:`Su contrasenia no es correcta`})
+    return res.status(400).json({error:`Su contraseña no es correcta`})
   }
 
   next()

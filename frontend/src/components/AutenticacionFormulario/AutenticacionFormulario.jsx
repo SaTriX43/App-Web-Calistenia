@@ -11,6 +11,8 @@ export default function AutenticacionFormulario({
   onSubmit,
   mensaje,
   setMensaje,
+  error,
+  setError,
   campos,
   textoBoton,
   redireccionTexto,
@@ -21,8 +23,6 @@ export default function AutenticacionFormulario({
   const [formulario,setFormulario] = useState(
     campos.reduce((accion, campo) => ({...accion,[campo.name] : '' }), {} )
   )
-
-  const [error , setError] = useState(null)
 
   // limpia el mensaje 
   useEffect(() => {
@@ -42,11 +42,13 @@ export default function AutenticacionFormulario({
     try {
       setError(null)
       // Llamar a la función onSubmit (recibida como prop)
-      await onSubmit(formulario);
+      const resultado = await onSubmit(formulario);
 
-      setFormulario(
-        campos.reduce((accion,campo) => ({...accion, [campo.name] : ''}), {})
-      )
+      if (resultado && !resultado.error) { 
+        setFormulario(
+          campos.reduce((accion, campo) => ({ ...accion, [campo.name]: '' }), {})
+        );
+      }
     } catch (error) {
       setError(error.message || `A ocurrido un error`)
     }
@@ -78,7 +80,7 @@ export default function AutenticacionFormulario({
             </div>
           ))}
           {error && (
-            <p className='text-red-300 text-[20px]'>{error}</p>
+            <p className='text-red-300 text-[20px] text-center'>{error}</p>
           )}
           <Boton
             tipoBoton='primario'
