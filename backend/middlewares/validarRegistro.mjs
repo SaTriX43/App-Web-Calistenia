@@ -1,12 +1,13 @@
+import pool from "../db.mjs";
+
 export default async function validarRegistro(req,res,next) {
   const {name, email, pass , pass2} = req.body;
 
-  const usuarios = await leerArchivo()
+  const usuario = await pool.query(`SELECT * FROM usuarios WHERE correo = $1`, [email])
 
-  const usuarioEmail = usuarios.find(usuario => usuario.email === email)
 
   // valida si ya existe un correo similar 
-  if(usuarioEmail) {
+  if(usuario.rows.length > 0) {
     return res.status(400).json({error: `Correo ya existente`})
   }
 

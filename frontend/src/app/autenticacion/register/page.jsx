@@ -20,6 +20,7 @@ export default function Register() {
       }
     },[router])
 
+  // funcion para registrarse 
   async function manejarRegistrarse(data) {
     try {
       const respuesta = await registrarUsuario(data)

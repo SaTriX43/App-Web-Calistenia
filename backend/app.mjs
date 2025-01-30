@@ -21,6 +21,8 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(express.json())
 
+app.options('*', cors(corsOptions));
+
 app.use('/parques',parquesRuta)
 app.use('/contacto',contactoRuta)
 app.use('/autenticacion',usuarioRuta)
