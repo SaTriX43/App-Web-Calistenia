@@ -9,7 +9,7 @@ export async function postContacto(req,res) {
       return res.status(400).json({error : `Faltan datos obligatorios`})
     }
     
-    const resultado = await enviarEmail({
+    await enviarEmail({
       nombre,
       email,
       mensaje,

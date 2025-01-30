@@ -1,4 +1,3 @@
-import { escribirArchivo, leerArchivo } from "../funciones/leerEscribirEnBaseDatos.mjs"
 import jwt from 'jsonwebtoken'
 
 // para registrar usuarios 

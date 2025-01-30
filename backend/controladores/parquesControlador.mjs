@@ -1,39 +1,52 @@
-import parques from "../datos/parquesDatos.mjs";
+import pool from "../db.mjs";
 import { enviarEmail } from "../servicios/emailServicio.mjs";
 
 //funcion para obtener los parques de mi base de datos
-export const getParques = (req, res) => {
-  const { pagina = 1, limite = 10 } = req.query; //parametros de query
-  const indiceInicial = (pagina - 1) * limite;
-  const indiceFinal = pagina * limite;
+export const getParques = async (req, res) => {
+  try {
+    const { pagina = 1, limite = 10 } = req.query; //parametros de query
+    const offset = (pagina - 1) * limite;
+    
+    const parquesQuery = await pool.query(
+      `SELECT * FROM parques ORDER BY id LIMIT $1 OFFSET $2`,
+      [limite, offset]
+    )
 
-  const resultados = parques.slice(indiceInicial, indiceFinal);
+    const totalQuery = await pool.query(`SELECT COUNT(*) FROM parques`)
+    const total = parseInt(totalQuery.rows[0].count);
 
-  res.json({
-    total: parques.length,
-    pagina: parseInt(pagina),
-    limite: parseInt(limite),
-    data: resultados,
-  });
+
+    res.json({
+      total,
+      pagina: parseInt(pagina),
+      limite: parseInt(limite),
+      data: parquesQuery.rows
+    });
+  } catch (error) {
+    console.log(`ERROR EN LA PETICION GET PARQUES : ${error}`)
+    res.status(500).json({error: error.message})
+  }
+  
 };
 
 
 // obtiene por id 
-export const getParquesId = (req, res) => {
-  const parqueId = parseInt(req.params.id);
-
-  if (isNaN(parqueId)) {
-    return res.status(400).json({error: `Su id debe de ser un numero`})
-  }
-
-  const resultado = parques.find(parque => parque.id === parqueId) 
-
-  if(!resultado) {
-    return res.status(404).json({error: `Su parque no ha sido encontrado con id ${parqueId}`})
-  }
-
+export const getParquesId = async (req, res) => {
   try {
-    res.json(resultado)
+    const parqueId = parseInt(req.params.id);
+
+    if (isNaN(parqueId)) {
+      return res.status(400).json({error: `Su id debe de ser un numero`})
+    }
+
+    const resultado = await pool.query(`SELECT * FROM parques WHERE id = $1`,[parqueId])
+
+    if(resultado.rows.length === 0) {
+      return res.status(404).json({error: `Su parque no ha sido encontrado con id ${parqueId}`})
+    }
+
+    res.json(resultado.rows[0])
+
   } catch (error) {
     res.status(500).json({ error: "Error interno del servidor" });
   }
@@ -43,7 +56,7 @@ export const getParquesId = (req, res) => {
 
 // post 
 // agregar Parque 
-
+//falta configurar un panel de administrador para poder aceptar parques e agregarlos a la base de datos
 export async function postParque(req, res) {
   try {
     // Asegúrate de que "coordenadas" sea un objeto válido

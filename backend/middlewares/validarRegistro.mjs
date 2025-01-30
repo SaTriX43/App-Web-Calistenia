@@ -1,5 +1,3 @@
-import { leerArchivo } from "../funciones/leerEscribirEnBaseDatos.mjs";
-
 export default async function validarRegistro(req,res,next) {
   const {name, email, pass , pass2} = req.body;
 

@@ -1,5 +1,3 @@
-import { leerArchivo } from "../funciones/leerEscribirEnBaseDatos.mjs";
-
 export default async function validarLogin(req,res, next) {
   const {email , pass} = req.body
   const usuarios = await leerArchivo()
