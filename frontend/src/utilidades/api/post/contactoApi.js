@@ -1,10 +1,8 @@
-
-
-const urlPrueba = 'http://localhost:4000/contacto'
+const urlBase = 'https://app-web-calistenia-production.up.railway.app/contacto'
 // peticion post 
 export async function contactoPost(contacto) {
   try { 
-    const peticion = await fetch(urlPrueba, {
+    const peticion = await fetch(urlBase, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
