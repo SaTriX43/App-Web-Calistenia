@@ -16,7 +16,7 @@ export default function Detalles({
 }) {
 
   // Ruta de la imagen predeterminada desde 'public'
-  const imagenPredeterminada = "/imagen-parque-mediana.png";
+  const imagenPredeterminada = "/imagen-parque-no-disponible.png";
 
   // Estado para manejar errores de carga de la imagen
   const [errorCarga, setErrorCarga] = useState(false);
@@ -28,7 +28,6 @@ export default function Detalles({
   return (
     <div className={Styles['parques__detalle-parque-detalles']}>
       <div className={Styles['parques__detalle-parque-contenedor-img']}>
-        {imagen ? (
           <Image
             className='img'
             src={imagenFinal}
@@ -37,8 +36,6 @@ export default function Detalles({
             alt={`imagen de ${nombre}`}
             onError={() => setErrorCarga(true)}
           />
-        ): (<p>No hay imagen Disponible</p>)}
-        
       </div>
       <div className={Styles['parques__detalle-parque-contenedor-info']}>
         <h3>{canton} | {nombre} | {direccion}</h3>

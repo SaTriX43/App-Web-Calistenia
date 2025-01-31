@@ -13,7 +13,7 @@ export default function TarjetaParqueRecomendado({
 }) {
 
   // Ruta de la imagen predeterminada desde 'public'
-    const imagenPredeterminada = "/imagen-parque-mediana.png";
+    const imagenPredeterminada = "/imagen-parque-no-disponible.png";
   
     // Estado para manejar errores de carga de la imagen
     const [errorCarga, setErrorCarga] = useState(false);

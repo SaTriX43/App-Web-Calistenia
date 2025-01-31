@@ -34,10 +34,12 @@ export default function DetalleParque() {
     return <p className="mt-[200px]">Cargando parque....</p>
   }
 
+  
+
   return (
     <section className={Styles['parques__detalle-parque']}>
       <Detalles
-        imagen={parque.imagen}
+        imagen={parque.imagenes?.[0]}
         nombre={parque.nombre}
         direccion={parque.direccion}
         puntuacion={parque.puntuacion}

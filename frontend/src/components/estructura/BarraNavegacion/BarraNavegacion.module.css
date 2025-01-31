@@ -45,6 +45,7 @@
 
     cursor: pointer;
     transition: all .3s ease;
+    overflow: hidden;
 }
 
 .navbar__contenedor-logo:hover {

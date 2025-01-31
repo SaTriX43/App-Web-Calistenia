@@ -13,8 +13,8 @@ export const PiePagina = () => {
         <div className={Styles['footer__contenedor-logo']}>
           <Image
             src={'/logo-calistenia.png'}
-            width={30}
-            height={30}
+            width={50}
+            height={50}
             alt='logo calistenia'
           />
         </div>

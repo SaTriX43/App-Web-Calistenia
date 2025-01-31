@@ -14,7 +14,7 @@ export default function DetallePublicidad({parques}) {
             key={parque.id}
             id={parque.id}
             titulo={parque.nombre}
-            imagen={parque.imagen}
+            imagen={parque.imagenes?.[0]}
             puntuacion={parque.puntuacion}
           />
         ))}

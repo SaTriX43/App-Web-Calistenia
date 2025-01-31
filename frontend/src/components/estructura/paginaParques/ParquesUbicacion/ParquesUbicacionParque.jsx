@@ -63,7 +63,8 @@ function ParquesUbicacionParque() {
               key={parque.id}
               id={parque.id}
               titulo={parque.nombre}
-              imagen={parque.imagen}
+              direccion={parque.direccion}
+              imagen={parque.imagenes?.[0]}
               pais={parque.pais}
               continente={parque.continente}
               canton={parque.canton}
@@ -91,7 +92,7 @@ function ParquesUbicacionParque() {
               key={parque.id}
               id={parque.id}
               titulo={parque.nombre}
-              imagen={parque.imagen}
+              imagen={parque.imagenes?.[0]}
               puntuacion={parque.puntuacion}
             />
           ))}

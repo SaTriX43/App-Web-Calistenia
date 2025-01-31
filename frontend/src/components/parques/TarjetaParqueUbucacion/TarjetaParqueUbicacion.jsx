@@ -10,6 +10,7 @@ import Link from "next/link";
 export default function TarjetaParqueUbicacion({
   imagen,
   titulo,
+  direccion,
   puntuacion = 1,
   pais,
   continente,
@@ -17,7 +18,7 @@ export default function TarjetaParqueUbicacion({
   id,
 }) {
   // Ruta de la imagen predeterminada desde 'public'
-  const imagenPredeterminada = "/imagen-parque-mediana.png";
+  const imagenPredeterminada = "/imagen-parque-no-disponible.png";
 
   // Estado para manejar errores de carga de la imagen
   const [errorCarga, setErrorCarga] = useState(false);
@@ -44,7 +45,7 @@ export default function TarjetaParqueUbicacion({
       {/* contenedor de informacion del parque */}
       <div className={Styles["parques__tarjeta-contenedor-info"]}>
         <Link href={`/parques/${id}`}>
-          <h3 className={Styles["parques__tarjeta-titulo"]}>{titulo}</h3>
+          <h3 className={Styles["parques__tarjeta-titulo"]}>{titulo} | {direccion}</h3>
         </Link>
 
         <div className={Styles["parques__tarjeta-contenedor-puntuacion"]}>
