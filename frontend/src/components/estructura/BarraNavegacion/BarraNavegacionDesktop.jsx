@@ -17,8 +17,8 @@ export const BarraNavegacionDesktop = () => {
           <div className={Styles['navbar__contenedor-logo']} >
             <Image
               src={'/logo-calistenia.png'}
-              width={90}
-              height={90}
+              width={50}
+              height={50}
               alt='icono-pagina'
               className={Styles['navbar__logo']}
             />
