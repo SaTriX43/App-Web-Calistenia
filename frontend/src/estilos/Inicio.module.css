@@ -9,7 +9,7 @@
 /* encabezado  */
 
 .inicio__sc-encabezado {
-  background-image: url('/imagen-parque-pequenia.png');
+  background-image: url('/imagen-parque-pequenia.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -70,7 +70,7 @@
 
 @media (min-width : 500px) {
   .inicio__sc-encabezado {
-    background-image: url('/imagen-parque-mediana.png');
+    background-image: url('/imagen-parque-mediana.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -79,7 +79,7 @@
 
 @media (min-width : 1000px) {
   .inicio__sc-encabezado {
-    background-image: url('/imagen-parque-larga.png');
+    background-image: url('/imagen-parque-larga.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

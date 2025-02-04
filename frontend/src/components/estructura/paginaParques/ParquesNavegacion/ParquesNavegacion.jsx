@@ -12,7 +12,7 @@ export const ParquesNavegacion = () => {
   const pathname = usePathname()
 
   return (
-    <nav className={Styles['parques__nav']}>
+    <nav className={Styles['parques__nav']} role='navigation'>
         <Link href='/parques' className={`${Styles['parques__nav-link']} ${pathname === '/parques' ? Styles['parques__nav-link-activo'] : ''}`}>
           <FontAwesomeIcon className={Styles['parques__nav-link-icon']} icon={faLocation}/>
           <p className={Styles['parques__nav-link-p']}>Ubicacion</p>
@@ -23,7 +23,7 @@ export const ParquesNavegacion = () => {
             <p className={Styles['parques__nav-link-p']}>Mapa</p>
         </Link>
 
-        <Link href='/parques/agregarUbicacion' className={`${Styles['parques__nav-link']} ${pathname === '/parques/agregar' ? Styles['parques__nav-link-activo'] : ''}`}>
+        <Link href='/parques/agregarUbicacion' className={`${Styles['parques__nav-link']} ${pathname === '/parques/agregarUbicacion' ? Styles['parques__nav-link-activo'] : ''}`}>
             <FontAwesomeIcon className={Styles['parques__nav-link-icon']} icon={faLocationDot}/>
             <p className={Styles['parques__nav-link-p']}>Agregar Ubicacion</p>
         </Link>

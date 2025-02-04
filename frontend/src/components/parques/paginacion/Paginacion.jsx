@@ -14,16 +14,23 @@ export const Paginacion = ({
   return (
     <div className={Styles['parques__contenedor-paginacion']}>
       <button
-      onClick={() => cambiarPagina(pagina - 1)}  
-      disabled={pagina === 1}>
+        aria-label='atras'
+        title='aprete para ver los anteriores parques'
+        onClick={() => cambiarPagina(pagina - 1)}  
+        disabled={pagina === 1}
+      >
         Atras
       </button>
 
       <span>{pagina} de {totalPaginas}</span>
       <button 
+        aria-label='siguiente'
+        title='aprete para ver los siguientes parques'
         onClick={() => cambiarPagina(pagina + 1)}
         disabled= {pagina === totalPaginas}
-        >Siguiente</button>
+        >
+          Siguiente
+      </button>
     </div>
   )
 }
