@@ -23,15 +23,17 @@ export const BarraNavegacionMobile = () => {
         {/* logo  */}
         <div className='container flex max-w-[1000px] max-h-[70px] items-center justify-between'>
           <div className='flex items-center gap-[10px]'>
-            <div className={Styles['navbar__contenedor-logo']} >
-              <Image
-                src={'/logo-calistenia.png'}
-                width={50}
-                height={50}
-                alt='icono-pagina'
-                className={Styles['navbar__logo']}
-              />
-            </div>
+            <Link href='/'>
+              <div className={Styles['navbar__contenedor-logo']} >
+                <Image
+                  src={'/logo-calistenia.png'}
+                  width={50}
+                  height={50}
+                  alt='icono-pagina'
+                  className={Styles['navbar__logo']}
+                />
+              </div>
+            </Link>
             <h2 className='text-[16px] font-[600] sm:text-[25px]'>HubThenics</h2>
           </div>
           
