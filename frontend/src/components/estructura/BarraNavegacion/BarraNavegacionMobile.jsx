@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Styles from './BarraNavegacion.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faUser } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -69,6 +69,15 @@ export const BarraNavegacionMobile = () => {
             Iniciar Sesion
           </Link>
         </li>
+
+        <li className={`${Styles['navbar__li-pagina']} ${pathname.startsWith('/usuario') ? 'text-black underline' : ''}`}>
+            <Link href="/usuario" className={Styles['navbar__links-pagina']}>
+              <FontAwesomeIcon
+                icon={faUser}
+              />
+              Ver Perfil
+            </Link>
+          </li>
       </div>
     </>
   )
