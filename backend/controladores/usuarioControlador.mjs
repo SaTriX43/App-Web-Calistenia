@@ -53,3 +53,27 @@ export async function logearUsuario(req, res) {
   }
   
 }
+
+
+// para iniciar sesion en usuario 
+export async function obtenerUsuarioId(req, res) {
+  const {id} = req.params;
+
+  try {
+    const usuario = await pool.query(`SELECT * FROM usuarios WHERE id = $1 `,[id])
+
+    if(usuario.rowCount === 0) {
+      return res.status(404).json({error: `Usuario no encontrado`})
+    }
+
+    const usuarioData = usuario.rows[0]
+
+    res.status(201).json(usuarioData)
+  } catch (error) {
+    console.log(`error al obtener usuario ${error}`)
+    res.status(500).json({error: `Error al obtener usuario ${error.message}`})
+  }
+  
+}
+
+

@@ -1,11 +1,11 @@
 const urlBase = 'https://app-web-calistenia-production.up.railway.app/autenticacion'
-
+const urlPrueba = 'http://localhost:4000/autenticacion'
 
 
 // registrar al usuario 
 export async function registrarUsuario(usuario) {
   try {
-    const peticion = await fetch(`${urlBase}/register`, {
+    const peticion = await fetch(`${urlPrueba}/register`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -29,7 +29,7 @@ export async function registrarUsuario(usuario) {
 // Iniciar sesion al usuario 
 export async function iniciarSesionUsuario(usuario) {
   try {
-    const peticion = await fetch(`${urlBase}/login`, {
+    const peticion = await fetch(`${urlPrueba}/login`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
