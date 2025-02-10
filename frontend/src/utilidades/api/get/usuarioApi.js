@@ -1,11 +1,11 @@
-const urlBase = "https://app-web-calistenia-production.up.railway.app/autenticacion/usuario";
-const urlPrueba = 'http://localhost:4000/autenticacion/usuario'
+const urlBase = "https://app-web-calistenia-production.up.railway.app/autenticacion/sesion";
+const urlPrueba = 'http://localhost:4000/autenticacion/sesion'
 
 
 // peticion usuario por id 
-export async function getUsuarioId(id) {
+export async function getUsuario() {
   try {
-    const peticion = await fetch(`${urlPrueba}/${id}`)
+    const peticion = await fetch(`${urlPrueba}`)
     if (!peticion.ok) {
       const error = await peticion.json()
       return error

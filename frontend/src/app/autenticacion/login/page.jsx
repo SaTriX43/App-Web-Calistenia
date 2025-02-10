@@ -16,30 +16,28 @@ export default function Login() {
   const [mensaje, setMensaje] = useState('');
   const [error, setError] = useState(null)
 
+  // =---------------------------------- 
   // Redirige si ya estás autenticado
   useEffect(() => {
-    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-
     if (mensajeRedireccion) {
       setMensaje(mensajeRedireccion);
     }
-
-    if (token) {
-      setMensaje('Ya estás autenticado');
-      setTimeout(() => router.push('/'), 3000); // Redirige después de 3 segundos
-    }
   }, [router, mensajeRedireccion]);
+  // -------------------------- 
 
   // Maneja el inicio de sesión
   async function manejarInicioSesion(data) {
     try {
       const respuesta = await iniciarSesionUsuario(data);
-      localStorage.setItem('token', respuesta.token);
       setMensaje(respuesta.mensaje);
-
+    
+      
+      // redirige despues de iniciar sesion a la pagina de donde se intento acceder
       setTimeout(() => {
         router.push(redireccionUrl);
       }, 3000);
+
+
     } catch (error) {
       console.error(`Error al iniciar sesión: ${error.message}`);
       setError(error.message)

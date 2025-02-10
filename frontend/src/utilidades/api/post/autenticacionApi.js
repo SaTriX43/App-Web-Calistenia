@@ -34,7 +34,8 @@ export async function iniciarSesionUsuario(usuario) {
       headers: {
         'Content-Type' : 'application/json'
       },
-      body: JSON.stringify(usuario)
+      body: JSON.stringify(usuario),
+      credentials: 'include'
     })
 
     if(!peticion.ok) {

@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken'
 
 export default function validarToken(req,res,next) {
-  const encabezadoAutorizacion = req.headers['autorizacion'];
-  const token = encabezadoAutorizacion && encabezadoAutorizacion.split(' ')[1];//extraer toke header
+
+  const token = req.cookies.authToken
 
   if(!token) {
-    res.status(403).json({error: `Acceso denegado token faltante`})
+    return res.status(403).json({error: `Acceso denegado token faltante`})
   }
 
   try {

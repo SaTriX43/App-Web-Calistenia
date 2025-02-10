@@ -11,14 +11,14 @@ export default function Register() {
   const [error, setError] = useState(null)
   const router = useRouter()
   
+
+  // ------------------------- 
     // me redirige si ya estoy logeado 
     useEffect(() => {
-      const token = localStorage.getItem('token')
-      if (token) {
         setMensaje('Ya estás autenticado');
         setTimeout(() => router.push('/'), 3000); // Redirige después de 3 segundos
-      }
     },[router])
+    // ------------------------- 
 
   // funcion para registrarse 
   async function manejarRegistrarse(data) {

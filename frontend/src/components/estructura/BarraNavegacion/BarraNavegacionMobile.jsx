@@ -1,16 +1,18 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, {useState } from 'react'
 import Image from 'next/image'
 import Styles from './BarraNavegacion.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faUser } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import useAutenticacionEstado from '@/components/hooks/useAutenticacionEstado'
 
 export const BarraNavegacionMobile = () => {
 
   const [bars, setBars] = useState(false)
+  const hayToken = useAutenticacionEstado()
   const pathname = usePathname()
 
   function manejarBars() {
@@ -62,24 +64,29 @@ export const BarraNavegacionMobile = () => {
           </Link>
         </li>
 
-        <li className={Styles['navbar__li-pagina']}>
-          <Link 
-            href="/autenticacion/login" 
-            className={`${Styles['navbar__links-pagina']} ${pathname.startsWith('/autenticacion') ? 'text-black' : ''}`}
-            onClick={() => {setBars(false)}}
-          >
-            Iniciar Sesion
-          </Link>
-        </li>
+        
 
-        <li className={`${Styles['navbar__li-pagina']} ${pathname.startsWith('/usuario') ? 'text-black underline' : ''}`}>
-            <Link href="/usuario" className={Styles['navbar__links-pagina']}>
-              <FontAwesomeIcon
-                icon={faUser}
-              />
-              Ver Perfil
+        {!hayToken ? (
+          <li className={Styles['navbar__li-pagina']}>
+            <Link 
+              href="/autenticacion/login" 
+              className={`${Styles['navbar__links-pagina']} ${pathname.startsWith('/autenticacion') ? 'text-black' : ''}`}
+              onClick={() => {setBars(false)}}
+            >
+              Iniciar Sesion
             </Link>
           </li>
+        ): (
+          <li className={`${Styles['navbar__li-pagina']} ${pathname.startsWith('/usuario') ? 'text-black underline' : ''}`}>
+           <Link href="/usuario" className={Styles['navbar__links-pagina']}>
+             <FontAwesomeIcon
+               icon={faUser}
+             />
+             Ver Perfil
+           </Link>
+          </li>
+        )}
+       
       </div>
     </>
   )

@@ -43,9 +43,16 @@ export async function logearUsuario(req, res) {
      {expiresIn: '1h'}
     )
 
-    res.status(201).json({
-      mensaje:`Usuario logeado exitosamente`, 
-      token,
+    res.cookie('authToken', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: `Strict`,
+      maxAge: 3600000,
+      path:'/'
+    })
+
+    res.status(200).json({
+      mensaje:`Usuario logeado exitosamente`,
     })
   } catch (error) {
     console.log(`error al iniciar sesion ${error}`)
@@ -55,25 +62,8 @@ export async function logearUsuario(req, res) {
 }
 
 
-// para iniciar sesion en usuario 
-export async function obtenerUsuarioId(req, res) {
-  const {id} = req.params;
-
-  try {
-    const usuario = await pool.query(`SELECT * FROM usuarios WHERE id = $1 `,[id])
-
-    if(usuario.rowCount === 0) {
-      return res.status(404).json({error: `Usuario no encontrado`})
-    }
-
-    const usuarioData = usuario.rows[0]
-
-    res.status(201).json(usuarioData)
-  } catch (error) {
-    console.log(`error al obtener usuario ${error}`)
-    res.status(500).json({error: `Error al obtener usuario ${error.message}`})
-  }
-  
+// para la verificar e recibir informacion del usuario 
+export async function obtenerUsuario(req,res) {
+  res.status(200).json({autenticado:true , usuario:req.usuario})
 }
-
 
