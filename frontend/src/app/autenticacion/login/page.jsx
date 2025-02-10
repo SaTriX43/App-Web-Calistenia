@@ -1,11 +1,15 @@
 'use client';
 
 import AutenticacionFormulario from "@/components/AutenticacionFormulario/AutenticacionFormulario.jsx";
+import { AutenticacionContext } from "@/context/AutenticacionContext";
 import { iniciarSesionUsuario } from "@/utilidades/api/post/autenticacionApi";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function Login() {
+
+  const { actualizarSesion } = useContext(AutenticacionContext)
+
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -35,9 +39,9 @@ export default function Login() {
       // redirige despues de iniciar sesion a la pagina de donde se intento acceder
       setTimeout(() => {
         router.push(redireccionUrl);
-      }, 3000);
+      }, 2000);
 
-
+      actualizarSesion()
     } catch (error) {
       console.error(`Error al iniciar sesión: ${error.message}`);
       setError(error.message)

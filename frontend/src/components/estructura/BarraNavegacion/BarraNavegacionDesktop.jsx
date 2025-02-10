@@ -5,12 +5,13 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-import useAutenticacionEstado from '@/components/hooks/useAutenticacionEstado'
+import { useContext } from 'react'
+import { AutenticacionContext } from '@/context/AutenticacionContext'
 
 export const BarraNavegacionDesktop = () => {
 
   const pathname = usePathname()
-  const hayToken = useAutenticacionEstado()
+  const { autenticado } = useContext(AutenticacionContext)
 
   return (
     <nav className={Styles['navbar']}>
@@ -42,7 +43,7 @@ export const BarraNavegacionDesktop = () => {
 
          
 
-          {!hayToken ? (
+          {!autenticado ? (
             <li className={`${Styles['navbar__li-pagina']} ${pathname.startsWith('/autenticacion') ? 'text-black underline' : ''}`}>
              <Link href="/autenticacion/login" className={Styles['navbar__links-pagina']}>Iniciar Sesion</Link>
             </li>

@@ -38,7 +38,7 @@ export async function logearUsuario(req, res) {
 
     const usuarioData = usuario.rows[0]
 
-    const token = jwt.sign({id:usuarioData.id, email:usuarioData.correo},
+    const token = jwt.sign({nombre:usuarioData.nombre, email:usuarioData.correo},
      'claveSecreta',
      {expiresIn: '1h'}
     )
@@ -46,7 +46,7 @@ export async function logearUsuario(req, res) {
     res.cookie('authToken', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: `Strict`,
+      sameSite: 'Strict',
       maxAge: 3600000,
       path:'/'
     })

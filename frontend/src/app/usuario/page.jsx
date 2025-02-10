@@ -1,26 +1,19 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, {useContext} from 'react'
 import Styles from './page.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { getUsuario } from '@/utilidades/api/get/usuarioApi'
+import { AutenticacionContext } from '@/context/AutenticacionContext'
+import useAutenticacionRedireccion from '@/components/hooks/useAutenticacionRedireccion'
 export default function Usuario() {
 
-const [usuario, setUsuario] = useState({})
+  useAutenticacionRedireccion('/usuario')
 
-  useEffect(() => {
-    async function obtenerUsuario() {
-      try {
-        const usuario = await getUsuario()
-        setUsuario(usuario.usuario)
-      } catch (error) {
-        console.log(`Error en la peticion usuario ${error.error}`)
-      }
-    }
+  const {usuario, loading} = useContext(AutenticacionContext)
 
-    obtenerUsuario()
-  },[])
+  if(loading) return <div>Cargando.....</div>
+  if(!usuario) return <h3>Usuario no encontrado</h3>
 
   return (
     <section className={Styles['usuario']}>
@@ -31,7 +24,7 @@ const [usuario, setUsuario] = useState({})
         />
         <div>
           <p><b>Usuario:</b> {usuario.nombre}</p>
-          <p><b>Correo:</b> {usuario.correo}</p>
+          <p><b>Correo:</b> {usuario.email}</p>
         </div>
       </div>
     </section>

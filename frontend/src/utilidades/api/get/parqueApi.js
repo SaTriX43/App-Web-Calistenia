@@ -12,7 +12,6 @@ export async function getParques(pagina = 1, limite = 10) {
     }
 
     const data = await peticion.json()
-    console.log(data)
     return data
   } catch (error) {
     console.log(`Error en la peticion ${error.message}`)
@@ -29,7 +28,6 @@ export async function getParqueId(id) {
     }
 
     const data = await peticion.json()
-    console.log(data)
     return data
   } catch (error) {
     console.log(`Error en la peticion ${error.message}`)

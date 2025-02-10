@@ -1,18 +1,18 @@
 'use client'
 
-import React, {useState } from 'react'
+import React, {useContext, useState } from 'react'
 import Image from 'next/image'
 import Styles from './BarraNavegacion.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faUser } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import useAutenticacionEstado from '@/components/hooks/useAutenticacionEstado'
+import { AutenticacionContext } from '@/context/AutenticacionContext'
 
 export const BarraNavegacionMobile = () => {
 
   const [bars, setBars] = useState(false)
-  const hayToken = useAutenticacionEstado()
+  const { autenticado } = useContext(AutenticacionContext)
   const pathname = usePathname()
 
   function manejarBars() {
@@ -66,7 +66,7 @@ export const BarraNavegacionMobile = () => {
 
         
 
-        {!hayToken ? (
+        {!autenticado ? (
           <li className={Styles['navbar__li-pagina']}>
             <Link 
               href="/autenticacion/login" 

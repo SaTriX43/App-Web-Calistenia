@@ -3,6 +3,7 @@ import "../estilos/globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
+import { AutenticacionProvider } from "@/context/AutenticacionContext";
 
 config.autoAddCss = false;
 
@@ -55,10 +56,12 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <body>
         <Suspense fallback={<div>...Cargando</div>}>
-          <BarraNavegacion/>
-          <div className="container max-w-[1000px]">
-            {children}
-          </div>
+          <AutenticacionProvider>
+            <BarraNavegacion/>
+            <div className="container max-w-[1000px]">
+              {children}
+            </div>
+          </AutenticacionProvider>
         </Suspense>
       </body>
     </html>

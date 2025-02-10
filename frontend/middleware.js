@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export function middleware(req) {
   //detecta la ruta
   const {pathname} = req.nextUrl;
-
+  
   if(pathname.startsWith('/parques/agregarUbicacion') || pathname.startsWith('/usuario')) {
     //obtinene la cookie guardada
     const token = req.cookies.get('authToken')?.value
@@ -21,3 +21,6 @@ export function middleware(req) {
   //si todo ta bien que me deje seguir
   return NextResponse.next()
 }
+export const config = {
+  matcher: ['/parques/agregarUbicacion/:path*', '/usuario/:path*'],
+};

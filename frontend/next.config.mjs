@@ -12,7 +12,9 @@ const nextConfig = {
       'res.cloudinary.com'  // <--- Agregar Cloudinary si es necesario
     ],
   },
-  
+  experimental: {
+    middleware: true
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
