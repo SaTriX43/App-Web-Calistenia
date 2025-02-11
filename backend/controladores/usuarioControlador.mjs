@@ -63,7 +63,11 @@ export async function logearUsuario(req, res) {
 
 export async function deslogearUsuario(req,res) {
   try {
-    res.clearCookie('authToken',{path : '/'})
+    res.clearCookie('authToken',{
+      path : '/',
+      secure: true,
+      sameSite: 'none'
+    })
 
     return res.status(200).json({mesnaje: 'sesion cerrada exitosamente'})
   } catch (error) {
@@ -78,7 +82,11 @@ export async function eliminarUsuario(req,res) {
 
     await pool.query(`DELETE FROM usuarios WHERE id = $1`,[id])
 
-    res.clearCookie('authToken',{path : '/'})
+    res.clearCookie('authToken',{
+      path : '/',
+      secure: true,
+      sameSite: 'none'
+    })
 
     return res.status(200).json({mesnaje: 'usuario eliminado'})
   } catch (error) {
