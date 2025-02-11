@@ -3,6 +3,7 @@ import cors from 'cors'
 import parquesRuta from './rutas/parquesRuta.mjs'
 import contactoRuta from './rutas/contactoRuta.mjs'
 import usuarioRuta from './rutas/usuarioRuta.mjs'
+import cookieParser from 'cookie-parser'
 
 
 const app = express()
@@ -17,7 +18,7 @@ const corsOptions = {
 };
 
 
-
+app.use(cookieParser())
 app.use(cors(corsOptions))
 app.use(express.json())
 

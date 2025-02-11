@@ -38,14 +38,21 @@ export async function logearUsuario(req, res) {
 
     const usuarioData = usuario.rows[0]
 
-    const token = jwt.sign({id:usuarioData.id, email:usuarioData.correo},
+    const token = jwt.sign({id:usuarioData.id ,nombre:usuarioData.nombre, email:usuarioData.correo},
      'claveSecreta',
      {expiresIn: '1h'}
     )
 
-    res.status(201).json({
-      mensaje:`Usuario logeado exitosamente`, 
-      token,
+    res.cookie('authToken', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'Strict',
+      maxAge: 3600000,
+      path:'/'
+    })
+
+    res.status(200).json({
+      mensaje:`Usuario logeado exitosamente`,
     })
   } catch (error) {
     console.log(`error al iniciar sesion ${error}`)
@@ -53,3 +60,34 @@ export async function logearUsuario(req, res) {
   }
   
 }
+
+export async function deslogearUsuario(req,res) {
+  try {
+    res.clearCookie('authToken',{path : '/'})
+
+    return res.status(200).json({mesnaje: 'sesion cerrada exitosamente'})
+  } catch (error) {
+    res.status(500).json({error:`Error al deslogear usuario`})
+  }
+}
+
+
+export async function eliminarUsuario(req,res) {
+  try {
+    const {id} = req.usuario
+
+    await pool.query(`DELETE FROM usuarios WHERE id = $1`,[id])
+
+    res.clearCookie('authToken',{path : '/'})
+
+    return res.status(200).json({mesnaje: 'usuario eliminado'})
+  } catch (error) {
+    res.status(500).json({error:`Error al elimnar usuario`})
+  }
+}
+
+// para la verificar e recibir informacion del usuario 
+export async function obtenerUsuario(req,res) {
+  res.status(200).json({autenticado:true , usuario:req.usuario})
+}
+

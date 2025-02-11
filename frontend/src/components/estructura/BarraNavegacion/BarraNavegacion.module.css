@@ -90,6 +90,12 @@
   color: black;
 }
 
+.navbar__links-pagina {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
 @media (min-width: 768px) {
   .navbar__contenedor-paginas {
     position: static;

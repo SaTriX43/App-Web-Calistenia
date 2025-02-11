@@ -1,11 +1,11 @@
 const urlBase = 'https://app-web-calistenia-production.up.railway.app/autenticacion'
-
+const urlPrueba = 'http://localhost:4000/autenticacion'
 
 
 // registrar al usuario 
 export async function registrarUsuario(usuario) {
   try {
-    const peticion = await fetch(`${urlBase}/register`, {
+    const peticion = await fetch(`${urlPrueba}/register`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -29,12 +29,13 @@ export async function registrarUsuario(usuario) {
 // Iniciar sesion al usuario 
 export async function iniciarSesionUsuario(usuario) {
   try {
-    const peticion = await fetch(`${urlBase}/login`, {
+    const peticion = await fetch(`${urlPrueba}/login`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
       },
-      body: JSON.stringify(usuario)
+      body: JSON.stringify(usuario),
+      credentials: 'include'
     })
 
     if(!peticion.ok) {
@@ -47,5 +48,37 @@ export async function iniciarSesionUsuario(usuario) {
   } catch (error) {
     console.log(`Error el la peticion de login ${error.message}`)
     throw error
+  }
+}
+
+// deslogearse 
+export async function deslogearseUsuario() {
+  try {
+    const peticion = await fetch(`${urlBase}/deslogeo`, {
+      method:'POST',
+      credentials:'include'
+    })
+
+    if(peticion.ok) {
+      return true
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// eliminar usuario  
+export async function eliminarUsuario() {
+  try {
+    const peticion = await fetch(`${urlBase}/eliminar`, {
+      method:'DELETE',
+      credentials:'include'
+    })
+
+    if(peticion.ok) {
+      return true
+    }
+  } catch (error) {
+    console.log(error)
   }
 }

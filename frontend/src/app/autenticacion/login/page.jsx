@@ -1,11 +1,15 @@
 'use client';
 
 import AutenticacionFormulario from "@/components/AutenticacionFormulario/AutenticacionFormulario.jsx";
+import { AutenticacionContext } from "@/context/AutenticacionContext";
 import { iniciarSesionUsuario } from "@/utilidades/api/post/autenticacionApi";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function Login() {
+
+  const { actualizarSesion } = useContext(AutenticacionContext)
+
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -16,30 +20,28 @@ export default function Login() {
   const [mensaje, setMensaje] = useState('');
   const [error, setError] = useState(null)
 
+  // =---------------------------------- 
   // Redirige si ya estás autenticado
   useEffect(() => {
-    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-
     if (mensajeRedireccion) {
       setMensaje(mensajeRedireccion);
     }
-
-    if (token) {
-      setMensaje('Ya estás autenticado');
-      setTimeout(() => router.push('/'), 3000); // Redirige después de 3 segundos
-    }
   }, [router, mensajeRedireccion]);
+  // -------------------------- 
 
   // Maneja el inicio de sesión
   async function manejarInicioSesion(data) {
     try {
       const respuesta = await iniciarSesionUsuario(data);
-      localStorage.setItem('token', respuesta.token);
       setMensaje(respuesta.mensaje);
-
+    
+      
+      // redirige despues de iniciar sesion a la pagina de donde se intento acceder
       setTimeout(() => {
-        router.push(redireccionUrl);
-      }, 3000);
+        router.push(redireccionUrl || '/');
+      }, 2000);
+
+      actualizarSesion()
     } catch (error) {
       console.error(`Error al iniciar sesión: ${error.message}`);
       setError(error.message)

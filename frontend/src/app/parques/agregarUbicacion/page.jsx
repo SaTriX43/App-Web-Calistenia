@@ -1,12 +1,12 @@
 'use client'
 import React, { useState, useRef } from 'react'
 import Styles from './page.module.css'
-import useAutenticacion from '@/components/hooks/useAutenticacion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
 import { Boton } from '@/components/comunes/Boton/Boton'
 import agregarParquePost from '@/utilidades/api/post/AgregarParque'
 import dynamic from 'next/dynamic';
+import useAutenticacionRedireccion from '@/components/hooks/useAutenticacionRedireccion'
 
 const Mapa = dynamic(() => import('@/components/parques/Mapa/Mapa.jsx'), {
   ssr: false, // Desactiva SSR para este componente
@@ -16,7 +16,7 @@ const Mapa = dynamic(() => import('@/components/parques/Mapa/Mapa.jsx'), {
 export default function AgregarUbicacion() {
 
   // para redireccionar si no esta logeado 
-  useAutenticacion('/parques/agregarUbicacion')
+  useAutenticacionRedireccion('/parques/agregarUbicacion')
 
 
   // variables para guardar los datos 

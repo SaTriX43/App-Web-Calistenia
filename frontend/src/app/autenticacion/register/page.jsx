@@ -1,31 +1,40 @@
 'use client'
 
 import AutenticacionFormulario from '@/components/AutenticacionFormulario/AutenticacionFormulario'
+import { AutenticacionContext } from '@/context/AutenticacionContext'
 import { registrarUsuario } from '@/utilidades/api/post/autenticacionApi'
 import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 export default function Register() {
 
+  const {autenticado} = useContext(AutenticacionContext)
   const [mensaje , setMensaje] = useState('')
   const [error, setError] = useState(null)
   const router = useRouter()
   
+
+  // ------------------------- 
     // me redirige si ya estoy logeado 
     useEffect(() => {
-      const token = localStorage.getItem('token')
-      if (token) {
+      if(autenticado) {
         setMensaje('Ya estás autenticado');
         setTimeout(() => router.push('/'), 3000); // Redirige después de 3 segundos
-      }
+      } 
     },[router])
+    // ------------------------- 
 
   // funcion para registrarse 
   async function manejarRegistrarse(data) {
     try {
       const respuesta = await registrarUsuario(data)
-      alert(respuesta.mensaje)
       setMensaje(respuesta.mensaje)
+
+      // redirige despues de registrarme a iniciar sesion
+      setTimeout(() => {
+        router.push('/autenticacion/login');
+      }, 2000);
+
     } catch (error) {
       console.log(`Error al registrar usuario ${error.message} `)
       setError(error.message)
