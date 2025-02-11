@@ -9,7 +9,6 @@ function AutenticacionProvider({children}) {
   const [usuario, setUsuario] = useState(null);
   const [autenticado, setAutenticado] = useState(false);
   const [loading, setLoading] = useState(true);
-
   
     async function actualizarSesion() {
       try {
