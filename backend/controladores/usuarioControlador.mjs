@@ -46,7 +46,6 @@ export async function logearUsuario(req, res) {
     res.cookie('authToken', token, {
       httpOnly: true,
       secure: true,
-      domain: process.env.NODE_ENV === 'production' ? 'app-calistenia.vercel.app' : undefined,
       sameSite: 'none',
       maxAge: 3600000,
       path:'/'
