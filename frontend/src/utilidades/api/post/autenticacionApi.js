@@ -51,10 +51,27 @@ export async function iniciarSesionUsuario(usuario) {
   }
 }
 
+// deslogearse 
 export async function deslogearseUsuario() {
   try {
-    const peticion = await fetch('http://localhost:4000/autenticacion/deslogeo', {
+    const peticion = await fetch(`${urlBase}/deslogeo`, {
       method:'POST',
+      credentials:'include'
+    })
+
+    if(peticion.ok) {
+      return true
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// eliminar usuario  
+export async function eliminarUsuario() {
+  try {
+    const peticion = await fetch(`${urlBase}/eliminar`, {
+      method:'DELETE',
       credentials:'include'
     })
 

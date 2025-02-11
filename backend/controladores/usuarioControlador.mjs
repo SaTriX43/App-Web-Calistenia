@@ -38,7 +38,7 @@ export async function logearUsuario(req, res) {
 
     const usuarioData = usuario.rows[0]
 
-    const token = jwt.sign({nombre:usuarioData.nombre, email:usuarioData.correo},
+    const token = jwt.sign({id:usuarioData.id ,nombre:usuarioData.nombre, email:usuarioData.correo},
      'claveSecreta',
      {expiresIn: '1h'}
     )
@@ -71,6 +71,20 @@ export async function deslogearUsuario(req,res) {
   }
 }
 
+
+export async function eliminarUsuario(req,res) {
+  try {
+    const {id} = req.usuario
+
+    await pool.query(`DELETE FROM usuarios WHERE id = $1`,[id])
+
+    res.clearCookie('authToken',{path : '/'})
+
+    return res.status(200).json({mesnaje: 'usuario eliminado'})
+  } catch (error) {
+    res.status(500).json({error:`Error al elimnar usuario`})
+  }
+}
 
 // para la verificar e recibir informacion del usuario 
 export async function obtenerUsuario(req,res) {

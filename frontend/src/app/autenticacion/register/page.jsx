@@ -28,8 +28,13 @@ export default function Register() {
   async function manejarRegistrarse(data) {
     try {
       const respuesta = await registrarUsuario(data)
-      alert(respuesta.mensaje)
       setMensaje(respuesta.mensaje)
+
+      // redirige despues de registrarme a iniciar sesion
+      setTimeout(() => {
+        router.push('/autenticacion/login');
+      }, 2000);
+
     } catch (error) {
       console.log(`Error al registrar usuario ${error.message} `)
       setError(error.message)

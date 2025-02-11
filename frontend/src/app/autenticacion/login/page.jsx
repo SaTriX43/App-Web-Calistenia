@@ -38,7 +38,7 @@ export default function Login() {
       
       // redirige despues de iniciar sesion a la pagina de donde se intento acceder
       setTimeout(() => {
-        router.push(redireccionUrl);
+        router.push(redireccionUrl || '/');
       }, 2000);
 
       actualizarSesion()

@@ -10,7 +10,7 @@ export default function useAutenticacionRedireccion(rutaProtegida) {
   useEffect(() => {
     async function verificarToken() {
       try {
-        const peticion = await fetch('http://localhost:4000/autenticacion/sesion', {
+        const peticion = await fetch('https://app-web-calistenia-production.up.railway.app/autenticacion/sesion', {
           method:'GET',
           credentials: 'include'
         })

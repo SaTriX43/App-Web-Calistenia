@@ -13,7 +13,7 @@ function AutenticacionProvider({children}) {
   
     async function actualizarSesion() {
       try {
-        const peticion = await fetch('http://localhost:4000/autenticacion/sesion', {
+        const peticion = await fetch('https://app-web-calistenia-production.up.railway.app/autenticacion/sesion', {
           credentials : 'include'
         })
 

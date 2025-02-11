@@ -7,7 +7,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { AutenticacionContext } from '@/context/AutenticacionContext'
 import useAutenticacionRedireccion from '@/components/hooks/useAutenticacionRedireccion'
 import { Boton } from '@/components/comunes/Boton/Boton'
-import { deslogearseUsuario } from '@/utilidades/api/post/autenticacionApi'
+import { deslogearseUsuario, eliminarUsuario } from '@/utilidades/api/post/autenticacionApi'
 import { useRouter } from 'next/navigation'
 export default function Usuario() {
 
@@ -21,11 +21,23 @@ export default function Usuario() {
   async function manejarDeslogeo() {
     const deslogeo = await deslogearseUsuario()
 
+
+
     if(deslogeo) {
       router.push('/')
       actualizarSesion()
     }
   }
+
+  // funcion para eliminar cuenta 
+  async function manejarEliminarCuenta() {
+    if(confirm('Seguro que deseas eliminar la cuenta')) {
+      await eliminarUsuario()
+      router.push('/')
+      actualizarSesion()
+    }
+  } 
+
 
   if(loading) return <div>Cargando.....</div>
   if(!usuario) return <h3>Usuario no encontrado</h3>
@@ -47,6 +59,11 @@ export default function Usuario() {
           tipoBoton='primario'
           texto='Deslogearse'
           onClick={manejarDeslogeo}
+        />
+        <Boton
+          tipoBoton='secundario'
+          texto='Elimnar Cuenta'
+          onClick={manejarEliminarCuenta}
         />
       </main>
     </section>
