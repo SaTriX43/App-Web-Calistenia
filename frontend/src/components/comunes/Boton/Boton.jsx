@@ -10,7 +10,7 @@ export const Boton = ({
   icono,
   type = 'button',
   tipoBoton = 'primario' | 'btn-parque',
-  disabled = false, // Nuevo prop
+  disabled = false,
 }) => {
   const baseBoton = `
     flex 

@@ -1,12 +1,14 @@
 'use client'
 
 import AutenticacionFormulario from '@/components/AutenticacionFormulario/AutenticacionFormulario'
+import { AutenticacionContext } from '@/context/AutenticacionContext'
 import { registrarUsuario } from '@/utilidades/api/post/autenticacionApi'
 import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 export default function Register() {
 
+  const {autenticado} = useContext(AutenticacionContext)
   const [mensaje , setMensaje] = useState('')
   const [error, setError] = useState(null)
   const router = useRouter()
@@ -15,8 +17,10 @@ export default function Register() {
   // ------------------------- 
     // me redirige si ya estoy logeado 
     useEffect(() => {
+      if(autenticado) {
         setMensaje('Ya estás autenticado');
         setTimeout(() => router.push('/'), 3000); // Redirige después de 3 segundos
+      } 
     },[router])
     // ------------------------- 
 

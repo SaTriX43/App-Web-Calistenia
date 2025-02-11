@@ -50,3 +50,18 @@ export async function iniciarSesionUsuario(usuario) {
     throw error
   }
 }
+
+export async function deslogearseUsuario() {
+  try {
+    const peticion = await fetch('http://localhost:4000/autenticacion/deslogeo', {
+      method:'POST',
+      credentials:'include'
+    })
+
+    if(peticion.ok) {
+      return true
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}

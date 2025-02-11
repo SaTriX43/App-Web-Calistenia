@@ -61,6 +61,16 @@ export async function logearUsuario(req, res) {
   
 }
 
+export async function deslogearUsuario(req,res) {
+  try {
+    res.clearCookie('authToken',{path : '/'})
+
+    return res.status(200).json({mesnaje: 'sesion cerrada exitosamente'})
+  } catch (error) {
+    res.status(500).json({error:`Error al deslogear usuario`})
+  }
+}
+
 
 // para la verificar e recibir informacion del usuario 
 export async function obtenerUsuario(req,res) {
