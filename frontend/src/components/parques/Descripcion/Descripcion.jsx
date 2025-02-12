@@ -45,6 +45,7 @@ export default function Descripcion() {
             width={200}
             height={200}
             className='imagen'
+            alt='imagen libro'
           />
         </div>
         <a 
