@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 200px;
+  min-height: calc(100vh - 70px);
 
   margin-top: 70px;
   padding: 10px;
@@ -11,6 +11,7 @@
   background-color: var(--background-principal);
 
   align-items: center;
+  justify-content: center;
 }
 
 /* mensaje correcto  */
