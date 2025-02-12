@@ -25,6 +25,30 @@
   text-align: center;
 }
 
+.parques__descripcion-bloque-contenedor-imagen {
+  display: flex;
+  width: 100%;
+  max-width: 200px;
+  height: 200px;
+}
+
+.parques__descripcionp-boton-pdf {
+  display: flex;
+  width: 100%;
+  max-width: 250px;
+  min-height: 30px;
+
+  border-radius: 20px;
+
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .3s ease;
+  font-size: 18px;
+  color: black;
+}
+
+
 @media(min-width: 600px) {
   .parques__descripcion-titulos {
     font-size: 25px;

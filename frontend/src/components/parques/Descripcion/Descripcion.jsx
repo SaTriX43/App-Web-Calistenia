@@ -1,6 +1,7 @@
 import React from 'react'
 import { Publicidad } from '../publicidad/Publicidad'
 import Styles from './Descripcion.module.css'
+import Image from 'next/image'
 
 export default function Descripcion() {
   return (
@@ -34,6 +35,25 @@ export default function Descripcion() {
           fomentan el uso de áreas verdes en las ciudades.
         </p>
         {/* <Publicidad/> */}
+      </div>
+
+      <div className={Styles['parques__descripcion-bloque']}>
+        <h3 className={Styles['parques__descripcion-titulos']}>Empieza en la calistenia</h3>
+        <div className={Styles['parques__descripcion-bloque-contenedor-imagen']}>
+          <Image
+            src='/imagen-portada-libro-calistenia.png'
+            width={200}
+            height={200}
+            className='imagen'
+          />
+        </div>
+        <a 
+          href='/introduccion-calistenia.pdf'
+          download='IntroduccionCalistenia.pdf'
+          className={`${Styles['parques__descripcionp-boton-pdf']} bg-yellow-300 hover:bg-yellow-500`}
+        >
+          Descarga guia de calistenia
+        </a>
       </div>
     </div>
   )
