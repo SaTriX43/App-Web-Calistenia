@@ -48,7 +48,7 @@ export default function Descripcion() {
           />
         </div>
         <a 
-          href='/introduccion-calistenia.pdf'
+          href='/Introduccion-calistenia.pdf'
           download='IntroduccionCalistenia.pdf'
           className={`${Styles['parques__descripcionp-boton-pdf']} bg-yellow-300 hover:bg-yellow-500`}
         >
