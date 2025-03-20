@@ -6,19 +6,21 @@ dotenv.config()
 const user = process.env.EMAIL_USER;
 const pass = process.env.EMAIL_PASS;
 
-export async function enviarEmail({nombre, email, mensaje, asunto, adjuntos}) {
+export async function enviarEmail({ nombre, email, mensaje, asunto, adjuntos }) {
   try {
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: user,
-        pass: pass
+        pass: pass,
       },
-    })
+    });
 
     const mailOptions = {
-      from: email,
-      to: user,
+      from: user,
+      to: user, 
       subject: `Nuevo mensaje ${asunto}`,
       text: `
         Nombre: ${nombre}
@@ -27,13 +29,12 @@ export async function enviarEmail({nombre, email, mensaje, asunto, adjuntos}) {
         Asunto: ${asunto}
       `,
       attachments: adjuntos,
-    }
+    };
 
-    await transporter.sendMail(mailOptions)
-    return { succes: true}
-
+    await transporter.sendMail(mailOptions);
+    return { success: true };
   } catch (error) {
-    console.error("Error al enviar el correo:", error.message);
+    console.error("❌ Error al enviar el correo:", error);
     return { success: false, error: error.message };
   }
 }
