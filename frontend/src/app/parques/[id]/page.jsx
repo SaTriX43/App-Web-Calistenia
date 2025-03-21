@@ -35,6 +35,7 @@ export default function DetalleParque() {
     return <p className="mt-[200px]">Cargando parque....</p>;
   }
 
+
   return (
     <>
       <Head>
@@ -81,7 +82,7 @@ export default function DetalleParque() {
 
       <section className={Styles["parques__detalle-parque"]}>
         <Detalles
-          imagen={parque.imagenes?.[0]}
+          imagenes={parque.imagenes}
           nombre={parque.nombre}
           direccion={parque.direccion}
           puntuacion={parque.puntuacion}
