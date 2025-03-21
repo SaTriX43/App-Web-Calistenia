@@ -16,8 +16,6 @@ export default function Detalles({
   continente
 }) {
 
-  console.log(imagenes)
-
   // Ruta de la imagen predeterminada desde 'public'
   const imagenPredeterminada = "/imagen-parque-no-disponible.png";
 
