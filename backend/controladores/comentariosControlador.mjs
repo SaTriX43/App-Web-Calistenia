@@ -1,6 +1,6 @@
 import pool from "../db.mjs"
 
-
+// get 
 export async function getComentarios(req,res) {
   try {
     const {idParque} = req.params
@@ -31,4 +31,43 @@ export async function getComentarios(req,res) {
     res.status(500).json({ error: 'Error interno del servidor' });
   }
   
+}
+
+
+
+
+// Post 
+
+export async function postComentarios(req,res) {
+  try {
+    const {idParque, comentario} = req.body
+    // const {idUsuario} = req.usuario.id
+    const idUsuario = 1
+    const idParqueParseado = parseInt(idParque)
+
+    if(isNaN(idParqueParseado)) {
+      return res.status(400).json({error: `Su id parque debe de ser un numero`})
+    }
+
+    if(!idParque || !comentario) {
+      return res.status(400).json({error: `Faltan datos necesarios`})
+    }
+
+    const query = `
+      INSERT INTO comentarios (id_parque, id_usuario, comentario, fecha_creacion, fecha_actualizacion)
+      VALUES ($1, $2, $3, NOW(), NOW())
+      RETURNING *;
+    `
+    const values = [idParque, idUsuario, comentario]
+
+    const {rows} = await pool.query(query,values)
+
+    return res.status(201).json({
+      mensaje:`Comentario enviado correctamente`,
+      comentario:rows[0]
+    })
+  } catch (error) {
+    console.error('Error al insertar comentario:', error);
+    return res.status(500).json({ error: 'Error interno del servidor al publicar el comentario' });
+  }
 }
