@@ -1,7 +1,15 @@
 .parques__detalle-comentario-contenedor-perfil-comentario {
   display: flex;
 
-  height: 80px;
-  align-items: center;
+  min-height: 80px;
+  align-items: start;
   gap: 10px;
+}
+
+
+.parques__detalle-comentario-contenedor-comentario {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
 }

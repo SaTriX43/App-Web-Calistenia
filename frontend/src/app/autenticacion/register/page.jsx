@@ -2,7 +2,7 @@
 
 import AutenticacionFormulario from '@/components/AutenticacionFormulario/AutenticacionFormulario'
 import { AutenticacionContext } from '@/context/AutenticacionContext'
-import { registrarUsuario } from '@/utilidades/api/post/autenticacionApi'
+import { registrarUsuario } from '@/utilidades/api/autenticacionApi'
 import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 

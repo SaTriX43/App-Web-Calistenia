@@ -2,7 +2,7 @@
 
 import AutenticacionFormulario from "@/components/AutenticacionFormulario/AutenticacionFormulario.jsx";
 import { AutenticacionContext } from "@/context/AutenticacionContext";
-import { iniciarSesionUsuario } from "@/utilidades/api/post/autenticacionApi";
+import { iniciarSesionUsuario } from "@/utilidades/api/autenticacionApi";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 

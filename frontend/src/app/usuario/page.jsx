@@ -7,7 +7,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { AutenticacionContext } from '@/context/AutenticacionContext'
 import useAutenticacionRedireccion from '@/components/hooks/useAutenticacionRedireccion'
 import { Boton } from '@/components/comunes/Boton/Boton'
-import { deslogearseUsuario, eliminarUsuario } from '@/utilidades/api/post/autenticacionApi'
+import { deslogearseUsuario, eliminarUsuario } from '@/utilidades/api/autenticacionApi'
 import { useRouter } from 'next/navigation'
 import Foto from '@/components/comunes/Foto/Foto'
 export default function Usuario() {

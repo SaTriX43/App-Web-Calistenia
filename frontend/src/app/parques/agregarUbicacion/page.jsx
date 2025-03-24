@@ -4,7 +4,7 @@ import Styles from './page.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
 import { Boton } from '@/components/comunes/Boton/Boton'
-import agregarParquePost from '@/utilidades/api/post/AgregarParque'
+import agregarParquePost from '@/utilidades/api/AgregarParque'
 import dynamic from 'next/dynamic';
 import useAutenticacionRedireccion from '@/components/hooks/useAutenticacionRedireccion'
 

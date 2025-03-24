@@ -1,6 +1,6 @@
 "use client";
 
-import { getParqueId, getParques } from "@/utilidades/api/get/parqueApi";
+import { getParqueId, getParques } from "@/utilidades/api/parqueApi";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Styles from "./page.module.css";
@@ -10,10 +10,12 @@ import DetallePublicidad from "./componentesDetalle/DetallePublicidad";
 import Head from "next/head";
 import ComentariosFormulario from "@/components/parques/Comentarios/ComentariosFormulario";
 import Comentario from "@/components/parques/Comentarios/Comentario";
+import { getComentariosId } from "@/utilidades/api/comentariosApi";
 
 export default function DetalleParque() {
   const [parques, setParques] = useState([]);
   const [parque, setParque] = useState(null);
+  const [comentarios, setComentarios] = useState([])
   const { id } = useParams();
 
   // peticion a base de datos
@@ -21,8 +23,9 @@ export default function DetalleParque() {
     async function peticionFetch() {
       try {
         const data = await getParqueId(id);
-        console.log(data)
+        const dataComentarios = await getComentariosId(id)
         setParque(data);
+        setComentarios(dataComentarios)
 
         const parquesData = await getParques();
         setParques(parquesData.data);
@@ -94,7 +97,7 @@ export default function DetalleParque() {
           continente={parque.continente}
         />
         <div className={Styles["parques__detalle-parque-divisor"]}>
-          <div className="w-full d-flex flex-column">
+          <div className="w-full max-w-[600px] max-[800px]:max-w-[800px] d-flex flex-column">
             <Mapa
               latitud={parque.latitud}
               longitud={parque.longitud}
@@ -108,7 +111,14 @@ export default function DetalleParque() {
               />
 
               <div className={Styles['parques__detalle-contendor-comentarios']}>
-                <Comentario/>
+                {comentarios.map((comentario,index) => (
+                  <Comentario
+                    key={index}
+                    usuario= {comentario.usuario}
+                    comentario = {comentario.comentario}
+                    fechaCreacion = {comentario.fecha_creacion}
+                  />
+                ))}
               </div>
             </div>
           </div>
