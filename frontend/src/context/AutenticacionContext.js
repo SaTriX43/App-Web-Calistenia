@@ -3,6 +3,8 @@ import { createContext, useState, useEffect } from "react";
 
 
 const AutenticacionContext = createContext();
+const urlBase = 'https://app-web-calistenia-production.up.railway.app/autenticacion/sesion'
+const urlPrueba = 'http://localhost:4000/autenticacion/sesion'
 
 function AutenticacionProvider({children}) {
 
@@ -12,7 +14,7 @@ function AutenticacionProvider({children}) {
   
     async function actualizarSesion() {
       try {
-        const peticion = await fetch('https://app-web-calistenia-production.up.railway.app/autenticacion/sesion', {
+        const peticion = await fetch(urlPrueba, {
           credentials : 'include'
         })
 

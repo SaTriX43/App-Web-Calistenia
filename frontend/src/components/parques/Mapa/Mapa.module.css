@@ -18,9 +18,3 @@
   height: 70vh;
   z-index: 100;
 }
-
-@media (min-width: 800px) {
-  .parques__detalle-parque-mapa {
-    max-width: 600px;
-  }
-}

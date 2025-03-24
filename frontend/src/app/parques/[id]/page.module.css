@@ -21,6 +21,22 @@
   margin-top: 40px;
 }
 
+
+
+.parques__detalle-contenedor-formulario-comentarios {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 30px;
+}
+
+.parques__detalle-contendor-comentarios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
 @media (min-width: 800px) {
   .parques__detalle-parque-divisor {
     flex-direction: row;

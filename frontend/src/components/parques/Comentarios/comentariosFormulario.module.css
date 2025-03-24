@@ -1,0 +1,30 @@
+.parques__detalle-comentario-formulario-contenedor-perfil-formulario {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.parques__detalle-comentario-formulario {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.parques__detalle-comentario-formulario-input {
+  display: flex;
+  width: 100%;
+  height: 30px;
+
+  background-color: transparent;
+  border-bottom: 1px solid white;
+  outline: none;
+
+  font-size: 18px;
+}
+
+.parques__detalle-comentario-formulario-contenedor-botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}

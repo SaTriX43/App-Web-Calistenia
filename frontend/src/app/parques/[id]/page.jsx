@@ -8,6 +8,8 @@ import Detalles from "./componentesDetalle/Detalles";
 import Mapa from "../../../components/parques/Mapa/Mapa";
 import DetallePublicidad from "./componentesDetalle/DetallePublicidad";
 import Head from "next/head";
+import ComentariosFormulario from "@/components/parques/Comentarios/ComentariosFormulario";
+import Comentario from "@/components/parques/Comentarios/Comentario";
 
 export default function DetalleParque() {
   const [parques, setParques] = useState([]);
@@ -19,6 +21,7 @@ export default function DetalleParque() {
     async function peticionFetch() {
       try {
         const data = await getParqueId(id);
+        console.log(data)
         setParque(data);
 
         const parquesData = await getParques();
@@ -91,12 +94,25 @@ export default function DetalleParque() {
           continente={parque.continente}
         />
         <div className={Styles["parques__detalle-parque-divisor"]}>
-          <Mapa
-            latitud={parque.latitud}
-            longitud={parque.longitud}
-            ubicaciones={parques}
-            clases={"parques__detalle-parque-mapa"}
-          />
+          <div className="w-full d-flex flex-column">
+            <Mapa
+              latitud={parque.latitud}
+              longitud={parque.longitud}
+              ubicaciones={parques}
+              clases={"parques__detalle-parque-mapa"}
+            />
+            <div className={Styles['parques__detalle-contenedor-formulario-comentarios']}>
+              <h1 className="text-[35px] font-[600]">Comentarios</h1>
+              <ComentariosFormulario
+                idParque = {id}
+              />
+
+              <div className={Styles['parques__detalle-contendor-comentarios']}>
+                <Comentario/>
+              </div>
+            </div>
+          </div>
+          
           <DetallePublicidad parques={parques} />
         </div>
       </section>

@@ -9,6 +9,7 @@ import useAutenticacionRedireccion from '@/components/hooks/useAutenticacionRedi
 import { Boton } from '@/components/comunes/Boton/Boton'
 import { deslogearseUsuario, eliminarUsuario } from '@/utilidades/api/post/autenticacionApi'
 import { useRouter } from 'next/navigation'
+import Foto from '@/components/comunes/Foto/Foto'
 export default function Usuario() {
 
   useAutenticacionRedireccion('/usuario')
@@ -45,10 +46,7 @@ export default function Usuario() {
   return (
     <section className={Styles['usuario']}>
       <header className={Styles['usuario__encabezado']}>
-        <FontAwesomeIcon
-          icon={faUser}
-          className={Styles['usuario__encabezado-icono']}
-        />
+        <Foto/>
         <div>
           <p><b>Usuario:</b> {usuario.nombre}</p>
           <p><b>Correo:</b> {usuario.email}</p>
