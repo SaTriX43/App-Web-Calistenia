@@ -105,3 +105,38 @@ export async function deleteComentarioId(req,res) {
     return res.status(500).json({ error: 'Error interno del servidor al eliminar el comentario' });
   }
 }
+
+
+//Put
+export async function putComentarioId(req,res) {
+  try {
+    const {idComentario} = req.params
+    const {texto} = req.body
+    const idUsuario = req.usuario.id
+    const idComentarioParseado = parseInt(idComentario)
+
+    if(isNaN(idComentarioParseado)) {
+      return res.status(400).json({error: `Su id comentario debe de ser un numero`})
+    }
+
+    const query = `
+      UPDATE comentarios
+      SET comentario = $1, fecha_actualizacion = NOW()
+      WHERE id = $2 AND id_usuario = $3
+      RETURNING *
+    `
+    const values = [texto, idComentarioParseado, idUsuario]
+
+    const {rows} = await pool.query(query,values)
+
+    if(rows.length === 0) {
+      return res.status(404).json({error: `No se a encontrado el comentario o no tiene permisos para editarlo`})
+    }
+
+    res.status(200).json({mensaje:`Comentario editado`, comentario:rows[0]})
+    
+  } catch (error) {
+    console.error('Error al editar el comentario:', error);
+    return res.status(500).json({ error: 'Error interno del servidor al editar el comentario' });
+  }
+}
