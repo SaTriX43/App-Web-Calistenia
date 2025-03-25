@@ -14,7 +14,7 @@ export default function useAutenticacionRedireccion(rutaProtegida) {
   useEffect(() => {
     async function verificarToken() {
       try {
-        const peticion = await fetch(desarrollo, {
+        const peticion = await fetch(urlBase, {
           method:'GET',
           credentials: 'include'
         })

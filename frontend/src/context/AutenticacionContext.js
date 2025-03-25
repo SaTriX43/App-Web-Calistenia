@@ -14,7 +14,7 @@ function AutenticacionProvider({children}) {
   
     async function actualizarSesion() {
       try {
-        const peticion = await fetch(urlPrueba, {
+        const peticion = await fetch(urlBase, {
           credentials : 'include'
         })
 

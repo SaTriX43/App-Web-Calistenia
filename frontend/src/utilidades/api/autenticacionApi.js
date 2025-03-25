@@ -6,7 +6,7 @@ const urlPrueba = 'http://localhost:4000/autenticacion'
 export async function registrarUsuario(usuario) {
   try {
     //prueba
-    const peticion = await fetch(`${urlPrueba}/register`, {
+    const peticion = await fetch(`${urlBase}/register`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -30,7 +30,7 @@ export async function registrarUsuario(usuario) {
 // Iniciar sesion al usuario 
 export async function iniciarSesionUsuario(usuario) {
   try {
-    const peticion = await fetch(`${urlPrueba}/login`, {
+    const peticion = await fetch(`${urlBase}/login`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -55,7 +55,7 @@ export async function iniciarSesionUsuario(usuario) {
 // deslogearse 
 export async function deslogearseUsuario() {
   try {
-    const peticion = await fetch(`${urlPrueba}/deslogeo`, {
+    const peticion = await fetch(`${urlBase}/deslogeo`, {
       method:'POST',
       credentials:'include'
     })
@@ -71,7 +71,7 @@ export async function deslogearseUsuario() {
 // eliminar usuario  
 export async function eliminarUsuario() {
   try {
-    const peticion = await fetch(`${urlPrueba}/eliminar`, {
+    const peticion = await fetch(`${urlBase}/eliminar`, {
       method:'DELETE',
       credentials:'include'
     })

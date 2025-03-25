@@ -13,6 +13,8 @@ import Comentario from "@/components/parques/Comentarios/Comentario";
 import { deleteComentarioId, getComentariosId, patchComentarioId } from "@/utilidades/api/comentariosApi";
 import { AutenticacionContext } from "@/context/AutenticacionContext";
 import { useRouter } from "next/navigation";
+import { Boton } from "@/components/comunes/Boton/Boton";
+
 
 export default function DetalleParque() {
   const {usuario, autenticado} = useContext(AutenticacionContext)
@@ -20,6 +22,7 @@ export default function DetalleParque() {
   const [parque, setParque] = useState(null);
   const [comentarios, setComentarios] = useState([])
   const [comentariosEditando, setComentariosEditando] = useState({})
+  const [limite, setLimite] = useState(5);
   const router = useRouter()
   const { id } = useParams();
 
@@ -208,7 +211,7 @@ export default function DetalleParque() {
                 {comentarios.length === 0 ? (
                   <h1 className="text-[30px] text-center">No hay comentarios</h1>
                 ): (
-                  comentarios.map((comentario,index) => (
+                  comentarios.slice(0,limite).map((comentario,index) => (
                     <Comentario
                       key={index}
                       comentarioId = {comentario.id}
@@ -218,6 +221,7 @@ export default function DetalleParque() {
                       
                       // estados 
                       comentariosEditando = {comentariosEditando}
+                      currentUsuario = {usuario.nombre}
 
                       // funciones 
                       eliminarComentario = {eliminarComentario}
@@ -227,6 +231,24 @@ export default function DetalleParque() {
                   ))
                 )}
               </div>
+              <div className="flex gap-[5px] justify-center">
+                {comentarios.length > limite && (
+                   <Boton
+                    texto='Ver mas'
+                    tipoBoton='secundario'
+                    onClick={() => setLimite(limite + 5)}
+                  />
+                )}
+                {limite > 5 && (
+                  <Boton
+                    texto='Ver menos'
+                    tipoBoton='secundario' 
+                    onClick={() => setLimite(5)}
+                  />
+                )}
+                
+              </div>
+              
             </div>
           </div>
           

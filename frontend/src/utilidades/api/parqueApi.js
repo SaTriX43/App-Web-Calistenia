@@ -7,7 +7,7 @@ const desarrollo = 'http://localhost:4000/parques'
 export async function getParques(pagina = 1, limite = 10) {
   try {
     // const peticion = await fetch(`${urlBase}?pagina=${pagina}&limite=${limite}`);
-    const peticion = await fetch (`${desarrollo}?pagina=${pagina}&limite=${limite}`)
+    const peticion = await fetch (`${urlBase}?pagina=${pagina}&limite=${limite}`)
     if (!peticion.ok) {
       throw new error(`Error HTTP : ${peticion.status}`);
     }
@@ -24,7 +24,7 @@ export async function getParques(pagina = 1, limite = 10) {
 export async function getParqueId(id) {
   try {
     // const peticion = await fetch(`${urlBase}/${id}`)
-    const peticion = await fetch(`${desarrollo}/${id}`)
+    const peticion = await fetch(`${urlBase}/${id}`)
     if (!peticion.ok) {
       throw new error(`Error HTTP : ${peticion.status}`);
     }

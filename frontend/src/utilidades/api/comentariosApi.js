@@ -5,7 +5,7 @@ const desarrollo = 'http://localhost:4000/comentarios'
 // Get 
 export async function getComentariosId(id) {
   try {
-    const peticion = await fetch(`${desarrollo}/${id}`)
+    const peticion = await fetch(`${urlBase}/${id}`)
     if (!peticion.ok) {
       throw new Error(`Error HTTP : ${peticion.status}`);
     }
@@ -21,7 +21,7 @@ export async function getComentariosId(id) {
 // Post 
 export async function postComentario(idParque, comentario) {
   try {
-    const peticion = await fetch(`${desarrollo}`, {
+    const peticion = await fetch(`${urlBase}`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -45,7 +45,7 @@ export async function postComentario(idParque, comentario) {
 
 export async function deleteComentarioId(idComentario) {
   try {
-    const peticion = await fetch(`${desarrollo}/${idComentario}`, {
+    const peticion = await fetch(`${urlBase}/${idComentario}`, {
       method: 'DELETE',
       headers: {
         'Content-Type' : 'application/json'
@@ -68,7 +68,7 @@ export async function deleteComentarioId(idComentario) {
 //PACTH
 export async function patchComentarioId(idComentario,texto) {
   try {
-    const peticion = await fetch(`${desarrollo}/${idComentario}`, {
+    const peticion = await fetch(`${urlBase}/${idComentario}`, {
       method: 'PATCH',
       headers: {
         'Content-Type' : 'application/json'
