@@ -11,7 +11,7 @@ const app = express()
 
 const corsOptions = {
   origin: ['http://localhost:3000', 'https://app-calistenia.vercel.app'], // Orígenes permitidos
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+  methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH', 'OPTIONS'], // Métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
   credentials: true, // Permitir cookies
   preflightContinue: false, // No seguir después de manejar preflight

@@ -14,6 +14,25 @@
   overflow: hidden;
 }
 
+.parques__detalle-comentario-textarea {
+  display: flex;
+  max-width: 500px;
+  min-height: 30px;
+
+  padding: 5px;
+
+  background-color: transparent;
+  outline: none;
+  border-bottom: 1px solid white;
+
+
+  font-size: 18px;
+  resize: none;  
+  
+  overflow: hidden;
+  line-height: 1.4; 
+}
+
 .parques__detalle-comentario-contenedor-iconos {
   display: flex;
   gap: 10px;

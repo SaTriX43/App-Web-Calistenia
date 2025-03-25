@@ -107,8 +107,8 @@ export async function deleteComentarioId(req,res) {
 }
 
 
-//Put
-export async function putComentarioId(req,res) {
+//Patch
+export async function patchComentarioId(req,res) {
   try {
     const {idComentario} = req.params
     const {texto} = req.body

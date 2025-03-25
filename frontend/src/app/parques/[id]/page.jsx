@@ -10,7 +10,7 @@ import DetallePublicidad from "./componentesDetalle/DetallePublicidad";
 import Head from "next/head";
 import ComentariosFormulario from "@/components/parques/Comentarios/ComentariosFormulario";
 import Comentario from "@/components/parques/Comentarios/Comentario";
-import { deleteComentarioId, getComentariosId } from "@/utilidades/api/comentariosApi";
+import { deleteComentarioId, getComentariosId, patchComentarioId } from "@/utilidades/api/comentariosApi";
 import { AutenticacionContext } from "@/context/AutenticacionContext";
 import { useRouter } from "next/navigation";
 
@@ -19,6 +19,7 @@ export default function DetalleParque() {
   const [parques, setParques] = useState([]);
   const [parque, setParque] = useState(null);
   const [comentarios, setComentarios] = useState([])
+  const [comentariosEditando, setComentariosEditando] = useState({})
   const router = useRouter()
   const { id } = useParams();
 
@@ -72,6 +73,59 @@ export default function DetalleParque() {
       
     } catch (error) {
       alert(error)
+    }
+  }
+
+
+  //funcion para mostrar el input Comentario
+  function toggleEditanto(comentarioId, comentarioUsuario) {
+    if(!autenticado) {
+      router.push(`/autenticacion/login?redireccion=/parques/${id}&mensaje=Debes iniciar sesión para editar comentario`)
+      return
+    }
+
+    if(usuario.nombre !== comentarioUsuario) {
+      alert(`Debe de ser su comentario para poder editarlo`)
+      return
+    }
+
+    setComentariosEditando((prev) => ({
+      ...prev,
+      [comentarioId] : !prev[comentarioId]
+    }))
+  }
+
+  //funcion para editar Comentario
+  async function editarComentario(comentarioId, nuevoTexto) {
+    if(!autenticado) {
+      router.push(`/autenticacion/login?redireccion=/parques/${id}&mensaje=Debes iniciar sesión para editar comentario`)
+      return
+    }
+
+    if(nuevoTexto.trim() === '') {
+      alert(`Su comentario no puede estar vacio`)
+      return 
+    }
+
+    try {
+      const respuesta = await patchComentarioId(comentarioId,nuevoTexto)
+      if (respuesta && respuesta.mensaje) {
+        setComentarios((prev) =>
+          prev.map((comentario) =>
+            comentario.id === comentarioId
+              ? { ...comentario, comentario: nuevoTexto }
+              : comentario
+          )
+        )
+      }
+
+      setComentariosEditando((prev) => ({
+        ...prev,
+        [comentarioId] : false
+      }))
+
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -161,7 +215,14 @@ export default function DetalleParque() {
                       usuario= {comentario.usuario}
                       comentario = {comentario.comentario}
                       fechaCreacion = {comentario.fecha_creacion}
+                      
+                      // estados 
+                      comentariosEditando = {comentariosEditando}
+
+                      // funciones 
                       eliminarComentario = {eliminarComentario}
+                      toggleEditanto = {toggleEditanto}
+                      editarComentario = {editarComentario}
                     />
                   ))
                 )}

@@ -1,17 +1,25 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import Styles from './comentario.module.css'
 import Foto from '@/components/comunes/Foto/Foto'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faPen, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 export default function Comentario({
   comentarioId,
   usuario,
   comentario,
   fechaCreacion,
-  eliminarComentario
+
+  comentariosEditando,
+
+  eliminarComentario,
+  toggleEditanto,
+  editarComentario
+  
 }) {
 
+  const [nuevoTexto, setNuevoTexto] = useState('')
 
   return (
     <div className={Styles['parques__detalle-comentario-contenedor-perfil-comentario']}>
@@ -19,8 +27,25 @@ export default function Comentario({
         <Foto/>
       </div>
       <div className={Styles['parques__detalle-comentario-contenedor-comentario']}>
-        <p><b>{usuario}</b> - hace {fechaCreacion}</p>
-        <p className='whitespace-normal break-words'>{comentario}</p>
+        {comentariosEditando[comentarioId] ? (
+          <textarea 
+            type="text"
+            value={nuevoTexto}
+            className={Styles['parques__detalle-comentario-textarea']}
+            onChange={(e) => {
+              setNuevoTexto(e.target.value)
+              e.target.style.height = 'auto';
+              e.target.style.height = `${e.target.scrollHeight}px`; 
+            } }
+            rows={1}
+          />
+        ): (
+          <>
+            <p><b>{usuario}</b> - hace {fechaCreacion}</p>
+            <p className='whitespace-normal break-words'>{comentario}</p>
+          </>
+        )}
+        
       </div>
       <div className={Styles['parques__detalle-comentario-contenedor-iconos']}>
         <FontAwesomeIcon
@@ -28,10 +53,28 @@ export default function Comentario({
           onClick={() => eliminarComentario(comentarioId, usuario)}
           className={Styles['parques__detallie-comentario-icono-trash']}
         />
-        <FontAwesomeIcon
-          icon={faPen}
-          className={Styles['parques__detallie-comentario-icono-pen']}
-        />
+        {comentariosEditando[comentarioId] ? (
+          <>
+            <FontAwesomeIcon
+              icon={faXmark}
+              onClick={() =>  {
+                setNuevoTexto(comentario)
+                toggleEditanto(comentarioId,usuario)
+              }}
+            />
+            <FontAwesomeIcon
+              icon={faCheck}
+              onClick={() => editarComentario(comentarioId, nuevoTexto)}
+            />
+          </>
+        ) : (
+          <FontAwesomeIcon
+            icon={faPen}
+            className={Styles['parques__detallie-comentario-icono-pen']}
+            onClick={() => toggleEditanto(comentarioId, usuario)}
+         />
+        )}
+        
       </div>
     </div>
   )

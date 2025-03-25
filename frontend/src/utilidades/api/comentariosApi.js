@@ -63,3 +63,28 @@ export async function deleteComentarioId(idComentario) {
     throw error
   }
 }
+
+
+//PACTH
+export async function patchComentarioId(idComentario,texto) {
+  try {
+    const peticion = await fetch(`${desarrollo}/${idComentario}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({texto})
+    })
+    if (!peticion.ok) {
+      const respuestaError = await peticion.json()
+      throw new Error(respuestaError.error);
+    }
+
+    const respuesta = await peticion.json()
+    return respuesta
+  } catch (error) {
+    throw error
+  }
+}
+
