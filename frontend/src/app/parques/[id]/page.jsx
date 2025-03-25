@@ -137,6 +137,7 @@ export default function DetalleParque() {
     return <p className="mt-[200px]">Cargando parque....</p>;
   }
 
+  const currentUsuario = usuario ? usuario.nombre : null
 
   return (
     <>
@@ -221,7 +222,7 @@ export default function DetalleParque() {
                       
                       // estados 
                       comentariosEditando = {comentariosEditando}
-                      currentUsuario = {usuario.nombre}
+                      currentUsuario = {currentUsuario}
 
                       // funciones 
                       eliminarComentario = {eliminarComentario}

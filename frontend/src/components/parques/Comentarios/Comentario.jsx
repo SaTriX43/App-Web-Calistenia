@@ -72,7 +72,7 @@ export default function Comentario({
         )}
         
       </div>
-      {currentUsuario === usuario && (
+      {currentUsuario && currentUsuario === usuario && (
         <div className={Styles['parques__detalle-comentario-contenedor-iconos']}>
           <FontAwesomeIcon
             icon={faTrash}
