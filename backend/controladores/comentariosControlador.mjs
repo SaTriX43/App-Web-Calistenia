@@ -70,3 +70,38 @@ export async function postComentarios(req,res) {
     return res.status(500).json({ error: 'Error interno del servidor al publicar el comentario' });
   }
 }
+
+
+
+//Delete
+
+export async function deleteComentarioId(req,res) {
+  try {
+    const {idComentario} = req.params
+    const idUsuario = req.params
+    const idComentarioParseado = parseInt(idComentario)
+
+    if(isNaN(idComentarioParseado)) {
+      return res.status(400).json({error: `Su id comentario debe de ser un numero`})
+    }
+
+    const query = `
+      DELETE FROM comentarios
+      WHERE id = $1 AND id_usuario = $2
+      RETURNING *
+    `
+    const values = [idComentario, idUsuario]
+
+    const {rows} = await pool.query(query,values)
+
+    if(rows.length === 0) {
+      return res.status(404).json({error: `No se a encontrado el comentario o no tiene permisos para eliminar`})
+    }
+
+    res.status(200).json({mensaje:`Comentario eliminado`, comentario:rows[0]})
+    
+  } catch (error) {
+    console.error('Error al eliminar comentario:', error);
+    return res.status(500).json({ error: 'Error interno del servidor al eliminar el comentario' });
+  }
+}
