@@ -10,14 +10,16 @@ import DetallePublicidad from "./componentesDetalle/DetallePublicidad";
 import Head from "next/head";
 import ComentariosFormulario from "@/components/parques/Comentarios/ComentariosFormulario";
 import Comentario from "@/components/parques/Comentarios/Comentario";
-import { getComentariosId } from "@/utilidades/api/comentariosApi";
+import { deleteComentarioId, getComentariosId } from "@/utilidades/api/comentariosApi";
 import { AutenticacionContext } from "@/context/AutenticacionContext";
+import { useRouter } from "next/navigation";
 
 export default function DetalleParque() {
-  const {usuario} = useContext(AutenticacionContext)
+  const {usuario, autenticado} = useContext(AutenticacionContext)
   const [parques, setParques] = useState([]);
   const [parque, setParque] = useState(null);
   const [comentarios, setComentarios] = useState([])
+  const router = useRouter()
   const { id } = useParams();
 
   // peticion a base de datos
@@ -43,6 +45,34 @@ export default function DetalleParque() {
   function agregarComentario(comentario) {
     const nuevoComentario= {...comentario, usuario: usuario.nombre}
     setComentarios((prevComentario) => [nuevoComentario, ...prevComentario])
+  }
+
+  //funcion para eliminar comentario
+  async function eliminarComentario(comentarioId, comentarioUsuario) {
+    if(!autenticado) {
+      router.push(`/autenticacion/login?redireccion=/parques/${id}&mensaje=Debes iniciar sesión para eliminar comentario`)
+      return
+    }
+
+    if(usuario.nombre !== comentarioUsuario) {
+      alert(`Debe de ser su comentario para poder eliminarlo`)
+      return
+    }
+
+    const confirmacion = window.confirm(`Seguro que deseas eliminar tu comentario?`)
+
+    if(!confirmacion) return
+
+
+    try {
+      const respuesta = await deleteComentarioId(comentarioId)
+      if(respuesta && respuesta.mensaje) {
+        setComentarios(prev => prev.filter(comentario => comentario.id !== comentarioId))
+      }
+      
+    } catch (error) {
+      alert(error)
+    }
   }
 
 
@@ -127,9 +157,11 @@ export default function DetalleParque() {
                   comentarios.map((comentario,index) => (
                     <Comentario
                       key={index}
+                      comentarioId = {comentario.id}
                       usuario= {comentario.usuario}
                       comentario = {comentario.comentario}
                       fechaCreacion = {comentario.fecha_creacion}
+                      eliminarComentario = {eliminarComentario}
                     />
                   ))
                 )}

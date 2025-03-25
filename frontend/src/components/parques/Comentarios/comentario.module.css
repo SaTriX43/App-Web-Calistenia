@@ -13,3 +13,22 @@
   width: 100%;
   overflow: hidden;
 }
+
+.parques__detalle-comentario-contenedor-iconos {
+  display: flex;
+  gap: 10px;
+}
+
+.parques__detalle-comentario-contenedor-iconos svg {
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.parques__detallie-comentario-icono-trash:hover {
+  color: rgb(184, 50, 50);
+}
+
+.parques__detallie-comentario-icono-pen:hover {
+  color: rgb(66, 66, 149);
+}
+

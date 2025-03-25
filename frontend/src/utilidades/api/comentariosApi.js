@@ -7,11 +7,10 @@ export async function getComentariosId(id) {
   try {
     const peticion = await fetch(`${desarrollo}/${id}`)
     if (!peticion.ok) {
-      throw new error(`Error HTTP : ${peticion.status}`);
+      throw new Error(`Error HTTP : ${peticion.status}`);
     }
 
     const data = await peticion.json()
-    console.log(data)
     return data
   } catch (error) {
     console.log(`Error en la peticion ${error.message}`)
@@ -31,12 +30,36 @@ export async function postComentario(idParque, comentario) {
       body: JSON.stringify({idParque, comentario})
     })
     if (!peticion.ok) {
-      throw new error(`Error HTTP : ${peticion.status}`);
+      throw new Error(`Error HTTP : ${peticion.status}`);
     }
 
     const mensaje = await peticion.json()
     return mensaje
   } catch (error) {
     console.log(`Error en la peticion ${error.message}`)
+  }
+}
+
+
+//Delete
+
+export async function deleteComentarioId(idComentario) {
+  try {
+    const peticion = await fetch(`${desarrollo}/${idComentario}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      credentials: 'include',
+    })
+    if (!peticion.ok) {
+      const respuestaError = await peticion.json()
+      throw new Error(respuestaError.error);
+    }
+
+    const respuesta = await peticion.json()
+    return respuesta
+  } catch (error) {
+    throw error
   }
 }

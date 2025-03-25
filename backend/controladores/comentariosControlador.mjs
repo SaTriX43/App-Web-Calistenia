@@ -11,7 +11,7 @@ export async function getComentarios(req,res) {
     }
 
     const query = `
-      SELECT c.comentario, c.fecha_creacion, u.nombre AS usuario
+      SELECT c.comentario, c.id, c.fecha_creacion, u.nombre AS usuario
       FROM comentarios c
       JOIN usuarios u ON c.id_usuario = u.id
       WHERE c.id_parque = $1
@@ -78,7 +78,7 @@ export async function postComentarios(req,res) {
 export async function deleteComentarioId(req,res) {
   try {
     const {idComentario} = req.params
-    const idUsuario = req.params
+    const idUsuario = req.usuario.id
     const idComentarioParseado = parseInt(idComentario)
 
     if(isNaN(idComentarioParseado)) {
@@ -90,7 +90,7 @@ export async function deleteComentarioId(req,res) {
       WHERE id = $1 AND id_usuario = $2
       RETURNING *
     `
-    const values = [idComentario, idUsuario]
+    const values = [idComentarioParseado, idUsuario]
 
     const {rows} = await pool.query(query,values)
 
