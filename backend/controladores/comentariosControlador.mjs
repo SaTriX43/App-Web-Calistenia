@@ -21,7 +21,7 @@ export async function getComentarios(req,res) {
     const {rows} = await pool.query(query,[idParqueParseado])
 
     if(rows.length === 0) {
-      return res.status(404).json({error: `No hay comentarios para este parque`})
+      return res.status(200).json([])
     }
 
     res.status(200).json(rows)
@@ -41,8 +41,7 @@ export async function getComentarios(req,res) {
 export async function postComentarios(req,res) {
   try {
     const {idParque, comentario} = req.body
-    // const {idUsuario} = req.usuario.id
-    const idUsuario = 1
+    const idUsuario = req.usuario.id
     const idParqueParseado = parseInt(idParque)
 
     if(isNaN(idParqueParseado)) {

@@ -2,7 +2,7 @@
 
 import { getParqueId, getParques } from "@/utilidades/api/parqueApi";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Styles from "./page.module.css";
 import Detalles from "./componentesDetalle/Detalles";
 import Mapa from "../../../components/parques/Mapa/Mapa";
@@ -11,8 +11,10 @@ import Head from "next/head";
 import ComentariosFormulario from "@/components/parques/Comentarios/ComentariosFormulario";
 import Comentario from "@/components/parques/Comentarios/Comentario";
 import { getComentariosId } from "@/utilidades/api/comentariosApi";
+import { AutenticacionContext } from "@/context/AutenticacionContext";
 
 export default function DetalleParque() {
+  const {usuario} = useContext(AutenticacionContext)
   const [parques, setParques] = useState([]);
   const [parque, setParque] = useState(null);
   const [comentarios, setComentarios] = useState([])
@@ -36,6 +38,13 @@ export default function DetalleParque() {
 
     peticionFetch();
   }, []);
+
+  // funcion para agregar comentario 
+  function agregarComentario(comentario) {
+    const nuevoComentario= {...comentario, usuario: usuario.nombre}
+    setComentarios((prevComentario) => [nuevoComentario, ...prevComentario])
+  }
+
 
   if (!parque) {
     return <p className="mt-[200px]">Cargando parque....</p>;
@@ -108,17 +117,22 @@ export default function DetalleParque() {
               <h1 className="text-[35px] font-[600]">Comentarios</h1>
               <ComentariosFormulario
                 idParque = {id}
+                agregarComentario = {agregarComentario}
               />
 
               <div className={Styles['parques__detalle-contendor-comentarios']}>
-                {comentarios.map((comentario,index) => (
-                  <Comentario
-                    key={index}
-                    usuario= {comentario.usuario}
-                    comentario = {comentario.comentario}
-                    fechaCreacion = {comentario.fecha_creacion}
-                  />
-                ))}
+                {comentarios.length === 0 ? (
+                  <h1 className="text-[30px] text-center">No hay comentarios</h1>
+                ): (
+                  comentarios.map((comentario,index) => (
+                    <Comentario
+                      key={index}
+                      usuario= {comentario.usuario}
+                      comentario = {comentario.comentario}
+                      fechaCreacion = {comentario.fecha_creacion}
+                    />
+                  ))
+                )}
               </div>
             </div>
           </div>

@@ -3,6 +3,10 @@
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
+
+const urlBase = 'https://app-web-calistenia-production.up.railway.app/autenticacion/sesion'
+const desarrollo = 'http://localhost:4000/autenticacion/sesion'
+
 export default function useAutenticacionRedireccion(rutaProtegida) {
 
   const router = useRouter()
@@ -10,7 +14,7 @@ export default function useAutenticacionRedireccion(rutaProtegida) {
   useEffect(() => {
     async function verificarToken() {
       try {
-        const peticion = await fetch('https://app-web-calistenia-production.up.railway.app/autenticacion/sesion', {
+        const peticion = await fetch(desarrollo, {
           method:'GET',
           credentials: 'include'
         })
