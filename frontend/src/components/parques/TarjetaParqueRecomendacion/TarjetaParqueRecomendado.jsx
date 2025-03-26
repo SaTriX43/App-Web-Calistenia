@@ -26,14 +26,16 @@ export default function TarjetaParqueRecomendado({
   return (
     <article className={Styles['parques__tarjeta-recomendado']}>
       <div className={Styles['parques__tarjeta-recomendado-contenedor-img']}>
-        <Image
-          src={imagenFinal}
-          width={300}
-          height={300}
-          className="img"
-          alt="Imagen de parque"
-          onError={() => setErrorCarga(true)}
-        />
+        <Link className='w-full' href={`/parques/${id}`}>
+          <Image
+            src={imagenFinal}
+            width={300}
+            height={300}
+            className="img"
+            alt="Imagen de parque"
+            onError={() => setErrorCarga(true)}
+          />
+        </Link>
       </div>
       <div className={Styles['parques__tarjeta-recomendado-contenedor-info']}>
         <Link href={`/parques/${id}`}>

@@ -30,16 +30,18 @@ export default function TarjetaParqueUbicacion({
   return (
     <article className={Styles["parques__tarjeta"]}>
       <div className={Styles["parques__tarjeta-contedor-img"]}>
-        <Image
-          key={id}
-          src={imagenFinal}
-          width={300}
-          height={300}
-          className="img"
-          alt={`Imagen de parque: ${titulo}`}
-          // Detectar errores en la carga
-          onError={() => setErrorCarga(true)}
-        />
+        <Link className="w-full" href={`/parques/${id}`}>
+          <Image
+            key={id}
+            src={imagenFinal}
+            width={300}
+            height={300}
+            className="img"
+            alt={`Imagen de parque: ${titulo}`}
+            // Detectar errores en la carga
+            onError={() => setErrorCarga(true)}
+          />
+        </Link>  
       </div>
 
       {/* contenedor de informacion del parque */}
