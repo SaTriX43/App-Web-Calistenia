@@ -2,6 +2,11 @@ import React from 'react';
 import Styles from './condiciones.module.css';
 import InformacionLinks from '@/components/comunes/InformacionLinks/InformacionLinks.jsx';
 
+export const metadata = {
+  title: "Condiciones de Uso - Calistenia Ecuador",
+  description: "Lee las condiciones de uso de Calistenia Ecuador para usar nuestra plataforma de manera segura y responsable.",
+};
+
 export default function Condiciones() {
   return (
     <section className={Styles['informacion__condiciones']}>

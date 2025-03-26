@@ -63,13 +63,11 @@ export default function Contacto() {
   return (
     <section className={Styles['informacion__contacto']}>
       <h1 className='text-[40px]'>contacto</h1>
-      {/* error  */}
       {error && (
         <div className={Styles['informacion__contacto-error']}>
-          <h1>{error}</h1>
+          <h1>{error.message}</h1>
         </div>
       )} 
-      {/* mensaje  */}
       {mensaje.length > 0 && (
         <div className={Styles['informacion__contacto-respuesta']}>
           <h1>{mensaje}</h1>

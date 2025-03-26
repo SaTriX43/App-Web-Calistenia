@@ -1,9 +1,11 @@
-'use client'
-
 import ParquesUbicacionParque from '@/components/estructura/paginaParques/ParquesUbicacion/ParquesUbicacionParque'
 import Styles from '../../estilos/parques.module.css'
 import Descripcion from '@/components/parques/Descripcion/Descripcion'
 
+export const metadata = {
+  title: "Parques - Calistenia Ecuador",
+  description: "Encuentra los mejores parques de calistenia en Ecuador para entrenar al aire libre.",
+};
 
 const Parques = () => {
   return (
