@@ -1,6 +1,5 @@
-const urlBase = 'https://app-web-calistenia-production.up.railway.app/autenticacion'
-const urlPrueba = 'http://localhost:4000/autenticacion'
-
+const modo = 'desarrollo'
+const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/autenticacion' : "https://app-web-calistenia-production.up.railway.app/autenticacion";
 
 // registrar al usuario 
 export async function registrarUsuario(usuario) {

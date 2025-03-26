@@ -1,6 +1,7 @@
 
-const urlBase = "https://app-web-calistenia-production.up.railway.app/comentarios";
-const desarrollo = 'http://localhost:4000/comentarios'
+const modo = 'desarrollo'
+const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/comentarios' : "https://app-web-calistenia-production.up.railway.app/comentarios";
+
 
 // Get 
 export async function getComentariosId(id) {

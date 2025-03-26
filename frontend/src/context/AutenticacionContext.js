@@ -3,8 +3,8 @@ import { createContext, useState, useEffect } from "react";
 
 
 const AutenticacionContext = createContext();
-const urlBase = 'https://app-web-calistenia-production.up.railway.app/autenticacion/sesion'
-const urlPrueba = 'http://localhost:4000/autenticacion/sesion'
+const modo = 'desarrollo'
+const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/autenticacion/sesion' : "https://app-web-calistenia-production.up.railway.app/autenticacion/sesion";
 
 function AutenticacionProvider({children}) {
 
