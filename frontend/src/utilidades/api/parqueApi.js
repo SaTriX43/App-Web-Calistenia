@@ -1,5 +1,8 @@
-const modo = 'desarrollo'
-const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/parques' : "https://app-web-calistenia-production.up.railway.app/parques";
+// const modo = 'desarrollo'
+// const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/parques' : "https://app-web-calistenia-production.up.railway.app/parques";
+
+const urlBase = "https://app-web-calistenia-production.up.railway.app/parques"
+const desarrollo = 'http://localhost:4000/parques'
 
 
 // peticion parque general 

@@ -4,8 +4,11 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
 
-const modo = 'desarrollo'
-const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/autenticacion/sesion' : "https://app-web-calistenia-production.up.railway.app/autenticacion/sesion";
+// const modo = 'desarrollo'
+// const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/autenticacion/sesion' : "https://app-web-calistenia-production.up.railway.app/autenticacion/sesion";
+
+const urlBase = "https://app-web-calistenia-production.up.railway.app/autenticacion/sesion"
+const desarrollo = 'http://localhost:4000/autenticacion/sesion'
 
 export default function useAutenticacionRedireccion(rutaProtegida) {
 
