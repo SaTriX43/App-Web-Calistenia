@@ -1,5 +1,5 @@
 import ParquesUbicacionParque from '@/components/estructura/paginaParques/ParquesUbicacion/ParquesUbicacionParque'
-import Styles from '../../estilos/parques.module.css'
+import Styles from './parques.module.css'
 import Descripcion from '@/components/parques/Descripcion/Descripcion'
 
 export const metadata = {
