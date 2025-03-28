@@ -43,11 +43,11 @@
   transition: all .3s ease;
 }
 
-.parques__detallie-comentario-icono-trash:hover {
+.parques__detalle-comentario-icono-trash:hover {
   color: rgb(184, 50, 50);
 }
 
-.parques__detallie-comentario-icono-pen:hover {
+.parques__detalle-comentario-icono-pen:hover {
   color: rgb(66, 66, 149);
 }
 

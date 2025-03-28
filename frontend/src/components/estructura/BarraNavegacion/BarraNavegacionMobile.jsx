@@ -1,5 +1,3 @@
-'use client'
-
 import React, {useContext, useState } from 'react'
 import Image from 'next/image'
 import Styles from './BarraNavegacion.module.css'
@@ -31,7 +29,7 @@ export const BarraNavegacionMobile = () => {
                   src={'/logo-calistenia.png'}
                   width={50}
                   height={50}
-                  alt='icono-pagina'
+                  alt="Icono de Calistenia Ecuador"
                   className={Styles['navbar__logo']}
                 />
               </div>
@@ -43,7 +41,7 @@ export const BarraNavegacionMobile = () => {
           <FontAwesomeIcon onClick={manejarBars} icon={faBars} className={Styles['navbar__bars']}/>
         </div>
       </nav>
-      <div className={`${Styles['navbar__contenedor-paginas']}  ${bars ? Styles['navbar__contenedor-paginas-activo'] : ''}`}>
+      <ul className={`${Styles['navbar__contenedor-paginas']}  ${bars ? Styles['navbar__contenedor-paginas-activo'] : ''}`}>
         <li className={Styles['navbar__li-pagina']}>
           <Link 
             href="/" 
@@ -73,7 +71,7 @@ export const BarraNavegacionMobile = () => {
               className={`${Styles['navbar__links-pagina']} ${pathname.startsWith('/autenticacion') ? 'text-black' : ''}`}
               onClick={() => {setBars(false)}}
             >
-              Iniciar Sesion
+              Iniciar Sesión
             </Link>
           </li>
         ): (
@@ -87,7 +85,7 @@ export const BarraNavegacionMobile = () => {
           </li>
         )}
        
-      </div>
+      </ul>
     </>
   )
 }

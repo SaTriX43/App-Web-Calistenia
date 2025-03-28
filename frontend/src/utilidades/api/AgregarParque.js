@@ -1,3 +1,5 @@
+const urlBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
+
 export default async function agregarParquePost(parque) {
   try {
 
@@ -12,7 +14,7 @@ export default async function agregarParquePost(parque) {
     if(parque.nombre) formData.append('nombre',parque.nombre);
     if(parque.descripcion) formData.append('descripcion',parque.descripcion);
 
-    const peticion = await fetch('https://app-web-calistenia-production.up.railway.app/parques/agregar',{
+    const peticion = await fetch(`${urlBase}/parques/agregar`,{
       method:'POST',
       body: formData
     })
@@ -24,7 +26,7 @@ export default async function agregarParquePost(parque) {
     const mensaje = await peticion.json()
     return mensaje
   } catch (error) {
-    console.log(`A ocurrido un error en la peticion post ${error.error}`)
+    console.log(`Ha ocurrido un error en la peticion post ${error.error}`)
     throw error
   }
 }

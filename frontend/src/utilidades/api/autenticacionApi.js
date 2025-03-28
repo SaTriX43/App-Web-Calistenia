@@ -1,11 +1,10 @@
-const modo = 'desarrollo'
-const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/autenticacion' : "https://app-web-calistenia-production.up.railway.app/autenticacion";
+const urlBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
 
 // registrar al usuario 
 export async function registrarUsuario(usuario) {
   try {
     //prueba
-    const peticion = await fetch(`${urlBase}/register`, {
+    const peticion = await fetch(`${urlBase}/autenticacion/register`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -29,7 +28,7 @@ export async function registrarUsuario(usuario) {
 // Iniciar sesion al usuario 
 export async function iniciarSesionUsuario(usuario) {
   try {
-    const peticion = await fetch(`${urlBase}/login`, {
+    const peticion = await fetch(`${urlBase}/autenticacion/login`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -46,7 +45,7 @@ export async function iniciarSesionUsuario(usuario) {
     const respuesta = await peticion.json()
     return respuesta
   } catch (error) {
-    console.log(`Error el la peticion de login ${error.message}`)
+    console.log(`Error en la peticion de login ${error.message}`)
     throw error
   }
 }
@@ -54,7 +53,7 @@ export async function iniciarSesionUsuario(usuario) {
 // deslogearse 
 export async function deslogearseUsuario() {
   try {
-    const peticion = await fetch(`${urlBase}/deslogeo`, {
+    const peticion = await fetch(`${urlBase}/autenticacion/deslogeo`, {
       method:'POST',
       credentials:'include'
     })
@@ -70,7 +69,7 @@ export async function deslogearseUsuario() {
 // eliminar usuario  
 export async function eliminarUsuario() {
   try {
-    const peticion = await fetch(`${urlBase}/eliminar`, {
+    const peticion = await fetch(`${urlBase}/autenticacion/eliminar`, {
       method:'DELETE',
       credentials:'include'
     })

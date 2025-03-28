@@ -23,7 +23,7 @@
 
 /* contenedro img  */
 
-.parques__tarjeta-contedor-img {
+.parques__tarjeta-contenedor-img {
   display: flex;
   min-width: 150px;
   width: 100%;
@@ -94,7 +94,7 @@
     flex-direction: row;
   }
 
-  .parques__tarjeta-contedor-img {
+  .parques__tarjeta-contenedor-img {
     min-width: 170px;
     max-width: 170px;
   }

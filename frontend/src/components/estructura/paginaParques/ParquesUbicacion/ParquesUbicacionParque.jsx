@@ -2,13 +2,12 @@
 import React, { useEffect, useState } from 'react'
 import Styles from './ParquesUbicacionParque.module.css'
 import { getParques } from '@/utilidades/api/parqueApi'
-import { Publicidad } from '@/components/parques/publicidad/Publicidad'
 import { Paginacion } from '@/components/parques/paginacion/Paginacion'
 import TarjetaParqueUbicacion from '@/components/parques/TarjetaParqueUbucacion/TarjetaParqueUbicacion'
 import TarjetaParqueRecomendado from '@/components/parques/TarjetaParqueRecomendacion/TarjetaParqueRecomendado'
 
 function ParquesUbicacionParque() {
-  const [parques, setParques] = useState([])//variable que guarda los parques
+  const [parques, setParques] = useState([])
   const [errorParques , setErrorParques] = useState(null);
   const [cargando, setCargando] = useState(true)
 
@@ -50,6 +49,9 @@ function ParquesUbicacionParque() {
     return <h1>Error {errorParques}</h1>
   }
 
+  if (!parques.length && !cargando && !errorParques) {
+    return <h1>No se encontraron parques.</h1>;
+  }
 
 
   return (
@@ -82,8 +84,7 @@ function ParquesUbicacionParque() {
       </div>
 
       {/* contenedor publicidad y parques recomendados  */}
-      <div className={Styles["parques__contenedor-publicidad-recomnedados"]}>
-        {/* <Publicidad /> */}
+      <div className={Styles["parques__contenedor-publicidad-recomendados"]}>
         <h2 className="text-[30px] text-center">Parques Recomendados</h2>
         {/* ParquesRecomendados  */}
         <div className={Styles["parques__contenedor-recomendados"]}>

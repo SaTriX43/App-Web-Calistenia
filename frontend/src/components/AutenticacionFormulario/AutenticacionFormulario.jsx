@@ -30,6 +30,12 @@ export default function AutenticacionFormulario({
     return () => clearTimeout(time)
   },[mensaje, setMensaje])
 
+  // limpia el error 
+  useEffect(() => {
+    const time = setTimeout(() => setError(''), 3000);
+    return () => clearTimeout(time);
+  }, [error, setError]);
+
   // funcion para manejar cambio 
   function manejarCambio(e) {
     const {name , value} = e.target;
@@ -50,7 +56,7 @@ export default function AutenticacionFormulario({
         );
       }
     } catch (error) {
-      setError(error.message || `A ocurrido un error`)
+      setError(error.message || `Ha ocurrido un error`)
     }
   }
 

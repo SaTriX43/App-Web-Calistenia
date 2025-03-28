@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faInstagram, faTiktok, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import Link from 'next/link'
+import InformacionLinks from '@/components/comunes/InformacionLinks/InformacionLinks'
 
 export const PiePagina = () => {
   return (
@@ -43,15 +44,15 @@ export const PiePagina = () => {
         
       </div>
       {/* paginas  */}
-      <div className={Styles['footer__contenedor-paginas']}>
+      <ul className={Styles['footer__contenedor-paginas']}>
         <li className={Styles['footer__li-paginas']}>
           <Link href='/parques' className={Styles['footer__a-paginas']}>Parques</Link>
         </li>
-      </div>
+      </ul>
 
       {/* copyright  */}
       <div className={Styles['footer__contenedor-copyright']}>
-        <h3><span className='font-[600]'>@Copyright</span> Santiago Gonzales</h3>
+        <h3><span className='font-[600]'>&copy;</span> Santiago Gonzáles</h3>
       </div>
     </footer>
   )

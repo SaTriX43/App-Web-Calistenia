@@ -44,7 +44,7 @@ export default function DetalleParque() {
     }
 
     peticionFetch();
-  }, []);
+  }, [id]);
 
   // funcion para agregar comentario 
   function agregarComentario(comentario) {

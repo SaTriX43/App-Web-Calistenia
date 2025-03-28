@@ -1,8 +1,8 @@
-const urlBase = 'https://app-web-calistenia-production.up.railway.app/contacto'
+const urlBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
 // peticion post 
 export async function contactoPost(contacto) {
   try { 
-    const peticion = await fetch(urlBase, {
+    const peticion = await fetch(`${urlBase}/contacto`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'

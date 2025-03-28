@@ -44,10 +44,10 @@ export default function Comentario({
   
 }) {
 
-  const [nuevoTexto, setNuevoTexto] = useState('')
+  const [nuevoTexto, setNuevoTexto] = useState(comentario)
 
   return (
-    <div className={Styles['parques__detalle-comentario-contenedor-perfil-comentario']}>
+    <div className={Styles['parques__detalle-comentario-contenedor-perfil-comentario']} role='comment'>
       <div className={Styles['parques__detalle-comentario-contenedor-perfil']}>
         <Foto/>
       </div>
@@ -77,7 +77,7 @@ export default function Comentario({
           <FontAwesomeIcon
             icon={faTrash}
             onClick={() => eliminarComentario(comentarioId, usuario)}
-            className={Styles['parques__detallie-comentario-icono-trash']}
+            className={Styles['parques__detalle-comentario-icono-trash']}
           />
           {comentariosEditando[comentarioId] ? (
             <>
@@ -96,7 +96,7 @@ export default function Comentario({
           ) : (
             <FontAwesomeIcon
               icon={faPen}
-              className={Styles['parques__detallie-comentario-icono-pen']}
+              className={Styles['parques__detalle-comentario-icono-pen']}
               onClick={() => toggleEditanto(comentarioId, usuario)}
             />
           )}
