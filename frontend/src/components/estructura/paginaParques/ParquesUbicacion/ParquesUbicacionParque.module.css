@@ -18,7 +18,7 @@
 
 /* contenedor de publicidad y recomendados  */
 
-.parques__contenedor-publicidad-recomnedados {
+.parques__contenedor-publicidad-recomendados {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -63,7 +63,7 @@
     justify-content: space-around;
   }
 
-  .parques__contenedor-publicidad-recomnedados {
+  .parques__contenedor-publicidad-recomendados {
     width: 30%;
   }
 }

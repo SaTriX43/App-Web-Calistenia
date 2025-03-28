@@ -1,15 +1,12 @@
-
-// const modo = 'desarrollo'
-// const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/comentarios' : "https://app-web-calistenia-production.up.railway.app/comentarios";
-
-const urlBase = "https://app-web-calistenia-production.up.railway.app/comentarios"
-const desarrollo = 'http://localhost:4000/comentarios'
+const urlBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
 
 
 // Get 
 export async function getComentariosId(id) {
   try {
-    const peticion = await fetch(`${urlBase}/${id}`)
+    console.log('Entorno:', process.env.NODE_ENV);
+    console.log('API URL:', process.env.NEXT_PUBLIC_API_URL);
+    const peticion = await fetch(`${urlBase}/comentarios/${id}`)
     if (!peticion.ok) {
       throw new Error(`Error HTTP : ${peticion.status}`);
     }
@@ -18,6 +15,7 @@ export async function getComentariosId(id) {
     return data
   } catch (error) {
     console.log(`Error en la peticion ${error.message}`)
+    throw error
   }
 }
 
@@ -25,7 +23,7 @@ export async function getComentariosId(id) {
 // Post 
 export async function postComentario(idParque, comentario) {
   try {
-    const peticion = await fetch(`${urlBase}`, {
+    const peticion = await fetch(`${urlBase}/comentarios`, {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -41,6 +39,7 @@ export async function postComentario(idParque, comentario) {
     return mensaje
   } catch (error) {
     console.log(`Error en la peticion ${error.message}`)
+    throw error
   }
 }
 
@@ -49,7 +48,7 @@ export async function postComentario(idParque, comentario) {
 
 export async function deleteComentarioId(idComentario) {
   try {
-    const peticion = await fetch(`${urlBase}/${idComentario}`, {
+    const peticion = await fetch(`${urlBase}/comentarios/${idComentario}`, {
       method: 'DELETE',
       headers: {
         'Content-Type' : 'application/json'
@@ -72,7 +71,7 @@ export async function deleteComentarioId(idComentario) {
 //PACTH
 export async function patchComentarioId(idComentario,texto) {
   try {
-    const peticion = await fetch(`${urlBase}/${idComentario}`, {
+    const peticion = await fetch(`${urlBase}/comentarios/${idComentario}`, {
       method: 'PATCH',
       headers: {
         'Content-Type' : 'application/json'

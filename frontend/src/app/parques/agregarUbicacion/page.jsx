@@ -16,7 +16,7 @@ const Mapa = dynamic(() => import('@/components/parques/Mapa/Mapa.jsx'), {
 export default function AgregarUbicacion() {
 
   // para redireccionar si no esta logeado 
-  useAutenticacionRedireccion('/parques/agregarUbicacion')
+  const {cargando} = useAutenticacionRedireccion('/parques/agregarUbicacion')
 
 
   // variables para guardar los datos 
@@ -155,6 +155,10 @@ export default function AgregarUbicacion() {
   }
 
 
+  if(cargando) {
+    return <h1 className='text-[30px]'>Cargando.....</h1>
+  }
+
   return (
     <>
       {mensaje && (
@@ -181,6 +185,7 @@ export default function AgregarUbicacion() {
               <button
                 className={Styles['parques__agregar-ubicacion-formulario-posicion-boton']}
                 onClick={obtenerUbicacion}
+                aria-label='Obtener mi posicion actual'
               >
                 <FontAwesomeIcon icon={faPaperPlane} />
                 <span>Obtener posicion</span>
@@ -193,7 +198,7 @@ export default function AgregarUbicacion() {
                 readOnly
               />
             </div>
-            {typeof window !== 'undefined' && (
+           
               <Mapa
                 ref={mapaRef}
                 latitud={formularioDatos.coordenadas.latitud}
@@ -209,7 +214,7 @@ export default function AgregarUbicacion() {
                 ubicaciones={[]}
                 mostrarMarcador
               />
-            )}
+            
           </div>
           {/* seccion 2  */}
 

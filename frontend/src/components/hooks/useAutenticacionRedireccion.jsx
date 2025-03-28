@@ -1,23 +1,20 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
-// const modo = 'desarrollo'
-// const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/autenticacion/sesion' : "https://app-web-calistenia-production.up.railway.app/autenticacion/sesion";
-
-const urlBase = "https://app-web-calistenia-production.up.railway.app/autenticacion/sesion"
-const desarrollo = 'http://localhost:4000/autenticacion/sesion'
+const urlBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
 
 export default function useAutenticacionRedireccion(rutaProtegida) {
 
   const router = useRouter()
+  const [cargando , setCargando] = useState(true)
   
   useEffect(() => {
     async function verificarToken() {
       try {
-        const peticion = await fetch(urlBase, {
+        const peticion = await fetch(`${urlBase}/autenticacion/sesion`, {
           method:'GET',
           credentials: 'include'
         })
@@ -27,10 +24,15 @@ export default function useAutenticacionRedireccion(rutaProtegida) {
         }
 
       } catch (error) {
+        console.error(`Error al verificar token`,error)
         const redireccion = rutaProtegida || '/'
-        router.push(`/autenticacion/login?redireccion=${redireccion}&mensaje=Debe de iniciar sesion para acceder a esta pagina`)
+        router.push(`/autenticacion/login?redireccion=${redireccion}&mensaje=Debe iniciar sesión para acceder a esta página`)
+      }finally {
+        setCargando(false)
       }
     }
     verificarToken()
   },[router, rutaProtegida])
+
+  return {cargando}
 }

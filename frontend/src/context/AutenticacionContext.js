@@ -3,11 +3,8 @@ import { createContext, useState, useEffect } from "react";
 
 
 const AutenticacionContext = createContext();
-// const modo = 'desarrollo'
-// const urlBase = modo === 'desarrollo' ? 'http://localhost:4000/autenticacion/sesion' : "https://app-web-calistenia-production.up.railway.app/autenticacion/sesion";
 
-const urlBase = "https://app-web-calistenia-production.up.railway.app/autenticacion/sesion"
-const desarrollo = 'http://localhost:4000/autenticacion/autenticacion/sesion'
+const urlBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
 
 function AutenticacionProvider({children}) {
 
@@ -17,12 +14,12 @@ function AutenticacionProvider({children}) {
   
     async function actualizarSesion() {
       try {
-        const peticion = await fetch(urlBase, {
+        const peticion = await fetch(`${urlBase}/autenticacion/sesion`, {
           credentials : 'include'
         })
 
         if(!peticion.ok){
-          throw new Error('No autenticado')
+          throw new Error(`No autenticado: ${peticion.status} - ${peticion.statusText}`)
         }
 
         const data = await peticion.json()
@@ -30,7 +27,7 @@ function AutenticacionProvider({children}) {
         setUsuario(data.usuario)
         
       } catch (error) {
-        console.log(`A ocurrido un error al autenticar el usuario: ${error.message}`)
+        console.log(`Ha ocurrido un error al autenticar el usuario: ${error.message}`)
         setAutenticado(false)
         setUsuario(null)
       } finally {

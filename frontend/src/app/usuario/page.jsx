@@ -2,14 +2,14 @@
 
 import React, {useContext} from 'react'
 import Styles from './page.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { AutenticacionContext } from '@/context/AutenticacionContext'
 import useAutenticacionRedireccion from '@/components/hooks/useAutenticacionRedireccion'
 import { Boton } from '@/components/comunes/Boton/Boton'
 import { deslogearseUsuario, eliminarUsuario } from '@/utilidades/api/autenticacionApi'
 import { useRouter } from 'next/navigation'
 import Foto from '@/components/comunes/Foto/Foto'
+
+
 export default function Usuario() {
 
   useAutenticacionRedireccion('/usuario')
@@ -20,22 +20,28 @@ export default function Usuario() {
 
   // funcion para deslogearse 
   async function manejarDeslogeo() {
-    const deslogeo = await deslogearseUsuario()
-
-
-
-    if(deslogeo) {
-      router.push('/')
-      actualizarSesion()
+    try {
+      const deslogeo = await deslogearseUsuario()
+      if(deslogeo) {
+        router.push('/')
+        actualizarSesion()
+      }
+    } catch (error) {
+      alert(`Error al deslogearse porfavor intentelo de nuevo`)
     }
   }
 
   // funcion para eliminar cuenta 
   async function manejarEliminarCuenta() {
     if(confirm('Seguro que deseas eliminar la cuenta')) {
-      await eliminarUsuario()
-      router.push('/')
-      actualizarSesion()
+      try {
+        await eliminarUsuario()
+        router.push('/')
+        actualizarSesion()
+      } catch (error) {
+        alert(`Error al eliminar cuenta intentelo de nuevo`)
+      }
+      
     }
   } 
 
@@ -60,7 +66,7 @@ export default function Usuario() {
         />
         <Boton
           tipoBoton='secundario'
-          texto='Elimnar Cuenta'
+          texto='Eliminar Cuenta'
           onClick={manejarEliminarCuenta}
         />
       </main>

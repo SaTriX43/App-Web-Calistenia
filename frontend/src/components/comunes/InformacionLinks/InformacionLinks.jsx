@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function InformacionLinks() {
   return (
-    <div className={Styles['informacion-sobre']}>
+    <ul className={Styles['informacion-sobre']}>
         <Link href='/informacion/SobreNosotros'>
           <li>Sobre nosotros</li>
         </Link>
@@ -14,6 +14,6 @@ export default function InformacionLinks() {
         <Link href='/informacion/contacto'>
           <li>Contacto</li>
         </Link>
-      </div>
+    </ul>
   )
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Publicidad } from '../publicidad/Publicidad'
 import Styles from './Descripcion.module.css'
 import Image from 'next/image'
 
@@ -14,7 +13,6 @@ export default function Descripcion() {
           barras, anillas y paralelas que permiten entrenamientos de fuerza, flexibilidad 
           y resistencia sin necesidad de pesas.
         </p>
-        {/* <Publicidad/> */}
       </div>
 
       <div className={Styles['parques__descripcion-bloque']}>
@@ -24,7 +22,6 @@ export default function Descripcion() {
           y mental. Además, son una excelente opción para socializar y formar parte 
           de comunidades de ejercicio al aire libre.
         </p>
-        {/* <Publicidad/> */}
       </div>
 
       <div className={Styles['parques__descripcion-bloque']}>
@@ -34,7 +31,6 @@ export default function Descripcion() {
           promover actividades saludables en la comunidad. Son espacios sostenibles y 
           fomentan el uso de áreas verdes en las ciudades.
         </p>
-        {/* <Publicidad/> */}
       </div>
 
       <div className={Styles['parques__descripcion-bloque']}>
@@ -51,7 +47,7 @@ export default function Descripcion() {
         <a 
           href='/Introduccion-calistenia.pdf'
           download='IntroduccionCalistenia.pdf'
-          className={`${Styles['parques__descripcionp-boton-pdf']} bg-yellow-300 hover:bg-yellow-500`}
+          className={`${Styles['parques__descripcion-boton-pdf']} bg-yellow-300 hover:bg-yellow-500`}
         >
           Descarga guia de calistenia
         </a>

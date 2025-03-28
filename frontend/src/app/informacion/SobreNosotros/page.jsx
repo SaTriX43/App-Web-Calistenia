@@ -6,6 +6,11 @@ import { faFacebook, faInstagram, faTiktok, faTwitter } from '@fortawesome/free-
 import InformacionLinks from '@/components/comunes/InformacionLinks/InformacionLinks';
 import Link from 'next/link';
 
+export const metadata = {
+  title: "Sobre Nosotros - Calistenia Ecuador",
+  description: "Conoce más sobre Calistenia Ecuador, nuestra misión, visión y valores para conectar a la comunidad de calistenia.",
+};
+
 export default function SobreNosotros() {
   return (
     <section className={Styles['informacion__sobre-nosotros']}>

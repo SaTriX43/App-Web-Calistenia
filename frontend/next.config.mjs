@@ -16,7 +16,7 @@ const nextConfig = {
     middleware: true
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   webpack: (config) => {
     config.resolve.alias['@'] = path.resolve(__dirname, 'src'); // Usa __dirname correctamente

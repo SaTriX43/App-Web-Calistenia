@@ -41,7 +41,6 @@ export default function TarjetaParqueRecomendado({
         <Link href={`/parques/${id}`}>
           <h3 className={Styles['parques__tarjeta-recomendado-titulo']}>{titulo}</h3>
         </Link>
-        
         <div className={Styles['parques__tarjeta-recomendado-contenedor-puntuacion']}>
           {Array.from({length: 5}).map((_, index) => (
             index < puntuacion && '⭐' 

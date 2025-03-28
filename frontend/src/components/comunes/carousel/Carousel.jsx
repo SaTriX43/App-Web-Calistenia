@@ -16,12 +16,15 @@ export default function Carousel({ images, onClose }) {
     prevArrow: <CustomPrevArrow />,
   };
 
+  const imagenes = images && images.length > 0 ?
+    images : ['/imagen-parque-no-disponible.png']
+
   return (
     <div className={Styles.modalOverlay} onClick={onClose}>
       <div className={Styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <button className={Styles.modalClose} onClick={onClose}>X</button>
         <Slider {...settings}>
-          {images.map((img, index) => (
+          {imagenes.map((img, index) => (
             <div key={index} className={Styles.slide}>
               <img src={img} alt={`Imagen ${index + 1}`} className={Styles.image} />
             </div>

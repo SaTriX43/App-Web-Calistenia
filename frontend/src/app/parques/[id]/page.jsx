@@ -30,12 +30,13 @@ export default function DetalleParque() {
   useEffect(() => {
     async function peticionFetch() {
       try {
-        const data = await getParqueId(id);
-        const dataComentarios = await getComentariosId(id)
+        const [data, dataComentarios, parquesData] = await Promise.all([
+          getParqueId(id),
+          getComentariosId(id),
+          getParques(),
+        ]);
         setParque(data);
-        setComentarios(dataComentarios)
-
-        const parquesData = await getParques();
+        setComentarios(dataComentarios);
         setParques(parquesData.data);
       } catch (error) {
         console.log(error);
@@ -43,7 +44,7 @@ export default function DetalleParque() {
     }
 
     peticionFetch();
-  }, []);
+  }, [id]);
 
   // funcion para agregar comentario 
   function agregarComentario(comentario) {

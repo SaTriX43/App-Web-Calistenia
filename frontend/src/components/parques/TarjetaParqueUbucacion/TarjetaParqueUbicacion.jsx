@@ -29,7 +29,7 @@ export default function TarjetaParqueUbicacion({
 
   return (
     <article className={Styles["parques__tarjeta"]}>
-      <div className={Styles["parques__tarjeta-contedor-img"]}>
+      <div className={Styles["parques__tarjeta-contenedor-img"]}>
         <Link className="w-full" href={`/parques/${id}`}>
           <Image
             key={id}
